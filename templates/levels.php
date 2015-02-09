@@ -81,9 +81,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		}
 		else
 			$pmpro_levels_filtered = $pmpro_visible_levels;
-		
-		$original_level = $level;
-				  
+						 
 		//update per discount code
 		if(!empty($discount_code) && !empty($pmpro_levels_filtered))
 		{			
@@ -226,7 +224,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				if(!empty($template))
 					echo "pmpro_advanced_levels-" . $template;
 				else
-					echo "pmpro_levels-" . $layout;
+					echo "pmpro_levels-div pmpro_levels-" . $layout;
 				if(empty($template) || $template === "foundation")
 					echo " row";
 				if($template === "gantry")
@@ -253,14 +251,14 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 						if($layout == '2col') { echo 'one-half'; }
 						elseif($layout == '3col') { echo 'one-third'; }
 						elseif($layout == '4col') { echo 'one-fourth'; } 
-						else { if(count($pmpro_levels) > 1) { echo '12'; } } 
+						else { if(count($pmpro_levels_filtered) > 1) { echo '12'; } } 
 						if($count == 1) { echo ' first'; }
 					} 
 					elseif($template === "gantry") {
 						if($layout == '2col') { echo 'span6'; }
 						elseif($layout == '3col') { echo 'span4'; }
 						elseif($layout == '4col') { echo 'span3'; } 
-						else { if(count($pmpro_levels) > 1) { echo 'span12'; } } 
+						else { if(count($pmpro_levels_filtered) > 1) { echo 'span12'; } } 
 					} 
 					elseif($template === "twentyfourteen") {
 						if($layout == '2col' || $layout == '3col' ||$layout == '4col') { echo 'gallery-item'; }
@@ -269,7 +267,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 						if($layout == '2col') { echo 'twocol-one'; }
 						elseif($layout == '3col') { echo 'threecol-one'; }
 						elseif($layout == '4col') { echo 'fourcol-one'; }
-						else { if(count($pmpro_levels) > 1) { echo 'full'; } } 
+						else { if(count($pmpro_levels_filtered) > 1) { echo 'full'; } } 
 						if($layout == '2col' && $count % 2 == 0) { echo ' last'; }
 						elseif($layout == '3col' && $count % 3 == 0) { echo ' last'; }
 						elseif($layout == '4col' && $count % 4 == 0) { echo ' last'; }
@@ -281,7 +279,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 						if($layout == '2col') { echo '6'; }
 						elseif($layout == '3col') { echo '4 text-center'; }
 						elseif($layout == '4col') { echo '3 text-center'; } 
-						else { if(count($pmpro_levels) > 1) { echo '12'; } } 
+						else { if(count($pmpro_levels_filtered) > 1) { echo '12'; } } 
 					?> columns
 					<?php
 					}
