@@ -224,7 +224,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				if(!empty($template))
 					echo "pmpro_advanced_levels-" . $template;
 				else
-					echo "pmpro_levels-div pmpro_levels-" . $layout;
+					echo "pmpro_advanced_levels-div pmpro_levels-" . $layout;
 				if(empty($template) || $template === "foundation")
 					echo " row";
 				if($template === "gantry")
