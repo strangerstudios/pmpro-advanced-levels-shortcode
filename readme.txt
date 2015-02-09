@@ -33,7 +33,8 @@ http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-m
 
 == Changelog == 
 = .1.1 =
-* ALREADY! :) Fixed some PHP warnings that were affecting layout and some CSS styles were tweaked.
+* Fixed some PHP warnings that were affecting layout and some CSS styles were tweaked.
+* Fixed enqueue of CSS to work for different plugin directory names.
 
 = .1 =
 * First version.

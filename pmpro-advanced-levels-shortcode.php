@@ -12,7 +12,7 @@ $path = dirname(__FILE__);
 require_once($path . "/templates/levels.php");
 
 function pmpro_advanced_levels_register_styles() {
-	wp_register_style( 'pmpro-advanced-levels-styles', plugins_url( 'pmpro-advanced-levels/css/pmpro-advanced-levels.css' ) );
+	wp_register_style( 'pmpro-advanced-levels-styles', plugins_url( 'css/pmpro-advanced-levels.css', __FILE__ ) );
 	wp_enqueue_style( 'pmpro-advanced-levels-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_advanced_levels_register_styles' );
