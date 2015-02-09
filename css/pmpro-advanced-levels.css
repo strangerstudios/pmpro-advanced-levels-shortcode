@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.pmpro_advanced_levels-genesis .pmpro_level.one-third, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth, .pmpro_advanced_levels-gantry .pmpro_level.span4, .pmpro_advanced_levels-gantry .pmpro_level.span3, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one {text-align: center; }
+table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button {display: block; text-align: center; }
+
+/* Styles for Genesis Template */
+table.pmpro_advanced_levels-genesis thead th, table.pmpro_advanced_levels-genesis tbody td {padding-right: 10px; padding-left: 10px; }
+
+/* Styles for Gantry Template */
+table.pmpro_advanced_levels-gantry h2 {border-bottom: none; box-shadow: none; padding-bottom: 0; }
+
+/* Styles for WooThemes Template */
+table.pmpro_advanced_levels-woothemes tbody td {vertical-align: middle; }
+
+/* Styles for Foundation Template */
+.pmpro_advanced_levels-foundation .panel .button {margin-bottom: 0; }
+.pmpro_advanced_levels-foundation .panel h5.subheader {color: #6f6f6f; }
+.pmpro_advanced_levels-foundation .pricing-table .price {font-size: 1rem; }
+.pmpro_advanced_levels-foundation .pricing-table .price span {display: block; font-size: 2rem; }
+
+/* Styles for TwentyFourteen Template */
+.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-twentyfourteen .button:hover {color: #FFF; }
+
