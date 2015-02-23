@@ -3,7 +3,7 @@
 Plugin Name: PMPro Advanced Levels Page Shortcode
 Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-advanced-levels/
 Description: An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro
-Version: .1.2
+Version: .1.3
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */

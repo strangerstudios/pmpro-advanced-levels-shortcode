@@ -80,8 +80,8 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			}
 		}
 		else
-			$pmpro_levels_filtered = $pmpro_visible_levels;
-						 
+			$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_visible_levels);
+		
 		//update per discount code
 		if(!empty($discount_code) && !empty($pmpro_levels_filtered))
 		{			
