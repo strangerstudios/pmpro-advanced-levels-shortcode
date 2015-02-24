@@ -1,4 +1,4 @@
-=== PMPro Advanced Levels Page Shortcode ===
+=== Paid Memberships Pro - Advanced Levels Page Shortcode Add On ===
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 3.5
