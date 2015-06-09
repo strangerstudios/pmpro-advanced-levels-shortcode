@@ -22,6 +22,11 @@ table.pmpro_advanced_levels-woothemes tbody td {vertical-align: middle; }
 /* Styles for TwentyFourteen Template */
 .pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-twentyfourteen .button:hover {color: #FFF; }
 
+/* Clear for Genesis child theme */
+.pmpro_level-clear {
+  clear: both;
+}
+
 /* Styles for No Template */
 .pmpro_advanced_levels-div .post {padding: 1em; }
 
