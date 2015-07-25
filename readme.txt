@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 3.5
-Tested up to: 4.2.2
-Stable tag: .1.5
+Tested up to: 4.3
+Stable tag: .1.6
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -32,6 +32,9 @@ For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
 
 == Changelog == 
+= .1.6 =
+* Fixed bug where the current level CSS class wasn't always set correctly on elements.
+
 = .1.5 =
 * Now applying the pmpro_levels_array filter to the array of levels when the levels are specified in a shortcode attribute. If you are using the pmpro_advanced_levels shortcode AND the pmpro_levels_array filter already, make sure your filter is programmed to account for this (perhaps by checking the globsl $post->ID to only run on certain pages/et). (Thanks, Camouyer)
 

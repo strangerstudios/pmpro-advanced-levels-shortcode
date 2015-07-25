@@ -136,7 +136,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				  else
 					  $current_level = false;
 				?>
-				<tr class="<?php if($current_level == $level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+				<tr class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 					<td>
 						<h2><?php echo $level->name?></h2>
 						<?php if(!empty($description)) { echo wpautop($level->description); } ?>
@@ -290,7 +290,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 					<?php
 					}
 				?>">
-				<div class="<?php if($layout != "4col") { echo "entry "; } ?>post <?php if($current_level == $level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "foundation" && ($layout === "2col" || $layout === "div" || empty($layout))) { echo " panel"; } if($template === "gantry") { echo " well"; } ?>"<?php if($template === "foundation" && $layout === "2col") { echo " data-equalizer-watch"; } ?>>
+				<div class="<?php if($layout != "4col") { echo "entry "; } ?>post <?php if($current_level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "foundation" && ($layout === "2col" || $layout === "div" || empty($layout))) { echo " panel"; } if($template === "gantry") { echo " well"; } ?>"<?php if($template === "foundation" && $layout === "2col") { echo " data-equalizer-watch"; } ?>>
 				<?php 
 					if($template === "foundation" && ($layout === "4col" || $layout === "3col")) 
 					{ 
