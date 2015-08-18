@@ -15,8 +15,8 @@ Attributes in the [pmpro_advanced_levels] shortcode can be used to tweak how lev
 
 Also includes specific styling support for Bootstrap v3+, StudioPress/Genesis, Woo Themes, Gantry, and Foundation based themes as well as some of the default WP themes like TwentyFourteen.
 
-For more information, see our blog post here:
-http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
+For more information, see add on documentation:
+http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/
 
 == Installation ==
 
