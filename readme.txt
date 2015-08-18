@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: .1.6
+Stable tag: .1.7
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -13,7 +13,7 @@ An enhanced shortcode for customizing the display of your Membership Levels Page
 
 Attributes in the [pmpro_advanced_levels] shortcode can be used to tweak how levels are displayed on the levels page, including options to display levels in a more HTML5-friendly div layout or popular column layouts.
 
-Also includes specific styling support for StudioPress/Genesis, Woo Themes, Gantry, and Foundation based themes as well as some of the default WP themes like TwentyFourteen.
+Also includes specific styling support for Bootstrap v3+, StudioPress/Genesis, Woo Themes, Gantry, and Foundation based themes as well as some of the default WP themes like TwentyFourteen.
 
 For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
@@ -32,6 +32,9 @@ For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
 
 == Changelog == 
+= .1.7 =
+* Added support for Bootstrap v3+ based themes.
+
 = .1.6 =
 * Fixed bug where the current level CSS class wasn't always set correctly on elements.
 

@@ -111,7 +111,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 					echo "pmpro_advanced_levels-" . $template;
 				else
 					echo "pmpro_advanced_levels-table";
-				if($template === "gantry")
+				if($template === "gantry" || $template === "bootstrap")
 					echo " table table-striped table-bordered";
 			?>">
 			<thead>
@@ -171,14 +171,14 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 					<?php if(empty($current_user->membership_level->ID)) { ?>
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "gantry") { echo "btn btn-primary"; }
+							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
 						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
 					<?php } elseif ( !$current_level ) { ?>                	
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "gantry") { echo "btn btn-primary"; }
+							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
 						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
@@ -191,7 +191,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 							?>
 								<a class="<?php
 									if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-									elseif($template === "gantry") { echo "btn btn-primary"; }
+									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select"; }
 								?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php _e('Renew', 'pmpro');?></a>
@@ -203,7 +203,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 								<a class="<?php
 									if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
 									elseif($template === "foundation") { echo "button info"; }
-									elseif($template === "gantry") { echo "btn btn-info"; }
+									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
 									elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 									else { echo "pmpro_btn disabled"; }
 								?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
@@ -231,7 +231,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 					echo "pmpro_advanced_levels-" . $template;
 				else
 					echo "pmpro_advanced_levels-div pmpro_levels-" . $layout;
-				if(empty($template) || $template === "foundation")
+				if(empty($template) || $template === "foundation" || $template === "bootstrap")
 					echo " row";
 				if($template === "gantry")
 					echo " row-fluid";
@@ -259,6 +259,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 						elseif($layout == '4col') { echo 'one-fourth'; } 
 						else { if(count($pmpro_levels_filtered) > 1) { echo '12'; } } 
 						if($count == 1) { echo ' first'; }
+					} 
+					elseif($template === "bootstrap") {
+						if($layout == '2col') { echo 'col-md-6'; }
+						elseif($layout == '3col') { echo 'col-md-4'; }
+						elseif($layout == '4col') { echo 'col-md-3'; } 
+						else { if(count($pmpro_levels_filtered) > 1) { echo 'col-md-12'; } } 
 					} 
 					elseif($template === "gantry") {
 						if($layout == '2col') { echo 'span6'; }
@@ -290,7 +296,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 					<?php
 					}
 				?>">
-				<div class="<?php if($layout != "4col") { echo "entry "; } ?>post <?php if($current_level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "foundation" && ($layout === "2col" || $layout === "div" || empty($layout))) { echo " panel"; } if($template === "gantry") { echo " well"; } ?>"<?php if($template === "foundation" && $layout === "2col") { echo " data-equalizer-watch"; } ?>>
+				<div class="<?php if($layout != "4col") { echo "entry "; } if($template != "bootstrap") { echo " post "; } ?><?php if($current_level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "foundation" && ($layout === "2col" || $layout === "div" || empty($layout))) { echo " panel"; } if($template === "gantry") { echo " well"; } if($template === "bootstrap") { echo " panel panel-default"; } ?>"<?php if($template === "foundation" && $layout === "2col") { echo " data-equalizer-watch"; } ?>>
 				<?php 
 					if($template === "foundation" && ($layout === "4col" || $layout === "3col")) 
 					{ 
@@ -350,7 +356,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									?>
 									<a class="<?php
 										if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-										elseif($template === "gantry") { echo "btn btn-primary"; }
+										elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 										elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 										else { echo "pmpro_btn pmpro_btn-select"; }
 									?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
@@ -361,7 +367,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									?>                	
 									<a class="<?php
 										if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-										elseif($template === "gantry") { echo "btn btn-primary"; }
+										elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 										elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 										else { echo "pmpro_btn pmpro_btn-select"; }
 									?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
@@ -375,7 +381,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										?>
 										<a class="<?php
 											if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-											elseif($template === "gantry") { echo "btn btn-primary"; }
+											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 											elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 											else { echo "pmpro_btn pmpro_btn-select"; }
 										?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php _e('Renew', 'pmpro');?></a>
@@ -387,7 +393,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										<a class="<?php
 											if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
 											elseif($template === "foundation") { echo "button info"; }
-											elseif($template === "gantry") { echo "btn btn-info"; }
+											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
 											elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 											else { echo "pmpro_btn disabled"; }
 										?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
@@ -400,7 +406,10 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 					else
 					{
 						?>
-						<header<?php if($template != "twentyfourteen") { ?> class="entry-header"<?php } ?>><h2><?php echo $level->name?></h2></header>
+						<header<?php if($template != "twentyfourteen") { ?> class="entry-header<?php } if($template === "bootstrap") { echo " panel-heading"; } ?>"><h2<?php if($template === "bootstrap" && ($layout == '3col' || $layout == '4col')) { echo ' class="text-center"'; } ?>><?php echo $level->name?></h2></header>
+						<?php if($template === "bootstrap") { ?>
+							<div class="panel-body<?php if($template === "bootstrap" && ($layout == '3col' || $layout == '4col')) { echo ' text-center'; } ?>">
+						<?php } ?>
 						<?php if((!empty($description) || !empty($more_button)) && ($layout == 'div' || $layout == '2col' || empty($layout))) { ?>
 							<div<?php if($template != "twentyfourteen") { ?> class="entry-content"<?php } ?>>
 								<?php echo wpautop($level->description); ?>
@@ -409,7 +418,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 						<?php if($layout === 'div' || $layout === '2col' || empty($layout)) { ?>
 							<footer<?php if($template != "twentyfourteen") { ?> class="entry-footer"<?php } ?>>	<div class="entry-meta">
 							<?php 
-								if($template === "foundation" || $template === "woothemes") 
+								if($template === "foundation" || $template === "woothemes" || $template === "bootstrap") 
 									echo "<hr />";
 							?>
 							<?php 
@@ -419,7 +428,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									<a class="<?php
 										if($template === "genesis" || $template === "twentyfourteen") { echo "button alignright"; }
 										elseif($template === "foundation") { echo "button right"; }
-										elseif($template === "gantry") { echo "btn btn-primary pull-right"; }
+										elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 										elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 										else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
 									} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
@@ -431,7 +440,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									<a class="<?php
 										if($template === "genesis" || $template === "twentyfourteen") { echo "button alignright"; }
 										elseif($template === "foundation") { echo "button right"; }
-										elseif($template === "gantry") { echo "btn btn-primary pull-right"; }
+										elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 										elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 										else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
 									} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
@@ -446,7 +455,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										<a class="<?php
 											if($template === "genesis" || $template === "twentyfourteen") { echo "button alignright"; }
 											elseif($template === "foundation") { echo "button right"; }
-											elseif($template === "gantry") { echo "btn btn-primary pull-right"; }
+											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 											elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 											else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
 										} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php _e('Renew', 'pmpro');?></a>
@@ -458,7 +467,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										<a class="<?php
 											if($template === "genesis" || $template === "twentyfourteen") { echo "button alignright"; }
 											elseif($template === "foundation") { echo "button info right"; }
-											elseif($template === "gantry") { echo "btn btn-info pull-right"; }
+											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info pull-right"; }
 											elseif($template === "woothemes") { echo "woo-sc-button silver alignright pull-right"; }
 											else { echo "pmpro_btn disabled"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }
 										 } ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
@@ -479,7 +488,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									else
 									{
 										?>
-										<p class="pmpro_level-price<?php if($template === "gantry") { echo " lead"; } ?>">
+										<p class="pmpro_level-price<?php if($template === "gantry" || $template === "bootstrap") { echo " lead"; } ?>">
 										<?php
 									}
 									?>
@@ -524,15 +533,19 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 							<?php 
 								if(!empty($expiration)) 
 								{ 
+									if($template === "bootstrap")
+										echo '<span class="text-muted">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
 										_e('Membership Never Expires.', 'pmpro');
 									else
 										echo $level_expiration;
+									if($template === "bootstrap")
+										echo '</span>';
 								} 
 							?>
 							<?php if($layout == 'div' || $layout == '2col' || empty($layout) || ($template === "woothemes")) { echo '<div class="clear"></div>'; } ?>
-							</div></footer> <!-- .entry-meta, .entry-footer -->
+								</div></footer> <!-- .entry-meta, .entry-footer -->
 							<?php 
 							} 
 							else
@@ -544,7 +557,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										if(!empty($show_price))
 										{
 											?>
-											<p class="pmpro_level-price<?php if($template === "gantry") { echo " lead"; } ?>">
+											<p class="pmpro_level-price<?php if($template === "gantry" || $template === "bootstrap") { echo " lead"; } ?>">
 											<?php
 												if($price === 'full')
 													echo pmpro_getLevelCost($level, true, false); 
@@ -562,7 +575,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											?>
 											<a class="<?php
 												if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-												elseif($template === "gantry") { echo "btn btn-primary btn-block"; }
+												elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 												elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 												else { echo "pmpro_btn pmpro_btn-select";
 											} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
@@ -573,7 +586,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											?>                	
 											<a class="<?php
 												if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-												elseif($template === "gantry") { echo "btn btn-primary btn-block"; }
+												elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 												elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 												else { echo "pmpro_btn pmpro_btn-select";
 											} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
@@ -587,7 +600,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 												?>
 												<a class="<?php
 													if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-													elseif($template === "gantry") { echo "btn btn-primary btn-block"; }
+													elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 													elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 													else { echo "pmpro_btn pmpro_btn-select";
 													} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php _e('Renew', 'pmpro');?></a>
@@ -599,7 +612,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 												<a class="<?php
 													if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
 													elseif($template === "foundation") { echo "button info"; }
-													elseif($template === "gantry") { echo "btn btn-info btn-block"; }
+													elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info btn-block"; }
 													elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 													else { echo "pmpro_btn disabled";
 													} ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
@@ -623,6 +636,8 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									echo '<footer class="';
 									if($template != "twentyfourteen")
 										echo 'entry-footer';
+									if($template === "bootstrap")
+										echo ' text-muted';
 									echo ' pmpro_level-expiration">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
@@ -637,6 +652,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 							}
 						}
 					?>	
+						<?php if($template === "bootstrap") { ?>
+							</div><!-- .panel-body -->
+						<?php } ?>
 					</div></div>
 				<?php
 				}

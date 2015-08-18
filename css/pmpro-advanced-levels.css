@@ -2,7 +2,11 @@
 /* CSS Document */
 
 .pmpro_advanced_levels-genesis .pmpro_level.one-third, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth, .pmpro_advanced_levels-gantry .pmpro_level.span4, .pmpro_advanced_levels-gantry .pmpro_level.span3, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one, .pmpro_advanced_levels-div .text-center {text-align: center; }
-table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-table .pmpro_btn,  .text-center.pmpro_advanced_levels-div .pmpro_btn {display: block; text-align: center; }
+table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-table .pmpro_btn,  .text-center.pmpro_advanced_levels-div .pmpro_btn, table.pmpro_advanced_levels-bootstrap .btn {display: block; text-align: center; }
+
+/* Styles for Bootstrap Template */
+table.pmpro_advanced_levels-bootstrap h2 {margin-top: 0; }
+.pmpro_advanced_levels-bootstrap .panel-heading h2 {margin: 0; padding: 0; }
 
 /* Styles for Genesis Template */
 table.pmpro_advanced_levels-genesis thead th, table.pmpro_advanced_levels-genesis tbody td {padding-right: 10px; padding-left: 10px; }
