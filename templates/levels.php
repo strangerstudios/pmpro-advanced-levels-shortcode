@@ -12,8 +12,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	// examples: [pmpro_advanced_levels template="genesis" levels="1,2,3" layout="table" hightlight="2" description="false" checkout_button="Register Now"]
 	
 	extract(shortcode_atts(array(
-		'template' => NULL,
+		'account_button' => 'Your Level',
 		'checkout_button' => 'Select',
+		'compare' => NULL,
 		'description' => '1',
 		'discount_code' => NULL,
 		'expiration' => '1',
@@ -21,11 +22,18 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'layout' => 'div',
 		'levels' => NULL,		
 		'more_button' => NULL,
-		'price' => 'short'		
+		'price' => 'short',
+		'renew_button' => 'Renew',
+		'template' => NULL,
 	), $atts));
 	
 	global $wpdb, $pmpro_msg, $pmpro_msgt, $current_user, $pmpro_currency_symbol, $pmpro_all_levels, $pmpro_visible_levels, $current_user, $membership_levels;
 	
+	if($compare === "0" || $compare === "false" || $compare === "no")
+		$compare = false;
+	else
+		$compareitems = explode(";", $compare);
+		
 	//turn 0's into falses
 	if($description === "0" || $description === "false" || $description === "no")
 		$description = false;
@@ -102,7 +110,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				}				
 			}	
 		}
-					
+				
 		if($layout == 'table')
 		{
 			?>
@@ -159,7 +167,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 							<?php 
 								$level_expiration = pmpro_getLevelExpiration($level);
 								if(empty($level_expiration))
-									_e('Membership Never Expires.', 'pmpro');
+									_e('Membership never expires.', 'pmpro');
 								else
 									echo $level_expiration;
 							?>
@@ -194,7 +202,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select"; }
-								?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php _e('Renew', 'pmpro');?></a>
+								?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $renew_button; ?></a>
 							<?php
 							}
 							else
@@ -206,7 +214,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
 									elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 									else { echo "pmpro_btn disabled"; }
-								?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
+								?>" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
 							<?php
 							}
 						?>
@@ -219,6 +227,241 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			?>
 			</tbody>
 			</table>
+			<?php
+		}
+		elseif($layout == 'compare_table')
+		{
+			?>
+			<table id="pmpro_levels" class="pmpro_advanced_levels-compare_table">
+				<thead>
+					<tr>
+						<th><?php _e('Level', 'pmpro');?></th>
+						<?php	
+							$count = 0;
+							foreach($pmpro_levels_filtered as $level)
+							{
+								?>
+								<th class="<?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+									<h2><?php echo $level->name?></h2>
+								</th>
+								<?php
+							}
+						?>
+					</tr>
+					<?php if(!empty($show_price)) { ?>
+					<tr>
+						<th><?php _e('Price', 'pmpro');?></th>
+						<?php
+							foreach($pmpro_levels_filtered as $level)
+							{				  
+								?>
+								<th class="pmpro_level-price <?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+									<?php
+										if(pmpro_isLevelFree($level))
+										{
+											if(!empty($expiration))
+											{
+												?>
+												<strong><?php _e('Free', 'pmpro'); ?></strong>
+												<?php
+											}
+											else
+											{	
+												?>
+												<strong><?php _e('Free', 'pmpro'); ?></strong>
+												<?php
+											}
+										}
+										elseif($price === 'full')
+											echo spanThePMProLevelCostText(pmpro_getLevelCost($level, true, false));
+										else
+											echo spanThePMProLevelCostText(pmpro_getLevelCost($level, false, true)); 
+									?>
+								</th>
+								<?php 
+							} 
+						?>
+					</tr>
+					<?php } ?>
+					<?php if(!empty($expiration)) { ?>
+					<tr>
+						<th><?php _e('Expiration', 'pmpro');?></th>
+						<?php
+							foreach($pmpro_levels_filtered as $level)
+							{										  
+								?>
+								<th class="pmpro_level-expiration <?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+									<?php 
+										$level_expiration = pmpro_getLevelExpiration($level);
+										if(empty($level_expiration))
+											_e('Membership never expires.', 'pmpro');
+										else
+											echo $level_expiration;
+									?>
+								</th>
+								<?php 
+							} 
+						?>
+					</tr>
+					<?php } ?>
+					<tr>
+						<th>&nbsp;</th>
+						<?php
+							foreach($pmpro_levels_filtered as $level)
+							{	
+								if(isset($current_user->membership_level->ID))
+								  $current_level = ($current_user->membership_level->ID == $level->id);
+								else
+								  $current_level = false;			  
+								?>
+								<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+								<?php if(empty($current_user->membership_level->ID)) { ?>
+									<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+								<?php } elseif ( !$current_level ) { ?>                	
+									<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+								<?php } elseif($current_level) { ?>      									
+									<?php
+										//if it's a one-time-payment level, offer a link to renew											
+										if(!pmpro_isLevelRecurring($current_user->membership_level) && !empty($current_user->membership_level->enddate))
+										{
+										?>
+											<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $renew_button; ?></a>
+										<?php
+										}
+										else
+										{
+										?>
+											<a class="pmpro_btn disabled" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
+										<?php
+										}
+									?>									
+								<?php } ?>
+								</th>
+								<?php
+							}
+						?>
+					</tr>
+				</thead>
+				<tbody>
+					<?php if(!empty($compareitems)) 
+					{ 
+						//var_dump($compareitems);
+						foreach($compareitems as $compareitem)
+						{
+							?>
+							<tr>
+							<?php
+								$count = -1;
+								$compareitem_values = explode(",", $compareitem);
+								foreach($compareitem_values as $compareitem_value)
+								{			
+									if($count > 0 && !empty($numeric_levels_array[$count]))
+										$level = $numeric_levels_array[$count];
+									else
+										$level = NULL;
+									$count++;
+									?>
+									<td class="<?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+										<?php 
+											if($compareitem_value == '1') { echo '<span class="pmpro_level-compare-true"></span>'; } 
+											elseif($compareitem_value == '0') { echo '<span class="pmpro_level-compare-false"></span>'; } 
+											else { echo $compareitem_value; } 
+										?>
+									</td>
+									<?php
+								}
+							?>
+							</tr>
+							<?php 
+						}
+					}
+				?>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>&nbsp;</td>
+						<?php
+							foreach($pmpro_levels_filtered as $level)
+							{	
+								if(isset($current_user->membership_level->ID))
+								  $current_level = ($current_user->membership_level->ID == $level->id);
+								else
+								  $current_level = false;			  
+								?>
+								<td class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+								<?php if(empty($current_user->membership_level->ID)) { ?>
+									<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+								<?php } elseif ( !$current_level ) { ?>                	
+									<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+								<?php } elseif($current_level) { ?>      									
+									<?php
+										//if it's a one-time-payment level, offer a link to renew											
+										if(!pmpro_isLevelRecurring($current_user->membership_level) && !empty($current_user->membership_level->enddate))
+										{
+										?>
+											<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $renew_button; ?></a>
+										<?php
+										}
+										else
+										{
+										?>
+											<a class="pmpro_btn disabled" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
+										<?php
+										}
+									?>									
+								<?php } ?>
+								</td>
+								<?php
+							}
+						?>
+					</tr>
+					<?php if(!empty($expiration)) { ?>
+					<tr>
+						<td><?php _e('Expiration', 'pmpro');?></td>
+						<?php
+							foreach($pmpro_levels_filtered as $level)
+							{				  
+								?>
+								<td class="muted <?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+									<?php 
+										$level_expiration = pmpro_getLevelExpiration($level);
+										if(empty($level_expiration))
+											_e('Membership never expires.', 'pmpro');
+										else
+											echo $level_expiration;
+									?>
+								</td>
+								<?php 
+							} 
+						?>
+					</tr>
+					<?php } ?>					
+					<?php if(!empty($more_button)) { ?>
+					<tr>
+						<td><?php _e('More Information', 'pmpro');?></td>
+						<?php	
+							$count = 0;
+							foreach($pmpro_levels_filtered as $level)
+							{				  
+								?>
+								<td class="<?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+									<?php
+										$level_page = memberlite_getLevelLandingPage($level->id);
+										if(!empty($level_page))
+										{
+											?>
+											<a href="<?php echo get_permalink($level_page->ID); ?>"><?php echo $more_button; ?></a>
+											<?php
+										}
+									?>
+								</td>
+								<?php
+							}
+						?>
+					</tr>
+					<?php } ?>					
+				</tfoot>
+			</table>	
 			<?php
 		}
 		//'div' or No layout specified - use 'div'
@@ -344,7 +587,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									echo '<li class="description">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership Never Expires.', 'pmpro');
+										_e('Membership never expires.', 'pmpro');
 									else
 										echo $level_expiration;
 									echo '</li>';
@@ -384,7 +627,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 											elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 											else { echo "pmpro_btn pmpro_btn-select"; }
-										?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php _e('Renew', 'pmpro');?></a>
+										?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $renew_button; ?></a>
 										<?php
 									}
 									else
@@ -396,7 +639,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
 											elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 											else { echo "pmpro_btn disabled"; }
-										?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
+										?>" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
 										<?php
 									}
 								} 
@@ -458,7 +701,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 											elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 											else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
-										} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php _e('Renew', 'pmpro');?></a>
+										} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $renew_button; ?></a>
 										<?php
 									}
 									else
@@ -470,7 +713,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info pull-right"; }
 											elseif($template === "woothemes") { echo "woo-sc-button silver alignright pull-right"; }
 											else { echo "pmpro_btn disabled"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }
-										 } ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
+										 } ?>" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
 										<?php
 									}
 								} 
@@ -537,7 +780,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										echo '<span class="text-muted">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership Never Expires.', 'pmpro');
+										_e('Membership never expires.', 'pmpro');
 									else
 										echo $level_expiration;
 									if($template === "bootstrap")
@@ -603,7 +846,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 													elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 													elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 													else { echo "pmpro_btn pmpro_btn-select";
-													} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php _e('Renew', 'pmpro');?></a>
+													} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $renew_button; ?></a>
 												<?php
 											}
 											else
@@ -615,7 +858,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 													elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info btn-block"; }
 													elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 													else { echo "pmpro_btn disabled";
-													} ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro');?></a>
+													} ?>" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
 												<?php
 											}
 										} 
@@ -641,7 +884,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									echo ' pmpro_level-expiration">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership Never Expires.', 'pmpro');
+										_e('Membership never expires.', 'pmpro');
 									else
 										echo $level_expiration;
 									echo '</footer>';

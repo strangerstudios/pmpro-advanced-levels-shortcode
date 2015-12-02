@@ -1,8 +1,25 @@
 @charset "UTF-8";
 /* CSS Document */
 
-.pmpro_advanced_levels-genesis .pmpro_level.one-third, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth, .pmpro_advanced_levels-gantry .pmpro_level.span4, .pmpro_advanced_levels-gantry .pmpro_level.span3, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one, .pmpro_advanced_levels-div .text-center {text-align: center; }
-table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-table .pmpro_btn,  .text-center.pmpro_advanced_levels-div .pmpro_btn, table.pmpro_advanced_levels-bootstrap .btn {display: block; text-align: center; }
+.pmpro_advanced_levels-genesis .pmpro_level.one-third, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth, .pmpro_advanced_levels-gantry .pmpro_level.span4, .pmpro_advanced_levels-gantry .pmpro_level.span3, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one, .pmpro_advanced_levels-div .text-center, .pmpro_advanced_levels-compare_table th, .pmpro_advanced_levels-compare_table td {text-align: center; }
+table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-table .pmpro_btn,  .text-center.pmpro_advanced_levels-div .pmpro_btn, table.pmpro_advanced_levels-bootstrap .btn, .pmpro_advanced_levels-compare_table .pmpro_btn {display: block; text-align: center; }
+.pmpro_advanced_levels-compare_table {border: none; }
+.pmpro_advanced_levels-compare_table th, .pmpro_advanced_levels-compare_table td {border-color: #d1d1d1; border-width: 0 1px 1px 0; padding: .75em 1em; vertical-align: middle; }
+.pmpro_advanced_levels-compare_table thead th, .pmpro_advanced_levels-compare_table tfoot td {border-width: 0 1px 0 0; }
+.pmpro_advanced_levels-compare_table tr th:last-child, .pmpro_advanced_levels-compare_table tr td:last-child {border-right: none; }
+.pmpro_advanced_levels-compare_table thead tr th:nth-child(even), .pmpro_advanced_levels-compare_table tbody tr td:nth-child(even) {background: rgba(0,0,0,0.02); }
+.pmpro_advanced_levels-compare_table thead tr th:first-child, .pmpro_advanced_levels-compare_table tfoot tr td:first-child {background: none; text-indent: -9999em; width: 20%; }
+.pmpro_advanced_levels-compare_table thead tr:last-child th, .pmpro_advanced_levels-compare_table tbody tr:last-child td {border-bottom: .5rem solid #CCC; }
+.pmpro_advanced_levels-compare_table tbody tr:nth-child(even) td {background: rgba(0,0,0,0.05); }
+.pmpro_advanced_levels-compare_table tbody tr td:first-child {text-align: right; }
+.pmpro_advanced_levels-compare_table tfoot td {padding: .75em 1em; vertical-align: middle; }
+.pmpro_advanced_levels-compare_table thead th h2 {margin: 0; padding: .5em 0 0 0; }
+.pmpro_advanced_levels-compare_table .pmpro_level-price {font-size: 1.6rem; padding-bottom: 0; padding-top: 0; }
+.pmpro_advanced_levels-compare_table .pmpro_level-expiration {font-weight: normal; }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-true {font-size: 2rem; line-height: 2rem; }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-true:after {content: "\2713"; }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-false {color: rgba(0,0,0,0.2); }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-false:after {content: "\002D"; }
 
 /* Styles for Bootstrap Template */
 table.pmpro_advanced_levels-bootstrap h2 {margin-top: 0; }

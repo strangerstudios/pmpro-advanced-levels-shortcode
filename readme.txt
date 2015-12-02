@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: .1.7
+Stable tag: .1.8
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -32,6 +32,10 @@ For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
 
 == Changelog == 
+= .1.8 =
+* Added support for Levels Comparison Table layout type (ex. layout="compare_table").
+* Added shortcode attribute for renew_button text.
+
 = .1.7 =
 * Added support for Bootstrap v3+ based themes.
 
