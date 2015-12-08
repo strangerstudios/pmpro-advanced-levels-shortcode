@@ -32,6 +32,9 @@ For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
 
 == Changelog == 
+= .1.8.1
+* Fixed bug if first level column of compare_table was highlight.
+
 = .1.8 =
 * Added support for Levels Comparison Table layout type (ex. layout="compare_table").
 * Added shortcode attribute for renew_button text.
