@@ -25,11 +25,29 @@ function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plugins-on-github/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmpro' ) . '</a>',
-			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro' ) ) . '">' . __( 'Support', 'pmpro' ) . '</a>',
+			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plugins-on-github/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmproal' ) . '</a>',
+			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmproal' ) ) . '">' . __( 'Support', 'pmproal' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);
 	}
 	return $links;
 }
 add_filter('plugin_row_meta', 'pmpro_advanced_levels_plugin_row_meta', 10, 2);
+
+function pmproal_load_textdomain()
+{
+	//get the locale
+	$locale = apply_filters("plugin_locale", get_locale(), "pmproal");
+	$mofile = "pmproal-" . $locale . ".mo";
+
+	//paths to local (plugin) and global (WP) language files
+	$mofile_local  = dirname(__FILE__)."/../languages/" . $mofile;
+	$mofile_global = WP_LANG_DIR . '/pmpro/' . $mofile;
+
+	//load global first
+	load_textdomain("pmproal", $mofile_global);
+
+	//load local second
+	load_textdomain("pmproal", $mofile_local);
+}
+add_action("init", "pmproal_load_textdomain", 1);
