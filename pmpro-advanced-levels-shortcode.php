@@ -41,7 +41,7 @@ function pmproal_load_textdomain()
 	$mofile = "pmproal-" . $locale . ".mo";
 
 	//paths to local (plugin) and global (WP) language files
-	$mofile_local  = dirname(__FILE__)."/../languages/" . $mofile;
+	$mofile_local  = plugin_dir_path(__FILE__)."/languages/" . $mofile;
 	$mofile_global = WP_LANG_DIR . '/pmpro/' . $mofile;
 
 	//load global first
