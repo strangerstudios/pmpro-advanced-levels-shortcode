@@ -903,6 +903,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				}
 			?>
 			</div> <!-- #pmpro_levels, .row -->
+			<div class="pmpro_level-clear"></div>
 		<?php
 		} //end else if no layout specified, use 'div'
 	?>
