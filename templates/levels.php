@@ -12,9 +12,10 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	// examples: [pmpro_advanced_levels template="genesis" levels="1,2,3" layout="table" hightlight="2" description="false" checkout_button="Register Now"]
 	
 	extract(shortcode_atts(array(
-		'account_button' => 'Your Level',
-		'checkout_button' => 'Select',
+		'account_button' => __('Your&nbsp;Level', 'pmproal'),
 		'compare' => NULL,
+		'template' => NULL,
+		'checkout_button' => __('Select', 'pmproal'),
 		'description' => '1',
 		'discount_code' => NULL,
 		'expiration' => '1',
@@ -23,7 +24,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'levels' => NULL,		
 		'more_button' => NULL,
 		'price' => 'short',
-		'renew_button' => 'Renew',
+		'renew_button' => __('Renew', 'pmproal'),
 		'template' => NULL,
 	), $atts));
 	
@@ -124,12 +125,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			?>">
 			<thead>
 			  <tr>
-				<th><?php _e('Level', 'pmpro');?></th>
+				<th><?php _e('Level', 'pmproal');?></th>
 				<?php if(!empty($show_price)) { ?>
-					<th><?php _e('Price', 'pmpro');?></th>	
+					<th><?php _e('Price', 'pmproal');?></th>
 				<?php } ?>
 				<?php if(!empty($expiration)) { ?>
-					<th><?php _e('Expiration', 'pmpro');?></th>
+					<th><?php _e('Expiration', 'pmproal');?></th>
 				<?php } ?>
 				<th>&nbsp;</th>
 			  </tr>
@@ -167,7 +168,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 							<?php 
 								$level_expiration = pmpro_getLevelExpiration($level);
 								if(empty($level_expiration))
-									_e('Membership never expires.', 'pmpro');
+									_e('Membership Never Expires.', 'pmproal');
 								else
 									echo $level_expiration;
 							?>
@@ -557,13 +558,13 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											if(!empty($expiration))
 											{
 												?>
-												<strong><?php _e('Free.', 'pmpro'); ?></strong>
+												<strong><?php _e('Free.', 'pmproal'); ?></strong>
 												<?php
 											}
 											else
 											{	
 												?>
-												<strong><?php _e('Free', 'pmpro'); ?></strong>
+												<strong><?php _e('Free', 'pmproal'); ?></strong>
 												<?php
 											}
 										}
@@ -587,7 +588,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									echo '<li class="description">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership never expires.', 'pmpro');
+										_e('Membership Never Expires.', 'pmproal');
 									else
 										echo $level_expiration;
 									echo '</li>';
@@ -741,13 +742,13 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											if(!empty($expiration))
 											{
 												?>
-												<strong><?php _e('Free.', 'pmpro'); ?></strong>
+												<strong><?php _e('Free.', 'pmproal'); ?></strong>
 												<?php
 											}
 											else
 											{	
 												?>
-												<strong><?php _e('Free', 'pmpro'); ?></strong>
+												<strong><?php _e('Free', 'pmproal'); ?></strong>
 												<?php
 											}
 										}
@@ -780,7 +781,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										echo '<span class="text-muted">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership never expires.', 'pmpro');
+										_e('Membership Never Expires.', 'pmproal');
 									else
 										echo $level_expiration;
 									if($template === "bootstrap")
@@ -884,7 +885,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									echo ' pmpro_level-expiration">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership never expires.', 'pmpro');
+										_e('Membership Never Expires.', 'pmproal');
 									else
 										echo $level_expiration;
 									echo '</footer>';
@@ -910,9 +911,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		<nav id="nav-below" class="navigation" role="navigation">
 			<div class="nav-previous alignleft">
 				<?php if(!empty($current_user->membership_level->ID)) { ?>
-					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmpro');?></a>
+					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmproal');?></a>
 				<?php } else { ?>
-					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmpro');?></a>
+					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmproal');?></a>
 				<?php } ?>
 			</div>
 		</nav>	
