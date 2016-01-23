@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: .1.8.2
+Stable tag: .1.8.3
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
