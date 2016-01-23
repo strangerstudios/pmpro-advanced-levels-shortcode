@@ -1,8 +1,7 @@
 @charset "UTF-8";
 /* CSS Document */
-
 .pmpro_advanced_levels-genesis .pmpro_level.one-third, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth, .pmpro_advanced_levels-gantry .pmpro_level.span4, .pmpro_advanced_levels-gantry .pmpro_level.span3, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one, .pmpro_advanced_levels-div .text-center, .pmpro_advanced_levels-compare_table th, .pmpro_advanced_levels-compare_table td {text-align: center; }
-table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-table .pmpro_btn,  .text-center.pmpro_advanced_levels-div .pmpro_btn, table.pmpro_advanced_levels-bootstrap .btn, .pmpro_advanced_levels-compare_table .pmpro_btn {display: block; text-align: center; }
+table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-table .pmpro_btn,  .text-center.pmpro_advanced_levels-div .pmpro_btn, table.pmpro_advanced_levels-bootstrap .btn, .pmpro_advanced_levels-compare_table .pmpro_btn, .pmpro_advanced_levels-compare_table_responsive .pmpro_btn, .pmpro_advanced_levels-compare_table_responsive .button {display: block; text-align: center; }
 .pmpro_advanced_levels-compare_table {border: none; }
 .pmpro_advanced_levels-compare_table th, .pmpro_advanced_levels-compare_table td {border-color: #d1d1d1; border-width: 0 1px 1px 0; padding: .75em 1em; vertical-align: middle; }
 .pmpro_advanced_levels-compare_table thead th, .pmpro_advanced_levels-compare_table tfoot td {border-width: 0 1px 0 0; }
@@ -16,10 +15,10 @@ table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmp
 .pmpro_advanced_levels-compare_table thead th h2 {margin: 0; padding: .5em 0 0 0; }
 .pmpro_advanced_levels-compare_table .pmpro_level-price {font-size: 1.6rem; padding-bottom: 0; padding-top: 0; }
 .pmpro_advanced_levels-compare_table .pmpro_level-expiration {font-weight: normal; }
-.pmpro_advanced_levels-compare_table .pmpro_level-compare-true {font-size: 2rem; line-height: 2rem; }
-.pmpro_advanced_levels-compare_table .pmpro_level-compare-true:after {content: "\2713"; }
-.pmpro_advanced_levels-compare_table .pmpro_level-compare-false {color: rgba(0,0,0,0.2); }
-.pmpro_advanced_levels-compare_table .pmpro_level-compare-false:after {content: "\002D"; }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-true, .pmpro_advanced_levels-compare_table_responsive .pmpro_level-compare-true {font-size: 2rem; line-height: 2rem; }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-true:after, .pmpro_advanced_levels-compare_table_responsive .pmpro_level-compare-true:after {content: "\2713"; }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-false, .pmpro_advanced_levels-compare_table_responsive .pmpro_level-compare-false {color: rgba(0,0,0,0.2); }
+.pmpro_advanced_levels-compare_table .pmpro_level-compare-false:after, .pmpro_advanced_levels-compare_table_responsive .pmpro_level-compare-false:after {content: "\002D"; }
 
 /* Styles for Bootstrap Template */
 table.pmpro_advanced_levels-bootstrap h2 {margin-top: 0; }
@@ -45,6 +44,13 @@ table.pmpro_advanced_levels-woothemes tbody td {vertical-align: middle; }
 
 /* Styles for No Template */
 .pmpro_advanced_levels-div .post {padding: 1em; }
+
+.pmpro_advanced_levels-compare_table_responsive {display: none; text-align: center; }
+
+@media only screen and (max-width: 767px) {
+	.pmpro_advanced_levels-compare_table {display: none; }
+	.pmpro_advanced_levels-compare_table_responsive {display: block; }	
+}
 
 .pmpro_advanced_levels-div .row {
   width: 100%;

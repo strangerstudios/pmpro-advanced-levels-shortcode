@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - Advanced Levels Page Shortcode Add On
 Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-advanced-levels/
 Description: An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro
-Version: .1.8.1
+Version: .1.8.3
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */
@@ -16,23 +16,6 @@ function pmpro_advanced_levels_register_styles() {
 	wp_enqueue_style( 'pmpro-advanced-levels-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_advanced_levels_register_styles' );
-
-
-/*
-Function to add links to the plugin row meta
-*/
-function pmpro_advanced_levels_plugin_row_meta($links, $file) {
-	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
-	{
-		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plugins-on-github/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmproal' ) ) . '">' . __( 'Docs', 'pmproal' ) . '</a>',
-			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmproal' ) ) . '">' . __( 'Support', 'pmproal' ) . '</a>',
-		);
-		$links = array_merge($links, $new_links);
-	}
-	return $links;
-}
-add_filter('plugin_row_meta', 'pmpro_advanced_levels_plugin_row_meta', 10, 2);
 
 function pmproal_load_textdomain()
 {
@@ -51,3 +34,19 @@ function pmproal_load_textdomain()
 	load_textdomain("pmproal", $mofile_local);
 }
 add_action("init", "pmproal_load_textdomain", 1);
+
+/*
+Function to add links to the plugin row meta
+*/
+function pmpro_advanced_levels_plugin_row_meta($links, $file) {
+	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
+	{
+		$new_links = array(
+			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plugins-on-github/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmproal' ) ) . '">' . __( 'Docs', 'pmproal' ) . '</a>',
+			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmproal' ) ) . '">' . __( 'Support', 'pmproal' ) . '</a>',
+		);
+		$links = array_merge($links, $new_links);
+	}
+	return $links;
+}
+add_filter('plugin_row_meta', 'pmpro_advanced_levels_plugin_row_meta', 10, 2);
