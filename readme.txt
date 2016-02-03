@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 3.5
-Tested up to: 4.3
-Stable tag: .1.8.3
+Tested up to: 4.4.2
+Stable tag: .2
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -32,10 +32,10 @@ For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
 
 == Changelog == 
-= .1.8.3
-* Added responsive support for compare_table layout. Layout now collapses to a single column div-type layout with comparison attributes for device width < 767px.
-* Fixed highlight and current level classes in compare_table layout.
-* Fixed notice in compare_table layout.
+= .2
+* BUG: Fixed highlight and current level classes in compare_table layout.
+* BUG: Fixed notice in compare_table layout.
+* ENHANCEMENT: Added responsive support for compare_table layout. Layout now collapses to a single column div-type layout with comparison attributes for device width < 767px.
 
 = .1.8.2
 * Fixed navigation clearing issue for Genesis layout option.
