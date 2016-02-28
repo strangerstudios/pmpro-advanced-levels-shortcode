@@ -305,7 +305,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										if(!empty($expiration))
 										{
 											?>
-											<strong><?php _e('Free.', 'pmproal'); ?></strong>
+											<strong><?php _e('Free', 'pmproal'); ?></strong>
 											<?php
 										}
 										else
@@ -491,7 +491,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											if(!empty($expiration))
 											{
 												?>
-												<strong><?php _e('Free.', 'pmproal'); ?></strong>
+												<strong><?php _e('Free', 'pmproal'); ?></strong>
 												<?php
 											}
 											else
