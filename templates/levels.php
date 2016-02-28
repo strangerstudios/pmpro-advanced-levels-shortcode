@@ -478,7 +478,10 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									}
 									?>
 									<?php
-										if(pmpro_isLevelFree($level))
+										if (function_exists('pmpro_getCodeCustomLevelCostText') && pmpro_isLevelFree($level))
+											$forced_text = pmpro_getLevelCost($level);
+
+										if(pmpro_isLevelFree($level) && empty($forced_text))
 										{
 											if(!empty($expiration))
 											{
@@ -495,6 +498,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										}
 										elseif($price === 'full')
 											echo pmpro_getLevelCost($level, true, false); 
+
+										elseif(pmpro_isLevelFree($level) && !empty($forced_text))
+											echo pmpro_getLevelCost($level, false, true);
 										else
 											echo pmpro_getLevelCost($level, false, true); 
 									
