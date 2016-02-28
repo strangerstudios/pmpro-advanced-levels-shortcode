@@ -297,25 +297,30 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									?>
 									<li class="price">
 									<?php
-										if(pmpro_isLevelFree($level))
+									if (function_exists('pmpro_getCodeCustomLevelCostText') && pmpro_isLevelFree($level))
+										$forced_text = pmpro_getLevelCost($level);
+
+									if(pmpro_isLevelFree($level) && empty($forced_text))
+									{
+										if(!empty($expiration))
 										{
-											if(!empty($expiration))
-											{
-												?>
-												<strong><?php _e('Free.', 'pmproal'); ?></strong>
-												<?php
-											}
-											else
-											{	
-												?>
-												<strong><?php _e('Free', 'pmproal'); ?></strong>
-												<?php
-											}
+											?>
+											<strong><?php _e('Free.', 'pmproal'); ?></strong>
+											<?php
 										}
-										elseif($price === 'full')
-											echo spanThePMProLevelCostText(pmpro_getLevelCost($level, true, false));
 										else
-											echo spanThePMProLevelCostText(pmpro_getLevelCost($level, false, true)); 
+										{
+											?>
+											<strong><?php _e('Free', 'pmproal'); ?></strong>
+											<?php
+										}
+									}
+									elseif($price === 'full')
+										echo spanThePMProLevelCostText(pmpro_getLevelCost($level, true, false));
+									elseif(pmpro_isLevelFree($level) && !empty($forced_text))
+										echo spanThePMProLevelCostText(pmpro_getLevelCost($level, false, true));
+									else
+										echo spanThePMProLevelCostText(pmpro_getLevelCost($level, false, true));
 									?>
 									</li>
 								<?php
@@ -497,8 +502,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											}
 										}
 										elseif($price === 'full')
-											echo pmpro_getLevelCost($level, true, false); 
-
+											echo pmpro_getLevelCost($level, true, false);
 										elseif(pmpro_isLevelFree($level) && !empty($forced_text))
 											echo pmpro_getLevelCost($level, false, true);
 										else
