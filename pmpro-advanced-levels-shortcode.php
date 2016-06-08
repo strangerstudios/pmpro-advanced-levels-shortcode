@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - Advanced Levels Page Shortcode Add On
 Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-advanced-levels/
 Description: An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro
-Version: .2
+Version: .2.1
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */
@@ -35,6 +35,28 @@ function pmproal_load_textdomain()
 }
 add_action("init", "pmproal_load_textdomain", 1);
 
+function pmproal_getLevelLandingPage($level_id) {
+	if(is_object($level_id))
+		$level_id = $level_id->id;
+	
+	$args = array(
+		'post_type' => apply_filters('pmproal_level_landing_page_post_types', array('page', 'post')),
+		'meta_query' => array(
+			array(
+				'key' => '_pmproal_landing_page_level',
+				'value' => $level_id,
+			)
+		)
+	);
+	
+	$posts = get_posts($args);
+	
+	if(empty($posts))
+		return false;
+	else
+		return $posts[0];
+}
+
 /*
 Function to add links to the plugin row meta
 */
@@ -42,7 +64,7 @@ function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plugins-on-github/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmproal' ) ) . '">' . __( 'Docs', 'pmproal' ) . '</a>',
+			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmproal' ) ) . '">' . __( 'Docs', 'pmproal' ) . '</a>',
 			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmproal' ) ) . '">' . __( 'Support', 'pmproal' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);
