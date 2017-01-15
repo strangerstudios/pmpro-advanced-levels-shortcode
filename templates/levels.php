@@ -13,7 +13,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	
 	extract(shortcode_atts(array(
 		'template' => NULL,
-		'checkout_button' => __('Select', 'pmproal'),
+		'checkout_button' => __('Select', 'pmpro-advanced-levels-shortcode'),
 		'description' => '1',
 		'discount_code' => NULL,
 		'expiration' => '1',
@@ -110,12 +110,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			?>">
 			<thead>
 			  <tr>
-				<th><?php _e('Level', 'pmproal');?></th>
+				<th><?php _e('Level', 'pmpro-advanced-levels-shortcode');?></th>
 				<?php if(!empty($show_price)) { ?>
-					<th><?php _e('Price', 'pmproal');?></th>
+					<th><?php _e('Price', 'pmpro-advanced-levels-shortcode');?></th>
 				<?php } ?>
 				<?php if(!empty($expiration)) { ?>
-					<th><?php _e('Expiration', 'pmproal');?></th>
+					<th><?php _e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
 				<?php } ?>
 				<th>&nbsp;</th>
 			  </tr>
@@ -153,7 +153,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 							<?php 
 								$level_expiration = pmpro_getLevelExpiration($level);
 								if(empty($level_expiration))
-									_e('Membership Never Expires.', 'pmproal');
+									_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 								else
 									echo $level_expiration;
 							?>
@@ -305,13 +305,13 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 										if(!empty($expiration))
 										{
 											?>
-											<strong><?php _e('Free', 'pmproal'); ?></strong>
+											<strong><?php _e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
 											<?php
 										}
 										else
 										{
 											?>
-											<strong><?php _e('Free', 'pmproal'); ?></strong>
+											<strong><?php _e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
 											<?php
 										}
 									}
@@ -337,7 +337,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									echo '<li class="description">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership Never Expires.', 'pmproal');
+										_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 									else
 										echo $level_expiration;
 									echo '</li>';
@@ -460,7 +460,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											elseif($template === "gantry") { echo "btn btn-info pull-right"; }
 											elseif($template === "woothemes") { echo "woo-sc-button silver alignright pull-right"; }
 											else { echo "pmpro_btn disabled"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }
-										 } ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmproal');?></a>
+										 } ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro-advanced-levels-shortcode');?></a>
 										<?php
 									}
 								} 
@@ -491,13 +491,13 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 											if(!empty($expiration))
 											{
 												?>
-												<strong><?php _e('Free', 'pmproal'); ?></strong>
+												<strong><?php _e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
 												<?php
 											}
 											else
 											{	
 												?>
-												<strong><?php _e('Free', 'pmproal'); ?></strong>
+												<strong><?php _e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
 												<?php
 											}
 										}
@@ -530,7 +530,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 								{ 
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership Never Expires.', 'pmproal');
+										_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 									else
 										echo $level_expiration;
 								} 
@@ -594,7 +594,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 													elseif($template === "gantry") { echo "btn btn-primary btn-block"; }
 													elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 													else { echo "pmpro_btn pmpro_btn-select";
-													} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php _e('Renew', 'pmproal');?></a>
+													} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php _e('Renew', 'pmpro-advanced-levels-shortcode');?></a>
 												<?php
 											}
 											else
@@ -606,7 +606,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 													elseif($template === "gantry") { echo "btn btn-info btn-block"; }
 													elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 													else { echo "pmpro_btn disabled";
-													} ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmproal');?></a>
+													} ?>" href="<?php echo pmpro_url("account")?>"><?php _e('Your&nbsp;Level', 'pmpro-advanced-levels-shortcode');?></a>
 												<?php
 											}
 										} 
@@ -630,7 +630,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 									echo ' pmpro_level-expiration">';
 									$level_expiration = pmpro_getLevelExpiration($level);
 									if(empty($level_expiration))
-										_e('Membership Never Expires.', 'pmproal');
+										_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 									else
 										echo $level_expiration;
 									echo '</footer>';
@@ -653,9 +653,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		<nav id="nav-below" class="navigation" role="navigation">
 			<div class="nav-previous alignleft">
 				<?php if(!empty($current_user->membership_level->ID)) { ?>
-					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmproal');?></a>
+					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } else { ?>
-					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmproal');?></a>
+					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } ?>
 			</div>
 		</nav>	

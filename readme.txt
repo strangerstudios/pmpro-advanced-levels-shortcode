@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 3.5
 Tested up to: 4.1.1
-Stable tag: .1.3
+Stable tag: .1.4
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -32,6 +32,9 @@ For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
 
 == Changelog == 
+= .1.4 =
+* Use plugin slug for t10n
+
 = .1.3 =
 * If no specific levels are passed in the pmpro_levels_array filter is applied to the levels.
 
