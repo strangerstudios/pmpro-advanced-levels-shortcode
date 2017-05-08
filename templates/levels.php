@@ -89,7 +89,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			{
 				foreach($pmpro_all_levels as $level)
 				{
-					if($level->id == $level_id)
+					if($level->id == $level_id && true == $level->allow_signups)
 					{
 						$pmpro_levels_filtered[$level->id] = $level;
 						break;
