@@ -35,12 +35,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		$back_link = false;
 	else
 		$back_link = true;
-		
+
 	if($compare === "0" || $compare === "false" || $compare === "no")
 		$compare = false;
 	else
 		$compareitems = explode(";", $compare);
-		
+
 	//turn 0's into falses
 	if($description === "0" || $description === "false" || $description === "no")
 		$description = false;
@@ -60,12 +60,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	if($price === "0" || $price === "false" || $price === "hide")
 		$show_price = false;
 	else
-		$show_price = true;
-
+		$show_price = true;	
+		
 	//string to store other params to add to the checkout url
 	$checkout_url_params = "";
-		
-	ob_start();					
+
+	ob_start();
 		
 		//make sure pmpro_levels has all levels
 		if(!isset($pmpro_all_levels))
@@ -99,7 +99,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		}
 		else
 			$pmpro_levels_filtered = $pmpro_visible_levels;
-		
+
 		$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
 		$numeric_levels_array = array_values($pmpro_levels_filtered);
 		
@@ -113,12 +113,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				{
 					$sqlQuery = "SELECT l.id, cl.*, l.name, l.description, l.allow_signups FROM $wpdb->pmpro_discount_codes_levels cl LEFT JOIN $wpdb->pmpro_membership_levels l ON cl.level_id = l.id LEFT JOIN $wpdb->pmpro_discount_codes dc ON dc.id = cl.code_id WHERE dc.code = '" . $discount_code . "' AND cl.level_id = '" . (int)$level->id . "' LIMIT 1";
 					$pmpro_levels_filtered[$level_id] = $wpdb->get_row($sqlQuery);
-					$pmpro_levels_filtered[$level_id]->base_level = $level;
+					$pmpro_levels_filtered[$level_id]->base_level = $level;					
 					$checkout_url_params .= "&discount_code=" . $discount_code;
-				}				
-			}	
+				}
+			}		
 		}
-				
+					
 		if($layout == 'table')
 		{
 			//load template for layout = "table"
@@ -129,12 +129,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			//load template for layout = "compare_table"
 			include("levels-compare_table.php");
 		}
-		else
-		{
+				else
+				{				  
 			//load template for layout = "div", "2col", "3col", "4col" or unspecified layout attribute
 			include("levels-div.php");
-		}
-		?>
+						} 
+					?>
 		<?php if($template === "woothemes"|| $template === "genesis") { echo '<div class="clear"></div>'; } ?>
 		<?php if(!empty($back_link)) { ?>
 		<nav id="nav-below" class="navigation" role="navigation">
