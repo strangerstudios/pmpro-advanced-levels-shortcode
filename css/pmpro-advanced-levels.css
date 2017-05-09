@@ -47,10 +47,12 @@ table.pmpro_advanced_levels-woothemes tbody td {vertical-align: middle; }
 .pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-twentyfourteen .button:hover {color: #FFF; }
 
 /* Styles for No Template */
-.pmpro_advanced_levels-div .post {padding: 1em; }
-.pmpro_advanced_levels-div h2 {margin: 0 0 .5em 0; }
+#pmpro_levels.pmpro_advanced_levels-div .post {padding: 1em; }
+#pmpro_levels.pmpro_advanced_levels-div h2 {margin: 0 0 .5em 0; }
 #pmpro_levels.pmpro_advanced_levels-div .entry-header {margin: 0; padding: 0; }
-#pmpro_levels.pmpro_advanced_levels-div .entry-footer {margin: 0; padding: 1em 0; }
+#pmpro_levels.pmpro_advanced_levels-div .entry-content {padding: 0; }
+#pmpro_levels.pmpro_advanced_levels-div .entry-footer {background: none; margin: 0; padding: 1em 0; }
+#pmpro_levels.pmpro_advanced_levels-div .entry-footer p {margin: .5em 0; padding: 0; }
 .pmpro_advanced_levels-compare_table_responsive {display: none; text-align: center; }
 
 @media only screen and (max-width: 767px) {

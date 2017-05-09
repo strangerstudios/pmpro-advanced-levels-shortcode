@@ -280,8 +280,6 @@
 		echo "pmpro_advanced_levels-" . $template;
 	else
 		echo "pmpro_advanced_levels-div pmpro_levels-" . $layout;
-	if(empty($template) || $template === "foundation" || $template === "bootstrap")
-		echo " row";
 	if($template === "gantry")
 		echo " row-fluid";
 ?> pmpro_advanced_levels-compare_table_responsive"<?php if($template === "foundation") { echo " data-equalizer"; } ?>>
@@ -295,29 +293,7 @@
 		else
 		  $current_level = false;
 		?>
-		<div class="pmpro_level <?php 
-			if($template === "genesis") {
-				if(count($pmpro_levels_filtered) > 1) { echo '12'; } } 
-				if($count == 1) { echo ' first';
-			} 
-			elseif($template === "bootstrap") {
-				if(count($pmpro_levels_filtered) > 1) { echo 'col-md-12'; }
-			} 
-			elseif($template === "gantry") {
-				if(count($pmpro_levels_filtered) > 1) { echo 'span12'; }
-			} 
-			elseif($template === "woothemes") {
-				if(count($pmpro_levels_filtered) > 1) { echo 'full'; }
-			}
-			else 
-			{
-				?>
-				medium-<?php
-				if(count($pmpro_levels_filtered) > 1) { echo '12'; }
-			?> columns
-			<?php
-			}
-		?>">
+		<div class="pmpro_level">
 		<div class="entry <?php if($template != "bootstrap") { echo " post "; } ?><?php if($current_level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "gantry") { echo " well"; } if($template === "bootstrap") { echo " panel panel-default"; } ?>">
 			<header<?php if($template != "twentyfourteen") { ?> class="entry-header<?php } if($template === "bootstrap") { echo " panel-heading"; } ?>"><h2<?php if($template === "bootstrap" && ($layout == '3col' || $layout == '4col')) { echo ' class="text-center"'; } ?>><?php echo $level->name?></h2></header>
 			
