@@ -38,7 +38,7 @@ add_action("init", "pmproal_load_textdomain", 1);
 function pmproal_getLevelLandingPage($level_id) {
 	if(is_object($level_id))
 		$level_id = $level_id->id;
-	
+
 	$args = array(
 		'post_type' => apply_filters('pmproal_level_landing_page_post_types', array('page', 'post')),
 		'meta_query' => array(
@@ -48,9 +48,9 @@ function pmproal_getLevelLandingPage($level_id) {
 			)
 		)
 	);
-	
+
 	$posts = get_posts($args);
-	
+
 	if(empty($posts))
 		return false;
 	else

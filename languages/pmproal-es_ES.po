@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Shortcode "
+"Add On\n"
+"POT-Creation-Date: 2016-01-16 23:05-0500\n"
+"PO-Revision-Date: 2017-01-17 16:50+0100\n"
+"Language-Team: Thomas Sjolshagen <thomas@eighty20results.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: pmpro-advanced-levels-shortcode.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: es_ES\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: pmpro-advanced-levels-shortcode.php:28
+msgid "View Documentation"
+msgstr "Ver documentación"
+
+#: pmpro-advanced-levels-shortcode.php:28
+msgid "Docs"
+msgstr "Documentación"
+
+#: pmpro-advanced-levels-shortcode.php:29
+msgid "Visit Customer Support Forum"
+msgstr "Visita foro de soporte"
+
+#: pmpro-advanced-levels-shortcode.php:29
+msgid "Support"
+msgstr "Soporte"
+
+#: templates/levels.php:16
+msgid "Select"
+msgstr "Selecciona"
+
+#: templates/levels.php:113
+msgid "Level"
+msgstr "Nivel"
+
+#: templates/levels.php:115
+msgid "Price"
+msgstr "Precio"
+
+#: templates/levels.php:118
+msgid "Expiration"
+msgstr "Caducidad"
+
+#: templates/levels.php:156 templates/levels.php:335 templates/levels.php:523
+#: templates/levels.php:623
+msgid "Membership Never Expires."
+msgstr "La suscripción nunca caduca"
+
+#: templates/levels.php:191 templates/levels.php:375 templates/levels.php:446
+#: templates/levels.php:587
+msgid "Renew"
+msgstr "Renovar"
+
+#: templates/levels.php:203 templates/levels.php:387 templates/levels.php:458
+#: templates/levels.php:599
+msgid "Your&nbsp;Level"
+msgstr "Tu&nbsp;nivel"
+
+#: templates/levels.php:305 templates/levels.php:486
+msgid "Free."
+msgstr "Gratis."
+
+#: templates/levels.php:311 templates/levels.php:492
+msgid "Free"
+msgstr "Gratis"
+
+#: templates/levels.php:646
+msgid "&larr; Return to Your Account"
+msgstr "&larr; Regresa a tu cuenta"
+
+#: templates/levels.php:648
+msgid "&larr; Return to Home"
+msgstr "&larr; Regresa al inicio"
+
+#. Plugin Name of the plugin/theme
+msgid "Paid Memberships Pro - Advanced Levels Page Shortcode Add On"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.paidmembershipspro.com/wp/pmpro-advanced-levels/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"An enhanced shortcode for customizing the display of your Membership Levels "
+"Page for Paid Memberships Pro"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Stranger Studios"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.strangerstudios.com"
+msgstr ""

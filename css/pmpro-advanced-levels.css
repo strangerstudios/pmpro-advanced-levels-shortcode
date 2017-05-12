@@ -57,7 +57,7 @@ table.pmpro_advanced_levels-woothemes tbody td {vertical-align: middle; }
 
 @media only screen and (max-width: 767px) {
 	.pmpro_advanced_levels-compare_table {display: none; }
-	.pmpro_advanced_levels-compare_table_responsive {display: block; }	
+	.pmpro_advanced_levels-compare_table_responsive {display: block; }
 }
 
 .pmpro_advanced_levels-div .row {
@@ -82,10 +82,10 @@ table.pmpro_advanced_levels-woothemes tbody td {vertical-align: middle; }
 
 .pmpro_advanced_levels-div [class*="column"] + [class*="column"].end {
   float: left; }
-  
+
 .pmpro_advanced_levels-div .small-12 {
   width: 100%; }
-	
+
 @media only screen and (min-width: 40.063em) {
   .pmpro_advanced_levels-div .medium-1 {
     width: 8.33333%; }
