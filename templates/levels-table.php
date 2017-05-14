@@ -15,12 +15,12 @@ global $pmproal_link_arguments;
 ?>">
 <thead>
   <tr>
-	<th><?php _e('Level', 'pmproal');?></th>
+	<th><?php _e('Level', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php if(!empty($show_price)) { ?>
-		<th><?php _e('Price', 'pmproal');?></th>
+		<th><?php _e('Price', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php } ?>
 	<?php if(!empty($expiration)) { ?>
-		<th><?php _e('Expiration', 'pmproal');?></th>
+		<th><?php _e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php } ?>
 	<th>&nbsp;</th>
   </tr>
@@ -60,7 +60,7 @@ global $pmproal_link_arguments;
 				<?php 
 					$level_expiration = pmpro_getLevelExpiration($level);
 					if(empty($level_expiration))
-						_e('Membership Never Expires.', 'pmproal');
+						_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 					else
 						echo $level_expiration;
 				?>

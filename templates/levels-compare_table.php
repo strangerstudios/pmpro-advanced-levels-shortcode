@@ -334,13 +334,13 @@ global $pmproal_link_arguments;
 							if(!empty($expiration))
 							{
 								?>
-								<strong><?php _e('Free.', 'pmproal'); ?></strong>
+								<strong><?php _e('Free.', 'pmpro-advanced-levels-shortcode'); ?></strong>
 								<?php
 							}
 							else
 							{	
 								?>
-								<strong><?php _e('Free', 'pmproal'); ?></strong>
+								<strong><?php _e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
 								<?php
 							}
 						}
@@ -467,7 +467,7 @@ global $pmproal_link_arguments;
 						echo '<span class="text-muted">';
 					$level_expiration = pmpro_getLevelExpiration($level);
 					if(empty($level_expiration))
-						_e('Membership Never Expires.', 'pmproal');
+						_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 					else
 						echo $level_expiration;
 					if($template === "bootstrap")

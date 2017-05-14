@@ -14,11 +14,11 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	// examples: [pmpro_advanced_levels template="genesis" levels="1,2,3" layout="table" hightlight="2" description="false" checkout_button="Register Now"]
 	
 	extract(shortcode_atts(array(
-		'account_button' => __('Your&nbsp;Level', 'pmproal'),
+		'account_button' => __('Your&nbsp;Level', 'pmpro-advanced-levels-shortcode'),
 		'back_link' => '1',
 		'compare' => NULL,
 		'template' => NULL,
-		'checkout_button' => __('Select', 'pmproal'),
+		'checkout_button' => __('Select', 'pmpro-advanced-levels-shortcode'),
 		'description' => '1',
 		'discount_code' => NULL,
 		'expiration' => '1',
@@ -27,7 +27,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'levels' => NULL,		
 		'more_button' => NULL,
 		'price' => 'short',
-		'renew_button' => __('Renew', 'pmproal'),
+		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
 		'template' => NULL,
 	), $atts));
 	
@@ -143,9 +143,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		<nav id="nav-below" class="navigation" role="navigation">
 			<div class="nav-previous alignleft">
 				<?php if(!empty($current_user->membership_level->ID)) { ?>
-					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmproal');?></a>
+					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } elseif(!is_front_page()) { ?>
-					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmproal');?></a>
+					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } ?>
 			</div>
 		</nav>	

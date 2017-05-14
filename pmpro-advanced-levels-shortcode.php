@@ -21,21 +21,21 @@ function pmpro_advanced_levels_register_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_advanced_levels_register_styles' );
 
-function pmproal_load_textdomain()
+function pmproad_load_textdomain()
 {
 	//get the locale
-	$locale = apply_filters("plugin_locale", get_locale(), "pmproal");
-	$mofile = "pmproal-" . $locale . ".mo";
+	$locale = apply_filters("plugin_locale", get_locale(), "pmpro-advanced-levels-shortcode");
+	$mofile = "pmpro-advanced-levels-shortcode-" . $locale . ".mo";
 
 	//paths to local (plugin) and global (WP) language files
 	$mofile_local  = plugin_dir_path(__FILE__)."/languages/" . $mofile;
 	$mofile_global = WP_LANG_DIR . '/pmpro/' . $mofile;
 
 	//load global first
-	load_textdomain("pmproal", $mofile_global);
+	load_textdomain("pmpro-advanced-levels-shortcode", $mofile_global);
 
 	//load local second
-	load_textdomain("pmproal", $mofile_local);
+	load_textdomain("pmpro-advanced-levels-shortcode", $mofile_local);
 }
 add_action("init", "pmproal_load_textdomain", 1);
 
@@ -68,8 +68,8 @@ function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmproal' ) ) . '">' . __( 'Docs', 'pmproal' ) . '</a>',
-			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmproal' ) ) . '">' . __( 'Support', 'pmproal' ) . '</a>',
+			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-advanced-levels-shortcode' ) ) . '">' . __( 'Docs', 'pmpro-advanced-levels-shortcode' ) . '</a>',
+			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-advanced-levels-shortcode' ) ) . '">' . __( 'Support', 'pmpro-advanced-levels-shortcode' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);
 	}
