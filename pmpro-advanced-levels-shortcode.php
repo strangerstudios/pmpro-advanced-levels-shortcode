@@ -21,7 +21,7 @@ function pmpro_advanced_levels_register_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_advanced_levels_register_styles' );
 
-function pmproad_load_textdomain()
+function pmproal_load_textdomain()
 {
 	//get the locale
 	$locale = apply_filters("plugin_locale", get_locale(), "pmpro-advanced-levels-shortcode");
