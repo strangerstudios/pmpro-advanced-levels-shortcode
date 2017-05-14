@@ -2,6 +2,7 @@
 /*
 	template for layout="compare_table"
 */
+global $pmproal_link_arguments;
 ?>
 <table id="pmpro_levels" class="<?php if(!empty($template)) { echo "pmpro_advanced_levels-" . $template. " "; } ?>pmpro_advanced_levels-compare_table">
 	<thead>
@@ -83,7 +84,9 @@
 					if(isset($current_user->membership_level->ID))
 					  $current_level = ($current_user->membership_level->ID == $level->id);
 					else
-					  $current_level = false;			  
+					  $current_level = false;
+					
+					$pmproal_link_arguments['level'] = $level->id;
 					?>
 					<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 					<?php if(empty($current_user->membership_level->ID)) { ?>
@@ -92,14 +95,14 @@
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 					<?php } elseif ( !$current_level ) { ?>                	
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 					<?php } elseif($current_level) { ?>      									
 						<?php
 							//if it's a one-time-payment level, offer a link to renew											
@@ -111,7 +114,7 @@
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select"; }
-								?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $renew_button; ?></a>
+								?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $renew_button; ?></a>
 							<?php
 							}
 							else
@@ -123,7 +126,7 @@
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
 									elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 									else { echo "pmpro_btn disabled"; }
-								?>" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
+								?>" href="<?php echo pmpro_url("account" ); ?>"><?php echo $account_button; ?></a>
 							<?php
 							}
 						?>								
@@ -173,7 +176,9 @@
 			<td>&nbsp;</td>
 			<?php
 				foreach($pmpro_levels_filtered as $level)
-				{	
+				{
+					$pmproal_link_arguments['level'] = $level->id;
+					
 					if(isset($current_user->membership_level->ID))
 					  $current_level = ($current_user->membership_level->ID == $level->id);
 					else
@@ -186,14 +191,14 @@
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 					<?php } elseif ( !$current_level ) { ?>                	
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 					<?php } elseif($current_level) { ?>      									
 						<?php
 							//if it's a one-time-payment level, offer a link to renew											
@@ -205,7 +210,7 @@
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select"; }
-								?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $renew_button; ?></a>
+								?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $renew_button; ?></a>
 							<?php
 							}
 							else
@@ -292,6 +297,8 @@
 	$count = 0;
 	foreach($pmpro_levels_filtered as $level)
 	{
+	    $pmproal_link_arguments['level'] = $level->id;
+	    
 		$count++;
 		if(isset($current_user->membership_level->ID))
 		  $current_level = ($current_user->membership_level->ID == $level->id);
@@ -399,7 +406,7 @@
 			<p>
 			<?php 
 				if(empty($current_user->membership_level->ID)) 
-				{ 
+				{
 					?>
 					<a class="<?php
 						if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
@@ -407,7 +414,7 @@
 						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 						else { echo "pmpro_btn pmpro_btn-select"; }									
-					?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
+					?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") );?>"><?php echo $checkout_button; ?></a>
 					<?php 
 				}
 				elseif(!$current_level) 
@@ -419,7 +426,7 @@
 						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 						else { echo "pmpro_btn pmpro_btn-select"; }									
-					?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
+					?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") );?>"><?php echo $checkout_button; ?></a>
 					<?php
 				}
 				elseif($current_level)
@@ -434,7 +441,7 @@
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }											
-						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $renew_button; ?></a>
+						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") );?>"><?php echo $renew_button; ?></a>
 						<?php
 					}
 					else

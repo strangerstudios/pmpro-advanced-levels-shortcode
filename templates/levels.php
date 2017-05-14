@@ -6,6 +6,8 @@
 */
 function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 {
+    global $pmproal_link_arguments;
+    
 	// $atts    ::= array of attributes
 	// $content ::= text within enclosing form of shortcode element
 	// $code    ::= the shortcode found, when == callback name
@@ -113,8 +115,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				{
 					$sqlQuery = "SELECT l.id, cl.*, l.name, l.description, l.allow_signups FROM $wpdb->pmpro_discount_codes_levels cl LEFT JOIN $wpdb->pmpro_membership_levels l ON cl.level_id = l.id LEFT JOIN $wpdb->pmpro_discount_codes dc ON dc.id = cl.code_id WHERE dc.code = '" . $discount_code . "' AND cl.level_id = '" . (int)$level->id . "' LIMIT 1";
 					$pmpro_levels_filtered[$level_id] = $wpdb->get_row($sqlQuery);
-					$pmpro_levels_filtered[$level_id]->base_level = $level;					
-					$checkout_url_params .= "&discount_code=" . $discount_code;
+					$pmpro_levels_filtered[$level_id]->base_level = $level;
+					$pmproal_link_arguments['discount_code'] = $discount_code;
+					// $checkout_url_params .= "&discount_code=" . $discount_code;
 				}
 			}		
 		}

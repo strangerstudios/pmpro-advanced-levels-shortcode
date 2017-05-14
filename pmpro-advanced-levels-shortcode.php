@@ -8,8 +8,12 @@ Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */
 
+global $pmproal_link_arguments;
+$pmproal_link_arguments = array();
+
 $path = dirname(__FILE__);
 require_once($path . "/templates/levels.php");
+
 
 function pmpro_advanced_levels_register_styles() {
 	wp_register_style( 'pmpro-advanced-levels-styles', plugins_url( 'css/pmpro-advanced-levels.css', __FILE__ ) );

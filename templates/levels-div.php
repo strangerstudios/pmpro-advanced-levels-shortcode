@@ -2,6 +2,7 @@
 /*
 	template for layout= "div" or "2col" or "3col" or "4col"
 */
+global $pmproal_link_arguments;
 ?>
 <div id="pmpro_levels" class="
 <?php
@@ -24,6 +25,7 @@
 	$count = 0;
 	foreach($pmpro_levels_filtered as $level)
 	{
+	    $pmproal_link_arguments['level'] = $level->id;
 		$count++;				
 		if(isset($current_user->membership_level->ID))
 		  $current_level = ($current_user->membership_level->ID == $level->id);
@@ -137,7 +139,7 @@
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
+						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") );?>"><?php echo $checkout_button; ?></a>
 						<?php 
 					}
 					elseif(!$current_level) 
@@ -148,7 +150,7 @@
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
+						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 						<?php
 					}
 					elseif($current_level)
@@ -162,7 +164,7 @@
 								elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 								elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 								else { echo "pmpro_btn pmpro_btn-select"; }
-							?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $renew_button; ?></a>
+							?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $renew_button; ?></a>
 							<?php
 						}
 						else
@@ -210,7 +212,7 @@
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 							else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
-						} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
+						} ?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 						<?php 
 					}
 					elseif(!$current_level) 
@@ -222,7 +224,7 @@
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 							else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
-						} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
+						} ?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 						<?php
 					}
 					elseif($current_level)
@@ -237,7 +239,7 @@
 								elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 								elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 								else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
-							} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $renew_button; ?></a>
+							} ?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $renew_button; ?></a>
 							<?php
 						}
 						else
@@ -357,7 +359,7 @@
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select";
-								} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
+								} ?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 								<?php 
 							}
 							elseif(!$current_level) 
@@ -368,7 +370,7 @@
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select";
-								} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $checkout_button; ?></a>
+								} ?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 								<?php
 							}
 							elseif($current_level)
@@ -382,7 +384,7 @@
 										elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 										elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 										else { echo "pmpro_btn pmpro_btn-select";
-										} ?>" href="<?php echo pmpro_url("checkout", "?level=" . $level->id . $checkout_url_params, "https")?>"><?php echo $renew_button; ?></a>
+										} ?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $renew_button; ?></a>
 									<?php
 								}
 								else
