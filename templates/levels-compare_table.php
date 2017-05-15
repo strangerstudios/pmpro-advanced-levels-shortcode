@@ -257,7 +257,7 @@
 				{				  
 					?>
 					<td class="<?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-							if (function_exists('memberlite_getLevelLandingPage')) {
+							<?php if (function_exists('memberlite_getLevelLandingPage')) {
 								$level_page = memberlite_getLevelLandingPage($level->id);
 							} else {
 								$level_page = null;
