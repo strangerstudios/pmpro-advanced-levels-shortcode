@@ -34,7 +34,7 @@ http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-m
 == Changelog == 
 = .2.3
 * BUG FIX: Make Read More text translatable
-* BUG FIX: Whitescreen in Conmparison table template
+* BUG FIX: Whitescreen in Conmparison table template (Thanks, BingoTheIguana on GitHub)
 * BUG FIX: Incorrect function name on init
 * BUG FIX/ENHANCEMENT: Glotpress updates (pmproal -> pmpro-advanced-levels-shortcode)
 * BUG FIX/ENHANCEMENT: Use standard WordPress URL builder
