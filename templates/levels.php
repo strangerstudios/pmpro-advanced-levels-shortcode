@@ -57,7 +57,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	if($more_button === "0" || $more_button === "false" || $more_button === "no" || empty($more_button))
 		$more_button = false;
 	elseif($more_button === "1" || $more_button === "true" || $more_button === "yes")
-		$more_button = "Read More";
+		$more_button = __( "Read More", "pmpro-advanced-levels-shortcode" );
 		
 	if($price === "0" || $price === "false" || $price === "hide")
 		$show_price = false;
@@ -113,18 +113,22 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				//check code for this level and update if applicable
 				if(pmpro_checkDiscountCode($discount_code, $level->id))
 				{
+					$pmproal_link_arguments['discount_code'] = $discount_code;
+					
 					$sqlQuery = "SELECT l.id, cl.*, l.name, l.description, l.allow_signups FROM $wpdb->pmpro_discount_codes_levels cl LEFT JOIN $wpdb->pmpro_membership_levels l ON cl.level_id = l.id LEFT JOIN $wpdb->pmpro_discount_codes dc ON dc.id = cl.code_id WHERE dc.code = '" . $discount_code . "' AND cl.level_id = '" . (int)$level->id . "' LIMIT 1";
 					$pmpro_levels_filtered[$level_id] = $wpdb->get_row($sqlQuery);
 					$pmpro_levels_filtered[$level_id]->base_level = $level;
-					$pmproal_link_arguments['discount_code'] = $discount_code;
-					// $checkout_url_params .= "&discount_code=" . $discount_code;
+     
 				}
 			}		
 		}
-					
+	
+		do_action('pmproal_before_template_load' );
+		
 		if($layout == 'table')
 		{
 			//load template for layout = "table"
+   
 			include("levels-table.php");
 		}
 		elseif($layout == 'compare_table')
