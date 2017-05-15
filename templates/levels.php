@@ -6,17 +6,19 @@
 */
 function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 {
+    global $pmproal_link_arguments;
+    
 	// $atts    ::= array of attributes
 	// $content ::= text within enclosing form of shortcode element
 	// $code    ::= the shortcode found, when == callback name
 	// examples: [pmpro_advanced_levels template="genesis" levels="1,2,3" layout="table" hightlight="2" description="false" checkout_button="Register Now"]
 	
 	extract(shortcode_atts(array(
-		'account_button' => __('Your&nbsp;Level', 'pmproal'),
+		'account_button' => __('Your&nbsp;Level', 'pmpro-advanced-levels-shortcode'),
 		'back_link' => '1',
 		'compare' => NULL,
 		'template' => NULL,
-		'checkout_button' => __('Select', 'pmproal'),
+		'checkout_button' => __('Select', 'pmpro-advanced-levels-shortcode'),
 		'description' => '1',
 		'discount_code' => NULL,
 		'expiration' => '1',
@@ -25,7 +27,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'levels' => NULL,		
 		'more_button' => NULL,
 		'price' => 'short',
-		'renew_button' => __('Renew', 'pmproal'),
+		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
 		'template' => NULL,
 	), $atts));
 	
@@ -55,7 +57,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	if($more_button === "0" || $more_button === "false" || $more_button === "no" || empty($more_button))
 		$more_button = false;
 	elseif($more_button === "1" || $more_button === "true" || $more_button === "yes")
-		$more_button = "Read More";
+		$more_button = __( "Read More", "pmpro-advanced-levels-shortcode" );
 		
 	if($price === "0" || $price === "false" || $price === "hide")
 		$show_price = false;
@@ -111,17 +113,22 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				//check code for this level and update if applicable
 				if(pmpro_checkDiscountCode($discount_code, $level->id))
 				{
+					$pmproal_link_arguments['discount_code'] = $discount_code;
+					
 					$sqlQuery = "SELECT l.id, cl.*, l.name, l.description, l.allow_signups FROM $wpdb->pmpro_discount_codes_levels cl LEFT JOIN $wpdb->pmpro_membership_levels l ON cl.level_id = l.id LEFT JOIN $wpdb->pmpro_discount_codes dc ON dc.id = cl.code_id WHERE dc.code = '" . $discount_code . "' AND cl.level_id = '" . (int)$level->id . "' LIMIT 1";
 					$pmpro_levels_filtered[$level_id] = $wpdb->get_row($sqlQuery);
-					$pmpro_levels_filtered[$level_id]->base_level = $level;					
-					$checkout_url_params .= "&discount_code=" . $discount_code;
+					$pmpro_levels_filtered[$level_id]->base_level = $level;
+     
 				}
 			}		
 		}
-					
+	
+		do_action('pmproal_before_template_load' );
+		
 		if($layout == 'table')
 		{
 			//load template for layout = "table"
+   
 			include("levels-table.php");
 		}
 		elseif($layout == 'compare_table')
@@ -140,9 +147,9 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		<nav id="nav-below" class="navigation" role="navigation">
 			<div class="nav-previous alignleft">
 				<?php if(!empty($current_user->membership_level->ID)) { ?>
-					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmproal');?></a>
+					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } elseif(!is_front_page()) { ?>
-					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmproal');?></a>
+					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } ?>
 			</div>
 		</nav>	
