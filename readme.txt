@@ -33,6 +33,7 @@ http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-m
 
 == Changelog == 
 = .2.3
+* BUG FIX: Make Read More text translatable
 * BUG FIX: Whitescreen in Conmparison table template
 * BUG FIX: Incorrect function name on init
 * BUG FIX/ENHANCEMENT: Glotpress updates (pmproal -> pmpro-advanced-levels-shortcode)
@@ -40,6 +41,7 @@ http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-m
 * BUG FIX/ENHANCEMENT: Include discount code in all checkout page destination URLs
 * BUG FIX/ENHANCEMENT: Glotpress update (renamed translation files)
 * BUG FIX/ENHANCEMENT: Use array and add_query_arg() for all checkout page links and include discount code if specified
+* ENHANCEMENT: Add pmproal_before_template_load action
 
 = .2.2
 * BUG FIX: Fixed some strings that needed to be wrapped for translation.
