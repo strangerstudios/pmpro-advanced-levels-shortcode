@@ -15,6 +15,7 @@ global $pmproal_link_arguments;
 ?>">
 <thead>
   <tr>
+	<?php do_action('pmproal_extra_cols_before_header'); ?>
 	<th><?php _e('Level', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php if(!empty($show_price)) { ?>
 		<th><?php _e('Price', 'pmpro-advanced-levels-shortcode');?></th>
@@ -23,6 +24,7 @@ global $pmproal_link_arguments;
 		<th><?php _e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php } ?>
 	<th>&nbsp;</th>
+	<?php do_action('pmproal_extra_cols_after_header'); ?>
   </tr>
 </thead>
 <tbody>
@@ -37,7 +39,8 @@ global $pmproal_link_arguments;
 	  else
 		  $current_level = false;
 	?>
-	<tr class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+	<tr id="pmpro_level-<?php echo $level->id; ?>" class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+		<?php do_action('pmproal_extra_cols_before_body', $level->id, $template); ?>
 		<td>
 			<h2><?php echo $level->name?></h2>
 			<?php if(!empty($description)) { echo wpautop($level->description); } ?>
@@ -114,6 +117,7 @@ global $pmproal_link_arguments;
 			
 		<?php } ?>
 		</td>
+		<?php do_action('pmproal_extra_cols_after_body', $level->id, $template); ?>
 	</tr>
 	<?php
 	}

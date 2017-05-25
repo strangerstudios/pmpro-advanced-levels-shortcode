@@ -32,7 +32,7 @@ global $pmproal_link_arguments;
 		else
 		  $current_level = false;
 	?>
-	<div class="pmpro_level <?php 
+	<div id="pmpro_level-<?php echo $level->id; ?>" class="pmpro_level <?php 
 		if($template === "genesis") {
 			if($layout == '2col') { echo 'one-half'; }
 			elseif($layout == '3col') { echo 'one-third'; }
@@ -77,6 +77,7 @@ global $pmproal_link_arguments;
 		}
 	?>">
 	<div class="<?php if($layout != "4col" || $layout != "3col") { echo "entry "; } if($template != "bootstrap") { echo " post "; } ?><?php if($current_level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "foundation" && ($layout === "2col" || $layout === "div" || empty($layout))) { echo " panel"; } if($template === "gantry") { echo " well"; } if($template === "bootstrap") { echo " panel panel-default"; } ?>"<?php if($template === "foundation" && $layout === "2col") { echo " data-equalizer-watch"; } ?>>
+	<?php do_action('pmproal_before_level', $level->id, $layout); ?>
 	<?php 
 		if($template === "foundation" && ($layout === "4col" || $layout === "3col")) 
 		{ 
@@ -436,7 +437,9 @@ global $pmproal_link_arguments;
 			<?php if($template === "bootstrap") { ?>
 				</div><!-- .panel-body -->
 			<?php } ?>
-		</div></div>
+		</div><!-- .entry -->
+		<?php do_action('pmproal_after_level', $level->id, $layout); ?>
+	</div><!-- .pmpro_level -->
 	<?php
 	}
 ?>
