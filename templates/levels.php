@@ -176,7 +176,7 @@ function spanThePMProLevelCostText($text)
 			)));
 			
 	//replace with span wrapped version
-	$level_cost = preg_replace("/(" . $pattern . ")/i", "<span>$1</span>", $text);
+	$level_cost = preg_replace("/(" . preg_quote( $pattern  ) . ")/i", "<span>$1</span>", $text);
 	
 	//return
 	return $level_cost;
