@@ -101,8 +101,31 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		}
 		else
 			$pmpro_levels_filtered = $pmpro_visible_levels;
-
-		$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
+    
+        /**
+         *
+         * @since .2.5 - Reorder levels to the sort order used on the Membership Levels settings page
+         */
+        $pmpro_level_order = pmpro_getOption('level_order');
+        
+        if(!empty($pmpro_level_order))
+        {
+            $order = explode(',',$pmpro_level_order);
+            
+            //reorder array
+            $reordered_levels = array();
+            foreach($order as $level_id) {
+                foreach($pmpro_levels_filtered as $key=>$level) {
+                    if($level_id == $level->id)
+                        $reordered_levels[] = $pmpro_levels_filtered[$key];
+                }
+            }
+        
+            $pmpro_levels_filtered = $reordered_levels;
+        }
+        
+        $pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
+        
 		$numeric_levels_array = array_values($pmpro_levels_filtered);
 		
 		//update per discount code
