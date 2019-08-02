@@ -89,8 +89,8 @@ global $pmproal_link_arguments;
 		<?php } elseif($current_level) { ?>      
 			
 			<?php
-				//if it's a one-time-payment level, offer a link to renew				
-				if(!pmpro_isLevelRecurring($current_user->membership_level) && !empty($current_user->membership_level->enddate))
+				//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew											
+				if( pmpro_isLevelExpiringSoon( $current_user->membership_level) && $current_user->membership_level->allow_signups )
 				{
 				?>
 					<a class="<?php
