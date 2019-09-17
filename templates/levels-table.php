@@ -32,12 +32,9 @@ global $pmproal_link_arguments;
 	$count = 0;
 	foreach($pmpro_levels_filtered as $level)
 	{
-        $pmproal_link_arguments['level'] = $level->id;
-        
-	  if(isset($current_user->membership_level->ID))
-		  $current_level = ($current_user->membership_level->ID == $level->id);
-	  else
-		  $current_level = false;
+		$pmproal_link_arguments['level'] = $level->id;
+		$current_level = pmpro_hasMembershipLevel( $level->id );
+
 	?>
 	<tr id="pmpro_level-<?php echo $level->id; ?>" class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 		<?php do_action('pmproal_extra_cols_before_body', $level->id, $template); ?>

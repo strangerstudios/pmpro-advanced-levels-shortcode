@@ -27,10 +27,7 @@ global $pmproal_link_arguments;
 	{
 	    $pmproal_link_arguments['level'] = $level->id;
 		$count++;				
-		if(isset($current_user->membership_level->ID))
-		  $current_level = ($current_user->membership_level->ID == $level->id);
-		else
-		  $current_level = false;
+		$current_level = pmpro_hasMembershipLevel( $level->id );
 	?>
 	<div id="pmpro_level-<?php echo $level->id; ?>" class="pmpro_level <?php 
 		if($template === "genesis") {
