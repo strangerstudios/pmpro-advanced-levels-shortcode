@@ -147,6 +147,9 @@ global $pmproal_link_arguments;
 				<?php
 					$count = -1;
 					$compareitem_values = explode(",", $compareitem);
+
+					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
+					
 					foreach($compareitem_values as $compareitem_value)
 					{			
 						if($count >= 0 && !empty($numeric_levels_array[$count]))
