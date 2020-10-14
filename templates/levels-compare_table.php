@@ -81,11 +81,8 @@ global $pmproal_link_arguments;
 			<?php
 				foreach($pmpro_levels_filtered as $level)
 				{	
-					if(isset($current_user->membership_level->ID))
-					  $current_level = ($current_user->membership_level->ID == $level->id);
-					else
-					  $current_level = false;
-					
+					$current_level = pmpro_hasMembershipLevel( $level->id );
+
 					$pmproal_link_arguments['level'] = $level->id;
 					?>
 					<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
@@ -182,10 +179,7 @@ global $pmproal_link_arguments;
 				{
 					$pmproal_link_arguments['level'] = $level->id;
 					
-					if(isset($current_user->membership_level->ID))
-					  $current_level = ($current_user->membership_level->ID == $level->id);
-					else
-					  $current_level = false;			  
+					$current_level = pmpro_hasMembershipLevel( $level->id );		  
 					?>
 					<td class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 					<?php if(empty($current_user->membership_level->ID)) { ?>
@@ -303,10 +297,7 @@ global $pmproal_link_arguments;
 	    $pmproal_link_arguments['level'] = $level->id;
 	    
 		$count++;
-		if(isset($current_user->membership_level->ID))
-		  $current_level = ($current_user->membership_level->ID == $level->id);
-		else
-		  $current_level = false;
+		$current_level = pmpro_hasMembershipLevel( $level->id );
 		?>
 		<div class="pmpro_level">
 		<div class="entry <?php if($template != "bootstrap") { echo " post "; } ?><?php if($current_level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "gantry") { echo " well"; } if($template === "bootstrap") { echo " panel panel-default"; } ?>">
