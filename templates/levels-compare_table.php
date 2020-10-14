@@ -22,7 +22,7 @@ global $pmproal_link_arguments;
 		</tr>
 		<?php if(!empty($show_price)) { ?>
 		<tr>
-			<th><?php _e('Price', 'pmpro');?></th>
+			<th><?php _e('Price', 'pmpro-advanced-levels-shortcode');?></th>
 			<?php
 				foreach($pmpro_levels_filtered as $level)
 				{				  
@@ -34,13 +34,13 @@ global $pmproal_link_arguments;
 								if(!empty($expiration))
 								{
 									?>
-									<strong><?php _e('Free', 'pmpro'); ?></strong>
+									<strong><?php _e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
 									<?php
 								}
 								else
 								{	
 									?>
-									<strong><?php _e('Free', 'pmpro'); ?></strong>
+									<strong><?php _e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
 									<?php
 								}
 							}
@@ -57,7 +57,7 @@ global $pmproal_link_arguments;
 		<?php } ?>
 		<?php if(!empty($expiration)) { ?>
 		<tr>
-			<th><?php _e('Expiration', 'pmpro');?></th>
+			<th><?php _e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
 			<?php
 				foreach($pmpro_levels_filtered as $level)
 				{										  
@@ -66,7 +66,7 @@ global $pmproal_link_arguments;
 						<?php 
 							$level_expiration = pmpro_getLevelExpiration($level);
 							if(empty($level_expiration))
-								_e('Membership never expires.', 'pmpro');
+								_e('Membership never expires.', 'pmpro-advanced-levels-shortcode');
 							else
 								echo $level_expiration;
 						?>
@@ -237,7 +237,7 @@ global $pmproal_link_arguments;
 		</tr>
 		<?php if(!empty($expiration)) { ?>
 		<tr>
-			<td><?php _e('Expiration', 'pmpro');?></td>
+			<td><?php _e('Expiration', 'pmpro-advanced-levels-shortcode');?></td>
 			<?php
 				foreach($pmpro_levels_filtered as $level)
 				{				  
@@ -258,7 +258,7 @@ global $pmproal_link_arguments;
 		<?php } ?>					
 		<?php if(!empty($more_button)) { ?>
 		<tr>
-			<td><?php _e('More Information', 'pmpro');?></td>
+			<td><?php _e('More Information', 'pmpro-advanced-levels-shortcode');?></td>
 			<?php	
 				$count = 0;
 				foreach($pmpro_levels_filtered as $level)
