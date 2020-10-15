@@ -1,0 +1,6 @@
+# Items to ignore when downloading a zip
+pmpro-advanced-levels-shortcode-banner.jpg export-ignore
+.gitattributes export-ignore
+.github export-ignore
+README.md export-ignore
+languages/gettext.sh export-ignore
