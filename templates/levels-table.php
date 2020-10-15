@@ -21,7 +21,7 @@ global $pmproal_link_arguments;
   </tr>
 </thead>
 <tbody>
-<?php	
+<?php
 	foreach( $pmpro_levels_filtered as $level ) {
 		$pmproal_link_arguments['level'] = $level->id;
 		if ( isset( $current_user->membership_level->ID ) ) {
