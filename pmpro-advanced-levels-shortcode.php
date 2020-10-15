@@ -204,8 +204,8 @@ function pmpro_advanced_levels_level_button_class( $level_id, $layout, $template
 
 	// Show a disabled/greyed button that links to Account page.
 	if ( ! empty( $current_level ) && $level_id == $current_level->id ) {
-		// If it's a one-time-payment level, offer a link to renew.
-		if ( ! pmpro_isLevelRecurring( $current_level ) && ! empty( $current_user->membership_level->enddate ) ) {
+		// If it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew.
+		if ( pmpro_isLevelExpiringSoon( $current_user->membership_level ) && $current_user->membership_level->allow_signups ) {
 			$r .= ' pmpro_btn-renew';
 		} else {
 			$r .= ' pmpro_btn-disabled';

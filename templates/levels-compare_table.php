@@ -7,7 +7,7 @@ global $pmproal_link_arguments;
 <table id="pmpro_levels" class="<?php if(!empty($template)) { echo "pmpro_advanced_levels-" . $template. " "; } ?>pmpro_advanced_levels-compare_table">
 	<thead>
 		<tr>
-			<th><?php _e('Level', 'pmpro');?></th>
+			<th><?php _e( 'Level', 'pmpro-advanced-levels-shortcode' );?></th>
 			<?php	
 				$count = 0;
 				foreach($pmpro_levels_filtered as $level)
@@ -102,10 +102,8 @@ global $pmproal_link_arguments;
 						?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
 					<?php } elseif($current_level) { ?>      									
 						<?php
-							//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew											
-							if( pmpro_isLevelExpiringSoon( $current_user->membership_level) && $current_user->membership_level->allow_signups )
-							{
-							?>
+							// If it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
+							if ( pmpro_isLevelExpiringSoon( $current_user->membership_level) && $current_user->membership_level->allow_signups ) { ?>
 								<a class="<?php
 									if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
@@ -240,7 +238,7 @@ global $pmproal_link_arguments;
 						<?php 
 							$level_expiration = pmpro_getLevelExpiration($level);
 							if(empty($level_expiration))
-								_e('Membership never expires.', 'pmpro');
+								_e( 'Membership never expires.', 'pmpro-advanced-levels-shortcode' );
 							else
 								echo $level_expiration;
 						?>

@@ -6,11 +6,7 @@ global $pmproal_link_arguments;
 ?>
 <div id="pmpro_levels" class="<?php echo pmpro_advanced_levels_wrapper_class( $layout, $template ); ?>">
 <?php
-	if ( isset( $current_user->membership_level->ID ) ) {
-	  $current_level = $current_user->membership_level;
-	} else {
-	  $current_level = false;
-	}
+	$current_level = pmpro_hasMembershipLevel( $level->id );
 
 	foreach( $pmpro_levels_filtered as $level ) {
 		$pmproal_link_arguments['level'] = $level->id;

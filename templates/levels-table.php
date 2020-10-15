@@ -24,11 +24,7 @@ global $pmproal_link_arguments;
 <?php
 	foreach( $pmpro_levels_filtered as $level ) {
 		$pmproal_link_arguments['level'] = $level->id;
-		if ( isset( $current_user->membership_level->ID ) ) {
-		  $current_level = $current_user->membership_level;
-		} else {
-		  $current_level = false;
-		}
+		$current_level = pmpro_hasMembershipLevel( $level->id );
 	?>
 	<tr id="pmpro_level-<?php echo $level->id; ?>" class="<?php echo pmpro_advanced_levels_level_inner_class( $level->id, $layout, $template, $current_level, $highlight ); ?>">
 
