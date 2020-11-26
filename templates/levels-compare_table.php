@@ -7,7 +7,7 @@ global $pmproal_link_arguments;
 <table id="pmpro_levels" class="<?php if(!empty($template)) { echo "pmpro_advanced_levels-" . $template. " "; } ?>pmpro_advanced_levels-compare_table">
 	<thead>
 		<tr>
-			<th><?php _e('Level', 'pmpro');?></th>
+			<th><?php _e('Level', 'pmpro-advanced-levels-shortcode');?></th>
 			<?php	
 				$count = 0;
 				foreach($pmpro_levels_filtered as $level)
@@ -240,7 +240,7 @@ global $pmproal_link_arguments;
 						<?php 
 							$level_expiration = pmpro_getLevelExpiration($level);
 							if(empty($level_expiration))
-								_e('Membership never expires.', 'pmpro');
+								_e('Membership never expires.', 'pmpro-advanced-levels-shortcode');
 							else
 								echo $level_expiration;
 						?>
