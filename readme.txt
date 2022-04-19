@@ -1,8 +1,8 @@
 === Paid Memberships Pro - Advanced Levels Page Shortcode Add On ===
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
-Requires at least: 3.5
-Tested up to: 4.7.4
+Requires at least: 5.2
+Tested up to: 5.9
 Stable tag: .2.4
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.

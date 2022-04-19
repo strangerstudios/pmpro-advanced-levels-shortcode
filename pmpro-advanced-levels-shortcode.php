@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Paid Memberships Pro - Advanced Levels Page Shortcode Add On
-Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-advanced-levels/
+Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 Description: An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro
 Version: .2.4
-Author: Stranger Studios
-Author URI: http://www.strangerstudios.com
+Author: Paid Memberships Pro
+Author URI: https://www.paidmembershipspro.com/
 Text Domain: pmpro-advanced-levels-shortcode
 Domain Path: /languages
 */
