@@ -160,7 +160,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		<?php if(!empty($back_link)) { ?>
 		<nav id="nav-below" class="navigation" role="navigation">
 			<div class="nav-previous alignleft">
-				<?php if(!empty($current_user->membership_level->ID)) { ?>
+				<?php if ( pmpro_hasMembershipLevel() ) { ?>
 					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } elseif(!is_front_page()) { ?>
 					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmpro-advanced-levels-shortcode');?></a>
