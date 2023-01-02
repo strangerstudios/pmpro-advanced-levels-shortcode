@@ -70,8 +70,8 @@ function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-advanced-levels-shortcode' ) ) . '">' . __( 'Docs', 'pmpro-advanced-levels-shortcode' ) . '</a>',
-			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-advanced-levels-shortcode' ) ) . '">' . __( 'Support', 'pmpro-advanced-levels-shortcode' ) . '</a>',
+			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html__( 'Docs', 'pmpro-advanced-levels-shortcode' ) . '</a>',
+			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html__( 'Support', 'pmpro-advanced-levels-shortcode' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);
 	}

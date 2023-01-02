@@ -7,7 +7,7 @@ global $pmproal_link_arguments;
 ?>
 <table id="pmpro_levels" class="<?php
 	if(!empty($template))
-		echo "pmpro_advanced_levels-" . $template;
+		echo "pmpro_advanced_levels-" . esc_attr( $template );
 	else
 		echo "pmpro_advanced_levels-table";
 	if($template === "gantry" || $template === "bootstrap")
@@ -16,12 +16,12 @@ global $pmproal_link_arguments;
 <thead>
   <tr>
 	<?php do_action('pmproal_extra_cols_before_header'); ?>
-	<th><?php _e('Level', 'pmpro-advanced-levels-shortcode');?></th>
+	<th><?php esc_html_e('Level', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php if(!empty($show_price)) { ?>
-		<th><?php _e('Price', 'pmpro-advanced-levels-shortcode');?></th>
+		<th><?php esc_html_e('Price', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php } ?>
 	<?php if(!empty($expiration)) { ?>
-		<th><?php _e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
+		<th><?php esc_html_e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
 	<?php } ?>
 	<th>&nbsp;</th>
 	<?php do_action('pmproal_extra_cols_after_header'); ?>
@@ -36,19 +36,19 @@ global $pmproal_link_arguments;
 		$current_level = pmpro_hasMembershipLevel( $level->id );
 
 	?>
-	<tr id="pmpro_level-<?php echo $level->id; ?>" class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+	<tr id="pmpro_level-<?php echo esc_attr( $level->id ); ?>" class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 		<?php do_action('pmproal_extra_cols_before_body', $level->id, $template); ?>
 		<td>
-			<h2><?php echo $level->name?></h2>
-			<?php if(!empty($description)) { echo wpautop($level->description); } ?>
+			<h2><?php echo esc_html( $level->name ); ?></h2>
+			<?php if(!empty($description)) { echo wp_kses_post( wpautop($level->description) ); } ?>
 		</td>
 		<?php if(!empty($show_price)) { ?>
 		<td>
 			<?php 
 				if($price === 'full')
-					echo pmpro_getLevelCost($level, true, false);
+					echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
 				else
-					echo pmpro_getLevelCost($level, false, true); 
+					echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
 			?>
 		</td>
 		<?php } ?>
@@ -60,9 +60,9 @@ global $pmproal_link_arguments;
 				<?php 
 					$level_expiration = pmpro_getLevelExpiration($level);
 					if(empty($level_expiration))
-						_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
+						esc_html_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 					else
-						echo $level_expiration;
+						echo esc_html( $level_expiration );
 				?>
 				</td>
 				<?php 
@@ -75,14 +75,14 @@ global $pmproal_link_arguments;
 				elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 				elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 				else { echo "pmpro_btn pmpro_btn-select"; }
-			?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
+			?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 		<?php } elseif ( !$current_level ) { ?>                	
 			<a class="<?php
 				if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 				elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 				elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 				else { echo "pmpro_btn pmpro_btn-select"; }
-			?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $checkout_button; ?></a>
+			?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 		<?php } elseif($current_level) { ?>      
 			
 			<?php
@@ -95,7 +95,7 @@ global $pmproal_link_arguments;
 						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 						else { echo "pmpro_btn pmpro_btn-select"; }
-					?>" href="<?php echo add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ); ?>"><?php echo $renew_button; ?></a>
+					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
 				<?php
 				}
 				else
@@ -107,7 +107,7 @@ global $pmproal_link_arguments;
 						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
 						elseif($template === "woothemes") { echo "woo-sc-button silver"; }
 						else { echo "pmpro_btn disabled"; }
-					?>" href="<?php echo pmpro_url("account")?>"><?php echo $account_button; ?></a>
+					?>" href="<?php echo esc_url( pmpro_url("account") ); ?>"><?php echo esc_html( $account_button ); ?></a>
 				<?php
 				}
 			?>
