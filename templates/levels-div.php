@@ -129,7 +129,7 @@ global $pmproal_link_arguments;
 					} 
 				?>
 				<li class="cta-button"><?php 
-					if(empty($current_user->membership_level->ID)) 
+					if( ! pmpro_hasMembershipLevel() ) 
 					{ 
 						?>
 						<a class="<?php
@@ -153,8 +153,9 @@ global $pmproal_link_arguments;
 					}
 					elseif($current_level)
 					{
-						//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew											
-						if( pmpro_isLevelExpiringSoon( $current_user->membership_level) && $current_user->membership_level->allow_signups )
+						//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
+						$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
+						if( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups )
 						{
 							?>
 							<a class="<?php
@@ -201,7 +202,7 @@ global $pmproal_link_arguments;
 						echo "<hr />";
 				?>
 				<?php 
-					if(empty($current_user->membership_level->ID)) 
+					if( ! pmpro_hasMembershipLevel() ) 
 					{ 
 						?>
 						<a class="<?php
@@ -227,8 +228,9 @@ global $pmproal_link_arguments;
 					}
 					elseif($current_level)
 					{
-						//if it's a one-time-payment level, offer a link to renew				
-						if(!pmpro_isLevelRecurring($current_user->membership_level) && !empty($current_user->membership_level->enddate))
+						//if it's a one-time-payment level, offer a link to renew
+						$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
+						if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
 						{
 							?>
 							<a class="<?php
@@ -349,7 +351,7 @@ global $pmproal_link_arguments;
 						?>
 						
 						<p class="pmpro_level-select"><?php 
-							if(empty($current_user->membership_level->ID)) 
+							if ( ! pmpro_hasMembershipLevel() ) 
 							{ 
 								?>
 								<a class="<?php
@@ -373,8 +375,9 @@ global $pmproal_link_arguments;
 							}
 							elseif($current_level)
 							{
-								//if it's a one-time-payment level, offer a link to renew				
-								if(!pmpro_isLevelRecurring($current_user->membership_level) && !empty($current_user->membership_level->enddate))
+								//if it's a one-time-payment level, offer a link to renew
+								$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);				
+								if ( ! pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
 								{
 									?>
 									<a class="<?php
