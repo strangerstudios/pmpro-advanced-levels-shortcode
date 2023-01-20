@@ -38,7 +38,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	else
 		$back_link = true;
 
-	if($compare === "0" || $compare === "false" || $compare === "no")
+	if($compare === "0" || $compare === "false" || $compare === "no" || empty( $compare ) )
 		$compare = false;
 	else
 		$compareitems = explode(";", $compare);
