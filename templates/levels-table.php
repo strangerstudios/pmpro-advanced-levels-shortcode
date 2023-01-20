@@ -69,7 +69,7 @@ global $pmproal_link_arguments;
 			} 
 		?>
 		<td>
-		<?php if(empty($current_user->membership_level->ID)) { ?>
+		<?php if ( ! pmpro_hasMembershipLevel() ) { ?>
 			<a class="<?php
 				if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 				elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
@@ -86,8 +86,9 @@ global $pmproal_link_arguments;
 		<?php } elseif($current_level) { ?>      
 			
 			<?php
-				//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew											
-				if( pmpro_isLevelExpiringSoon( $current_user->membership_level) && $current_user->membership_level->allow_signups )
+				//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew	
+				$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);										
+				if( pmpro_isLevelExpiringSoon( $specific_level) && $specific_level->allow_signups )
 				{
 				?>
 					<a class="<?php

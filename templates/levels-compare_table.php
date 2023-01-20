@@ -13,7 +13,7 @@ global $pmproal_link_arguments;
 				foreach($pmpro_levels_filtered as $level)
 				{
 					?>
-					<th class="<?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+					<th class="<?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 						<h2><?php echo esc_html( $level->name ); ?></h2>
 					</th>
 					<?php
@@ -27,7 +27,7 @@ global $pmproal_link_arguments;
 				foreach($pmpro_levels_filtered as $level)
 				{				  
 					?>
-					<th class="pmpro_level-price <?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+					<th class="pmpro_level-price <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 						<?php
 							if(pmpro_isLevelFree($level))
 							{
@@ -63,7 +63,7 @@ global $pmproal_link_arguments;
 				foreach($pmpro_levels_filtered as $level)
 				{										  
 					?>
-					<th class="pmpro_level-expiration <?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+					<th class="pmpro_level-expiration <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 						<?php 
 							$level_expiration = pmpro_getLevelExpiration($level);
 							if(empty($level_expiration))
@@ -87,7 +87,7 @@ global $pmproal_link_arguments;
 					$pmproal_link_arguments['level'] = $level->id;
 					?>
 					<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-					<?php if(empty($current_user->membership_level->ID)) { ?>
+					<?php if( ! pmpro_hasMembershipLevel() ) { ?>
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
@@ -103,8 +103,9 @@ global $pmproal_link_arguments;
 						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php } elseif($current_level) { ?>      									
 						<?php
-							//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew											
-							if( pmpro_isLevelExpiringSoon( $current_user->membership_level) && $current_user->membership_level->allow_signups )
+							//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
+							$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
+							if( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups )
 							{
 							?>
 								<a class="<?php
@@ -156,7 +157,7 @@ global $pmproal_link_arguments;
 							$level = NULL;
 						$count++;
 						?>
-						<td class="<?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+						<td class="<?php if( ! empty( $level->id ) && pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 							<?php 
 								if($compareitem_value == '1') { echo '<span class="pmpro_level-compare-true"></span>'; } 
 								elseif($compareitem_value == '0') { echo '<span class="pmpro_level-compare-false"></span>'; } 
@@ -183,7 +184,7 @@ global $pmproal_link_arguments;
 					$current_level = pmpro_hasMembershipLevel( $level->id );		  
 					?>
 					<td class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-					<?php if(empty($current_user->membership_level->ID)) { ?>
+					<?php if( ! pmpro_hasMembershipLevel() ) { ?>
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
@@ -199,8 +200,9 @@ global $pmproal_link_arguments;
 						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php } elseif($current_level) { ?>      									
 						<?php
-							//if it's a one-time-payment level, offer a link to renew											
-							if(!pmpro_isLevelRecurring($current_user->membership_level) && !empty($current_user->membership_level->enddate))
+							//if it's a one-time-payment level, offer a link to renew
+							$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);											
+							if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
 							{
 							?>
 								<a class="<?php
@@ -237,7 +239,7 @@ global $pmproal_link_arguments;
 				foreach($pmpro_levels_filtered as $level)
 				{				  
 					?>
-					<td class="muted <?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+					<td class="muted <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 						<?php 
 							$level_expiration = pmpro_getLevelExpiration($level);
 							if(empty($level_expiration))
@@ -259,7 +261,7 @@ global $pmproal_link_arguments;
 				foreach($pmpro_levels_filtered as $level)
 				{				  
 					?>
-					<td class="<?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>"><?php
+					<td class="<?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>"><?php
 							if (function_exists('memberlite_getLevelLandingPage')) {
 								$level_page = memberlite_getLevelLandingPage($level->id);
 							} else {
@@ -400,7 +402,7 @@ global $pmproal_link_arguments;
 			?>
 			<p>
 			<?php 
-				if(empty($current_user->membership_level->ID)) 
+				if( ! pmpro_hasMembershipLevel() ) 
 				{
 					?>
 					<a class="<?php
@@ -427,7 +429,8 @@ global $pmproal_link_arguments;
 				elseif($current_level)
 				{
 					//if it's a one-time-payment level, offer a link to renew				
-					if(!pmpro_isLevelRecurring($current_user->membership_level) && !empty($current_user->membership_level->enddate))
+					$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);											
+					if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
 					{
 						?>
 						<a class="<?php
