@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 5.2
-Tested up to: 5.9
-Stable tag: .2.4
+Tested up to: 6.1
+Stable tag: 0.2.5
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -32,6 +32,11 @@ For more information, see our blog post here:
 http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
 
 == Changelog == 
+= 0.2.5 - 2023-01-25 =
+* SECURITY: Improved sanitization and escaping of strings throughout the plugin.
+* ENHANCEMENT: Added support for Multiple Memberships Per User. This now shows the "Renew" button on the levels page for all active membership levels.
+* BUG FIX: Fixed a warning when no attributes were set for the shortcode.
+
 = .2.4 =
 * ENHANCEMENT: Added pmproal_before_level hook to the div/column layouts.
 * ENHANCEMENT: Added pmproal_after_level hook to the div/column layouts.
