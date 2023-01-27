@@ -14,7 +14,7 @@ global $pmproal_link_arguments;
 				{
 					?>
 					<th class="<?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-						<h2><?php echo esc_html( $level->name ); ?></h2>
+						<h2><?php echo wp_kses( $level->name, pmproal_allowed_html() ); ?></h2>
 					</th>
 					<?php
 				}
@@ -69,7 +69,7 @@ global $pmproal_link_arguments;
 							if(empty($level_expiration))
 								esc_html_e('Membership never expires.', 'pmpro-advanced-levels-shortcode');
 							else
-								echo esc_html( $level_expiration );
+								echo wp_kses( $level_expiration, pmproal_allowed_html() );
 						?>
 					</th>
 					<?php 
@@ -137,8 +137,7 @@ global $pmproal_link_arguments;
 		</tr>
 	</thead>
 	<tbody>
-		<?php if(!empty($compareitems)) 
-		{ 
+		<?php if(!empty($compareitems)) { 
 			foreach($compareitems as $compareitem)
 			{
 				?>
@@ -159,9 +158,12 @@ global $pmproal_link_arguments;
 						?>
 						<td class="<?php if( ! empty( $level->id ) && pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 							<?php 
-								if($compareitem_value == '1') { echo '<span class="pmpro_level-compare-true"></span>'; } 
-								elseif($compareitem_value == '0') { echo '<span class="pmpro_level-compare-false"></span>'; } 
-								else { echo esc_html( $compareitem_value ); } 
+
+								if( $compareitem_value == '1' ) { 
+									echo '<span class="pmpro_level-compare-true"></span>'; 
+								} elseif( $compareitem_value == '0' ) { 
+									echo '<span class="pmpro_level-compare-false"></span>'; 
+								} else { echo  wp_kses( $compareitem_value, pmproal_allowed_html() ); } 
 							?>
 						</td>
 						<?php
@@ -245,7 +247,7 @@ global $pmproal_link_arguments;
 							if(empty($level_expiration))
 								esc_html_e('Membership never expires.', 'pmpro');
 							else
-								echo esc_html( $level_expiration );
+								echo wp_kses( $level_expiration, pmproal_allowed_html() );
 						?>
 					</td>
 					<?php 
@@ -382,12 +384,12 @@ global $pmproal_link_arguments;
 						{ 
 							if($compareitem_values[$count] == '1') 
 							{
-								echo ' <strong>' . esc_html( $compareitem_values[0] ) . '</strong>';
+								echo ' <strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>';
 							}
 							else 
 							{
-								echo ' <strong>' . esc_html( $compareitem_values[0] ) . '</strong>: ';
-								echo esc_html( $compareitem_values[$count] ); 
+								echo ' <strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
+								echo wp_kses( $compareitem_values[$count], pmproal_allowed_html() ); 
 							}
 							echo '<br />';
 						}
@@ -467,7 +469,7 @@ global $pmproal_link_arguments;
 					if(empty($level_expiration))
 						esc_html_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 					else
-						echo esc_html( $level_expiration );
+						echo wp_kses( $level_expiration, pmproal_allowed_html() );
 					if($template === "bootstrap")
 						echo '</span>';
 					echo '</p>';

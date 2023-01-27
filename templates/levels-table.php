@@ -39,7 +39,7 @@ global $pmproal_link_arguments;
 	<tr id="pmpro_level-<?php echo esc_attr( $level->id ); ?>" class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 		<?php do_action('pmproal_extra_cols_before_body', $level->id, $template); ?>
 		<td>
-			<h2><?php echo esc_html( $level->name ); ?></h2>
+			<h2><?php echo wp_kses( $level->name, pmproal_allowed_html() ); ?></h2>
 			<?php if(!empty($description)) { echo wp_kses_post( wpautop($level->description) ); } ?>
 		</td>
 		<?php if(!empty($show_price)) { ?>
@@ -62,7 +62,7 @@ global $pmproal_link_arguments;
 					if(empty($level_expiration))
 						esc_html_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 					else
-						echo esc_html( $level_expiration );
+						echo wp_kses( $level_expiration, pmproal_allowed_html() );
 				?>
 				</td>
 				<?php 

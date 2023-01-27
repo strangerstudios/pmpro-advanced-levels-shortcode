@@ -113,7 +113,7 @@ global $pmproal_link_arguments;
 				?>
 				<?php if(!empty($description)) { ?>
 <li class="description">
-						<?php echo esc_html( $level->description ); ?>
+						<?php echo wp_kses( $level->description, pmproal_allowed_html() ); ?>
 					</li>
 				<?php } ?>
 				<?php 
@@ -124,7 +124,7 @@ global $pmproal_link_arguments;
 						if(empty($level_expiration))
 							esc_html_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 						else
-							echo esc_html( $level_expiration );
+							echo wp_kses( $level_expiration, pmproal_allowed_html() );
 						echo '</li>';
 					} 
 				?>
@@ -320,7 +320,7 @@ global $pmproal_link_arguments;
 						if(empty($level_expiration))
 							esc_html_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 						else
-							echo esc_html( $level_expiration );
+							echo wp_kses( $level_expiration, pmproal_allowed_html() );
 						if($template === "bootstrap")
 							echo '</span>';
 					} 
@@ -425,7 +425,7 @@ global $pmproal_link_arguments;
 						if(empty($level_expiration))
 							esc_html_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
 						else
-							echo esc_html( $level_expiration );
+							echo wp_kses( $level_expiration, pmproal_allowed_html() );
 						echo '</footer>';
 					} 
 				?>
