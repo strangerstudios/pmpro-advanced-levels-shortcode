@@ -63,6 +63,42 @@ function pmproal_getLevelLandingPage($level_id) {
 		return $posts[0];
 }
 
+/**
+ * Function for allowed HTML tags in various templates
+ * 
+ * @since TBD
+ * @return array $allowed_html The allowed HTML to be used for wp_kses escaping.
+ */
+function pmproal_allowed_html() {
+	$allowed_html = array (
+		'a' => array (
+			'class' => array(),
+			'href' => array(),
+			'target' => array(),
+			'title' => array(),
+		),
+		'p' => array(
+			'class' => array(),
+		),
+		'b' => array(
+			'class' => array(),
+		),
+		'em' => array(
+			'class' => array(),
+		),
+		'br' => array(),
+		'strike' => array(),
+		'strong' => array(),
+	);
+
+	/**
+	 * Filters the allowed HTML tags for the Advanced Levels Shortcode.
+	 * @param array $allowed_html The allowed html elements for the Advanced Levels Shortcode escaping where wp_kses is used (like in compared elements etc.)
+	 * @since TBD
+	 */
+	return apply_filters( 'pmproal_allowed_html', $allowed_html );
+}
+
 /*
 Function to add links to the plugin row meta
 */
@@ -70,8 +106,8 @@ function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html__( 'Docs', 'pmpro-advanced-levels-shortcode' ) . '</a>',
-			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html__( 'Support', 'pmpro-advanced-levels-shortcode' ) . '</a>',
+			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr__( 'View Documentation', 'pmpro-advanced-levels-shortcode' ) . '">' . esc_html__( 'Docs', 'pmpro-advanced-levels-shortcode' ) . '</a>',
+			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr__( 'Visit Customer Support Forum', 'pmpro-advanced-levels-shortcode' ) . '">' . esc_html__( 'Support', 'pmpro-advanced-levels-shortcode' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);
 	}
