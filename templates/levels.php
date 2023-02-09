@@ -28,7 +28,6 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'more_button' => NULL,
 		'price' => 'short',
 		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
-		'template' => NULL,
 	), $atts));
 	
 	global $wpdb, $pmpro_msg, $pmpro_msgt, $current_user, $pmpro_currency_symbol, $pmpro_all_levels, $pmpro_visible_levels, $current_user, $membership_levels;
