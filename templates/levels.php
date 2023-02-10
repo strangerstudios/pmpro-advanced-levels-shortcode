@@ -107,7 +107,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			}
 
 			// Reorder array
-			foreach ( $levels_order as $level_id) {
+			foreach ( $levels_order as $level_id ) {
 				foreach ( $pmpro_all_levels as $key => $level ) {
 					if ( $level_id == $level->id ) {
 						$pmpro_levels_filtered[] = $pmpro_all_levels[$key];
