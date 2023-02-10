@@ -98,11 +98,16 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				}
 			}
 		} else {
-			$pmpro_level_order = pmpro_getOption( 'level_order' );
-			$levels_order = explode( ',', $pmpro_level_order );
+			$pmpro_level_order = pmpro_getOption( 'level_order' ) ?: $pmpro_all_levels;
+
+			if ( ! is_array( $pmpro_level_order ) ) {
+				$levels_order = explode( ',', $pmpro_level_order );
+			} else {
+				$levels_order = array_keys( $pmpro_level_order );
+			}
 
 			// Reorder array
-			foreach ( $levels_order as $level_id ) {
+			foreach ( $levels_order as $level_id) {
 				foreach ( $pmpro_all_levels as $key => $level ) {
 					if ( $level_id == $level->id ) {
 						$pmpro_levels_filtered[] = $pmpro_all_levels[$key];
