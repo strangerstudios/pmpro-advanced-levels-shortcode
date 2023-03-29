@@ -155,7 +155,7 @@ global $pmproal_link_arguments;
 					{
 						//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
 						$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
-						if( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups )
+						if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 						{
 							?>
 							<a class="<?php
