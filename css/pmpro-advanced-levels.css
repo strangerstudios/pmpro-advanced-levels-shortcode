@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* CSS Document */
 .pmpro_advanced_levels-genesis .pmpro_level.one-third, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth, .pmpro_advanced_levels-gantry .pmpro_level.span4, .pmpro_advanced_levels-gantry .pmpro_level.span3, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one, .pmpro_advanced_levels-div .text-center, .pmpro_advanced_levels-compare_table th, .pmpro_advanced_levels-compare_table td {text-align: center; }
 table.pmpro_advanced_levels-genesis .button, .pmpro_advanced_levels-genesis .pmpro_level.one-third .button, .pmpro_advanced_levels-genesis .pmpro_level.one-fourth .button, table.pmpro_advanced_levels-foundation .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-4 .button, .pmpro_advanced_levels-foundation .pmpro_level.medium-3 .button, table.pmpro_advanced_levels-gantry .btn, table.pmpro_advanced_levels-woothemes .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.threecol-one .woo-sc-button, .pmpro_advanced_levels-woothemes .pmpro_level.fourcol-one .woo-sc-button, table.pmpro_advanced_levels-twentyfourteen .button, .pmpro_advanced_levels-table .pmpro_btn,  .pmpro_advanced_levels-div .text-center .pmpro_btn, table.pmpro_advanced_levels-bootstrap .btn, .pmpro_advanced_levels-compare_table .pmpro_btn, .pmpro_advanced_levels-compare_table_responsive .pmpro_btn, .pmpro_advanced_levels-compare_table_responsive .button {display: block; text-align: center; word-break: normal; }
@@ -59,116 +60,66 @@ table.pmpro_advanced_levels-woothemes tbody td {vertical-align: middle; }
 	.pmpro_advanced_levels-compare_table_responsive {display: block; }
 }
 
-/* Div-based Levels Page Layouts */
-.pmpro_level .level-name {
-	grid-area: level-name;
-}
-.pmpro_level .level-description {
-	grid-area: level-description;
-}
-.pmpro_level .pmpro_level-price {
-	grid-area: level-price;
-}
-.pmpro_level .level-button {
-	grid-area: level-button;
-}
-.pmpro_level .pmpro_level-expiration {
-	grid-area: level-expiration;
-}
+.pmpro_advanced_levels-div .row {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 73.125em; }
+  .pmpro_advanced_levels-div .row:before, .pmpro_advanced_levels-div .row:after {
+    content: " ";
+    display: table; }
+  .pmpro_advanced_levels-div .row:after {
+    clear: both; }
+  .pmpro_advanced_levels-div .column,
+  .pmpro_advanced_levels-div .columns {
+    position: relative;
+    float: left; }
 
-/* Column-based Levels Page Layouts */
-.pmpro_levels-2col,
-.pmpro_levels-3col,
-.pmpro_levels-4col {
-	display: grid;
-	grid-column-gap: 2em;
-	grid-row-gap: 2em;
-}
-.pmpro_levels-2col p,
-.pmpro_levels-3col p,
-.pmpro_levels-4col p {
-	margin: 0;
-}
+.pmpro_advanced_levels-div [class*="column"] + [class*="column"]:last-child {
+  float: right; }
 
-/* One Column (Div) Levels Page Layout */
-.pmpro_levels-div .pmpro_level_btn {
-	float: right;
-}
+.pmpro_advanced_levels-div [class*="column"] + [class*="column"].end {
+  float: left; }
 
-/* Two Column Levels Page Layout */
-.pmpro_levels-2col {
-	grid-template-columns: 1fr 1fr;
-}
-.pmpro_levels-2col .pmpro_level_btn {
-	float: right;
-}
+.pmpro_advanced_levels-div .small-12 {
+  width: 100%; }
 
-/* Three Column Levels Page Layout */
-.pmpro_levels-3col {
-	grid-template-columns: 1fr 1fr 1fr;
-}
-.pmpro_levels-3col .pmpro_level {
-	text-align: center;
-}
-.pmpro_levels-3col .pmpro_level .post {
-	display: grid;
-	grid-gap: 1em;
-	grid-template-columns: 1fr;
-	grid-template-areas:
-		"level-name"
-		"level-price"
-		"level-button"
-		"level-description"
-		"level-expiration";
-}
-.pmpro_levels-3col .pmpro_btn {
-	display: block;
-}
+@media only screen and (min-width: 40.063em) {
+  .pmpro_advanced_levels-div .medium-1 {
+    width: 8.33333%; }
 
-/* Four Column Levels Page Layout */
-.pmpro_levels-4col {
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.pmpro_levels-4col .pmpro_level {
-	text-align: center;
-}
-.pmpro_levels-4col .pmpro_level .post {
-	display: grid;
-	grid-gap: 1em;
-	grid-template-columns: 1fr;
-	grid-template-areas:
-		"level-name"
-		"level-price"
-		"level-button"
-		"level-description"
-		"level-expiration";
-}
-.pmpro_levels-4col .pmpro_btn {
-	display: block;
-}
+  .pmpro_advanced_levels-div .medium-2 {
+    width: 16.66667%; }
 
-@media only screen and (min-width: 960px) and (max-width: 1160px) {
-	.pmpro_levels-3col {
-		grid-template-columns: 1fr 1fr 1fr;
-	}
-	.pmpro_levels-4col {
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-	}
-}
+  .pmpro_advanced_levels-div .medium-3 {
+    width: 25%; }
 
-/* Tablet Portrait */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-	.pmpro_levels-3col,
-	.pmpro_levels-4col {
-		grid-template-columns: 1fr 1fr;
-	}
-}
+  .pmpro_advanced_levels-div .medium-4 {
+    width: 33.33333%; }
 
-/* Mobile */
-@media only screen and (max-width: 767px) {
-	.pmpro_levels-2col,
-	.pmpro_levels-3col,
-	.pmpro_levels-4col {
-		grid-template-columns: 1fr;
-	}
+  .pmpro_advanced_levels-div .medium-5 {
+    width: 41.66667%; }
+
+  .pmpro_advanced_levels-div .medium-6 {
+    width: 50%; }
+
+  .pmpro_advanced_levels-div .medium-7 {
+    width: 58.33333%; }
+
+  .pmpro_advanced_levels-div .medium-8 {
+    width: 66.66667%; }
+
+  .pmpro_advanced_levels-div .medium-9 {
+    width: 75%; }
+
+  .pmpro_advanced_levels-div .medium-10 {
+    width: 83.33333%; }
+
+  .pmpro_advanced_levels-div .medium-11 {
+    width: 91.66667%; }
+
+  .pmpro_advanced_levels-div .medium-12 {
+    width: 100%; }
 }

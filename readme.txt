@@ -1,9 +1,9 @@
 === Paid Memberships Pro - Advanced Levels Page Shortcode Add On ===
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
-Requires at least: 3.5
-Tested up to: 4.7.4
-Stable tag: .2.4
+Requires at least: 5.2
+Tested up to: 6.1
+Stable tag: 0.2.5
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -16,23 +16,27 @@ Attributes in the [pmpro_advanced_levels] shortcode can be used to tweak how lev
 Also includes specific styling support for Bootstrap v3+, StudioPress/Genesis, Woo Themes, Gantry, and Foundation based themes as well as some of the default WP themes like TwentyFourteen.
 
 For more information, see add on documentation:
-https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
-
-= Official Paid Memberships Pro Add On =
-
-This is an official Add On for [Paid Memberships Pro](https://www.paidmembershipspro.com), the most complete member management and membership subscriptions plugin for WordPress.
+http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/
 
 == Installation ==
 
-1. Upload the `pmpro-advanced-levels-shortcode` folder to the `/wp-content/plugins/` directory.
+1. Upload the `pmpro-advanced-levels` folder to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Replace the [pmpro_levels] shortcode on your site with a version of the [pmpro_advanced_levels] shortcode.
+1. Replace the [pmpro_levels] shortcode on your site with a [pmpro_advanced_levels] one.
 
-Here is an example of the pmpro_advanced_levels shortcode with additional attributes.
+Here is an example of the pmpro_advanced_levels shortcode with all attributes.
 
 [pmpro_advanced_levels template="genesis" levels="1,2,3" layout="table" hightlight="2" description="false" checkout_button="Register Now"]
 
+For more information, see our blog post here:
+http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
+
 == Changelog == 
+= 0.2.5 - 2023-01-25 =
+* SECURITY: Improved sanitization and escaping of strings throughout the plugin.
+* ENHANCEMENT: Added support for Multiple Memberships Per User. This now shows the "Renew" button on the levels page for all active membership levels.
+* BUG FIX: Fixed a warning when no attributes were set for the shortcode.
+
 = .2.4 =
 * ENHANCEMENT: Added pmproal_before_level hook to the div/column layouts.
 * ENHANCEMENT: Added pmproal_after_level hook to the div/column layouts.

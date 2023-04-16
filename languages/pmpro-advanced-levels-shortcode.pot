@@ -1,0 +1,121 @@
+# Copyright (C) 2023 Paid Memberships Pro
+# This file is distributed under the same license as the Paid Memberships Pro - Advanced Levels Page Shortcode Add On plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Shortcode Add On 0.2.5\n"
+"Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
+"Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-01-25T12:13:27+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: pmpro-advanced-levels-shortcode\n"
+
+#. Plugin Name of the plugin
+msgid "Paid Memberships Pro - Advanced Levels Page Shortcode Add On"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/"
+msgstr ""
+
+#. Description of the plugin
+msgid "An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro"
+msgstr ""
+
+#. Author of the plugin
+msgid "Paid Memberships Pro"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.paidmembershipspro.com/"
+msgstr ""
+
+#: pmpro-advanced-levels-shortcode.php:73
+msgid "View Documentation"
+msgstr ""
+
+#: pmpro-advanced-levels-shortcode.php:73
+msgid "Docs"
+msgstr ""
+
+#: pmpro-advanced-levels-shortcode.php:74
+msgid "Visit Customer Support Forum"
+msgstr ""
+
+#: pmpro-advanced-levels-shortcode.php:74
+msgid "Support"
+msgstr ""
+
+#: templates/levels-compare_table.php:10
+#: templates/levels-table.php:19
+msgid "Level"
+msgstr ""
+
+#: templates/levels-compare_table.php:25
+#: templates/levels-table.php:21
+msgid "Price"
+msgstr ""
+
+#: templates/levels-compare_table.php:37
+#: templates/levels-compare_table.php:43
+#: templates/levels-compare_table.php:340
+#: templates/levels-div.php:101
+#: templates/levels-div.php:288
+msgid "Free"
+msgstr ""
+
+#: templates/levels-compare_table.php:61
+#: templates/levels-compare_table.php:237
+#: templates/levels-table.php:24
+msgid "Expiration"
+msgstr ""
+
+#: templates/levels-compare_table.php:70
+msgid "Membership never expires."
+msgstr ""
+
+#: templates/levels-compare_table.php:258
+msgid "More Information"
+msgstr ""
+
+#: templates/levels-compare_table.php:334
+#: templates/levels-div.php:95
+#: templates/levels-div.php:282
+msgid "Free."
+msgstr ""
+
+#: templates/levels-compare_table.php:468
+#: templates/levels-div.php:125
+#: templates/levels-div.php:321
+#: templates/levels-div.php:426
+#: templates/levels-table.php:63
+msgid "Membership Never Expires."
+msgstr ""
+
+#: templates/levels.php:17
+msgid "Your&nbsp;Level"
+msgstr ""
+
+#: templates/levels.php:21
+msgid "Select"
+msgstr ""
+
+#: templates/levels.php:30
+msgid "Renew"
+msgstr ""
+
+#: templates/levels.php:60
+msgid "Read More"
+msgstr ""
+
+#: templates/levels.php:164
+msgid "&larr; Return to Your Account"
+msgstr ""
+
+#: templates/levels.php:166
+msgid "&larr; Return to Home"
+msgstr ""

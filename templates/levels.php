@@ -38,7 +38,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	else
 		$back_link = true;
 
-	if($compare === "0" || $compare === "false" || $compare === "no")
+	if($compare === "0" || $compare === "false" || $compare === "no" || empty( $compare ) )
 		$compare = false;
 	else
 		$compareitems = explode(";", $compare);
@@ -160,10 +160,10 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		<?php if(!empty($back_link)) { ?>
 		<nav id="nav-below" class="navigation" role="navigation">
 			<div class="nav-previous alignleft">
-				<?php if(!empty($current_user->membership_level->ID)) { ?>
-					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmpro-advanced-levels-shortcode');?></a>
+				<?php if ( pmpro_hasMembershipLevel() ) { ?>
+				<a href="<?php echo esc_url( pmpro_url("account") )?>"><?php esc_html_e('&larr; Return to Your Account', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } elseif(!is_front_page()) { ?>
-					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmpro-advanced-levels-shortcode');?></a>
+					<a href="<?php echo esc_url( home_url() )?>"><?php esc_html_e('&larr; Return to Home', 'pmpro-advanced-levels-shortcode');?></a>
 				<?php } ?>
 			</div>
 		</nav>	
