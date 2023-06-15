@@ -98,7 +98,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				}
 			}
 		} else {
-			$pmpro_level_order = pmpro_getOption( 'level_order' );
+			$pmpro_level_order = get_option( 'pmpro_level_order' );
 			$levels_order = explode( ',', $pmpro_level_order );
 
 			// Reorder array
