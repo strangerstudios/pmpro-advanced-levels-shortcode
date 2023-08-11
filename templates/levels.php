@@ -114,14 +114,8 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
 		$numeric_levels_array = array_values($pmpro_levels_filtered);
 
-		//Allows you to add ?discount_code=code to your URL
-		if( !empty( $_REQUEST['discount_code'] ) ){
-			$discount_code = sanitize_text_field( $_REQUEST['discount_code'] );
-		}
-
 		//update per discount code
-		if(!empty($discount_code) && !empty($pmpro_levels_filtered))
-		{			
+		if(!empty($discount_code) && !empty($pmpro_levels_filtered)) {
 			foreach($pmpro_levels_filtered as $level_id => $level)
 			{				
 				//check code for this level and update if applicable
@@ -135,6 +129,8 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
      
 				}
 			}		
+		} else {
+			unset( $pmproal_link_arguments['discount_code'] );
 		}
 	
 		do_action('pmproal_before_template_load' );
