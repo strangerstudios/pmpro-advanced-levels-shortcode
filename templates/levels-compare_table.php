@@ -3,6 +3,8 @@
 	template for layout="compare_table"
 */
 global $pmproal_link_arguments;
+if (is_plugin_active('pmpro-level-cost-text') ) 
+	require_once WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'pmpro-level-cost-text' . DIRECTORY_SEPARATOR . 'pmpro-level-cost-text.php';
 ?>
 <table id="pmpro_levels" class="<?php if(!empty($template)) { echo "pmpro_advanced_levels-" . esc_attr( $template ) . " "; } ?>pmpro_advanced_levels-compare_table">
 	<thead>
@@ -28,23 +30,20 @@ global $pmproal_link_arguments;
 				{				  
 					?>
 					<th class="pmpro_level-price <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-						<?php
-							if(pmpro_isLevelFree($level))
-							{
-								if(!empty($expiration))
-								{
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
-								else
-								{	
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
-							}
-							elseif($price === 'full')
+						<?php if(pmpro_isLevelFree($level)) { ?>
+							<strong>
+								<?php 
+									// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+									if( function_exists( 'pmpro_getCustomLevelCostText' ) && pmpro_getCustomLevelCostText( $level->id ) != '') {
+										$text = pmpro_getCustomLevelCostText($level->id);
+									} else {
+										$text = __('Free', 'pmpro-advanced-levels-shortcode');
+									}
+									esc_html_e($text, 'pmpro-advanced-levels-shortcode');
+								?>
+							</strong>
+							<?php
+							} else if($price === 'full')
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
 							else
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, false, true)), array( 'strong' => array(), 'span' => array() ) );
@@ -328,22 +327,16 @@ global $pmproal_link_arguments;
 					}
 					?>
 					<?php
-						if(pmpro_isLevelFree($level))
-						{
-							if(!empty($expiration))
-							{
-								?>
-								<strong><?php esc_html_e('Free.', 'pmpro-advanced-levels-shortcode'); ?></strong>
-								<?php
+						if(pmpro_isLevelFree($level)) {
+							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+							if( function_exists( 'pmpro_getCustomLevelCostText' ) && pmpro_getCustomLevelCostText( $level->id ) != '') {
+								$text = pmpro_getCustomLevelCostText($level->id);
+							} else {
+								$text = __('Free', 'pmpro-advanced-levels-shortcode');
 							}
-							else
-							{	
-								?>
-								<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-								<?php
-							}
-						}
-						elseif($price === 'full')
+							esc_html_e($text, 'pmpro-advanced-levels-shortcode');
+
+						} elseif($price === 'full')
 							echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
 						else
 							echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
