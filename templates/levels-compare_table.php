@@ -45,9 +45,9 @@ global $pmproal_link_arguments;
 								}
 							}
 							elseif($price === 'full')
-								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
+								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), pmproal_allowed_html() );
 							else
-								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, false, true)), array( 'strong' => array(), 'span' => array() ) );
+								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, false, true)), pmproal_allowed_html() );
 
 						?>
 					</th>

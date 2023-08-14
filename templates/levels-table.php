@@ -46,9 +46,9 @@ global $pmproal_link_arguments;
 		<td>
 			<?php 
 				if($price === 'full')
-					echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
+					echo wp_kses( pmpro_getLevelCost( $level, true, false ), pmproal_allowed_html() );
 				else
-					echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
+					echo wp_kses( pmpro_getLevelCost( $level, false, true ), pmproal_allowed_html() );
 			?>
 		</td>
 		<?php } ?>
