@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "create-block/pmpro-advanced-level-page",
+	"version": "0.1.0",
+	"title": "PMPro Advanced Level Page",
+	"category": "widgets",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "pmpro-advanced-level-page",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

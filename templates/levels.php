@@ -17,14 +17,13 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'account_button' => __('Your&nbsp;Level', 'pmpro-advanced-levels-shortcode'),
 		'back_link' => '1',
 		'compare' => NULL,
-		'template' => NULL,
 		'checkout_button' => __('Select', 'pmpro-advanced-levels-shortcode'),
 		'description' => '1',
 		'discount_code' => NULL,
 		'expiration' => '1',
 		'highlight' => NULL,
 		'layout' => 'div',
-		'levels' => NULL,		
+		'levels' => NULL,
 		'more_button' => NULL,
 		'price' => 'short',
 		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
@@ -33,7 +32,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	
 	global $wpdb, $pmpro_msg, $pmpro_msgt, $current_user, $pmpro_currency_symbol, $pmpro_all_levels, $pmpro_visible_levels, $current_user, $membership_levels;
 	
-	if($back_link === "0" || $back_link === "false" || $back_link === "no")
+	if($back_link === "0" || $back_link === "false" || $back_link === "no" || !$back_link)
 		$back_link = false;
 	else
 		$back_link = true;
@@ -44,22 +43,22 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		$compareitems = explode(";", $compare);
 
 	//turn 0's into falses
-	if($description === "0" || $description === "false" || $description === "no")
+	if($description === "0" || $description === "false" || $description === "no" || !$description )
 		$description = false;
 	else
 		$description = true;
 		
-	if($expiration === "0" || $expiration === "false" || $expiration === "no")
+	if($expiration === "0" || $expiration === "false" || $expiration === "no" || !$expiration )
 		$expiration = false;
 	else
 		$expiration = true;
 	
-	if($more_button === "0" || $more_button === "false" || $more_button === "no" || empty($more_button))
+	if($more_button === "0" || $more_button === "false" || $more_button === "no" || empty($more_button) || !$more_button)
 		$more_button = false;
-	elseif($more_button === "1" || $more_button === "true" || $more_button === "yes")
+	elseif($more_button === "1" || $more_button === "true" || $more_button === "yes" || $more_button == true )
 		$more_button = __( "Read More", "pmpro-advanced-levels-shortcode" );
 		
-	if($price === "0" || $price === "false" || $price === "hide")
+	if($price === "0" || $price === "false" || $price === "hide" )
 		$show_price = false;
 	else
 		$show_price = true;	
@@ -84,6 +83,14 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		$pmpro_levels_filtered = array();
 		if(!empty($levels))
 		{
+			// Generate level data for SQL query.
+			if ( is_array( $levels ) ) {
+				//We need to ensure backwards compatibility with the old way of passing levels.
+				//Select2 pass a multidiemnsional array but it used to be single dimension aray.
+				$levels = count($levels) == count($levels, COUNT_RECURSIVE)
+				? implode(",", $levels)
+				: implode(",", wp_list_pluck($levels, 'value'));
+			}
 			$levels_order = explode(",", $levels);
 			//loop through $levels_order array and pull levels from $levels
 			foreach($levels_order as $level_id)

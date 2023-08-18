@@ -114,3 +114,41 @@ function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	return $links;
 }
 add_filter('plugin_row_meta', 'pmpro_advanced_levels_plugin_row_meta', 10, 2);
+
+/**
+ * Create the block for the Advanced Levels Shortcode. Call register_block_type() to register the block.
+ * 
+ * @since TBD
+ */
+function create_block_advanced_level_page_block_init() {
+	register_block_type( __DIR__ . '/build/pmpro-advanced-level-page',array (
+		'attributes' => array(
+			'back_link'=>array('type'=>'boolean', 'default' => true),
+			'more_button'=>array('type'=>'boolean', 'default' => false), 
+			'checkout_button'=>array('type'=>'string', 'default' => 'Select'), 
+			'description'=>array('type'=>'boolean', 'default' => true), 
+			'discount_code'=>array('type'=>'string', 'default' => ''), 
+			'expiration'=>array('type'=>'boolean', 'default' => true), 
+			'levels'=>array('type'=>'array','default'=>[]), 
+			'layout'=>array('type'=>'string', 'default' => 'div'), 
+			'price'=>array('type'=>'string', 'default' => 'short'), 
+			'renew_button'=>array('type'=>'string', 'default' => 'Renew'),
+		  	'template'=>array('type'=>'boolean', 'default' => 'none')),
+			'compare'=>array('type'=>'string', 'default' => ''),
+		'render_callback' => 'pmpro_advanced_level_shortcode') );
+
+	add_shortcode( 'pmpro_advanced_levels', 'pmpro_advanced_level_shortcode' );
+	add_shortcode( 'ppmpro_advanced_level', 'pmpro_advanced_level_shortcode' );
+}
+add_action( 'init', 'create_block_advanced_level_page_block_init' );
+
+/**
+ * Advanced Levels Shortcode block render callback. Get the attributes and call the function than render the shortcode.
+ *
+ * @atts array The attributes of the registered block.
+ * @since TBD.
+ */
+function pmpro_advanced_level_shortcode( $atts) {
+	require_once 'templates' . DIRECTORY_SEPARATOR . 'levels.php';
+ 	return pmpro_advanced_levels_shortcode( $atts );
+} 
