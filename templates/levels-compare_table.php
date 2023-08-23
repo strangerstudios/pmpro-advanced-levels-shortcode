@@ -29,18 +29,16 @@ global $pmproal_link_arguments;
 					?>
 					<th class="pmpro_level-price <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 						<?php if(pmpro_isLevelFree($level)) { ?>
-							<strong>
-								<?php 
-									// if Custom Level Cost Text Add On is installed pull this information from the custom level cost text field.
-									if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
-										$text = pmpro_getCustomLevelCostText($level->id);
-									} else {
-										$text = __( 'Free', 'pmpro-advanced-levels-shortcode' );
-									}
-									esc_html_e( $text );
-								?>
-							</strong>
-							<?php
+							<?php 
+								// if Custom Level Cost Text Add On is installed pull this information from the custom level cost text field.
+								if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+									$text = pmpro_getCustomLevelCostText($level->id);
+								} else {
+									$text = '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
+								}
+
+								echo wp_kses( $text, array( 'strong' => array() ) );
+								
 							} else if($price === 'full')
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
 							else
