@@ -87,25 +87,21 @@ global $pmproal_link_arguments;
 						?>
 						<li class="price">
 						<?php
-							if(pmpro_isLevelFree($level))
-							{
-								if(!empty($expiration))
-								{
-									?>
-									<strong><?php esc_html_e('Free.', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
-								else
-								{	
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
+							if ( pmpro_isLevelFree( $level ) ) {
+							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+							if( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+								$text = pmpro_getCustomLevelCostText( $level->id );
+							} else {
+								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 							}
-							elseif($price === 'full')
+							
+							echo wp_kses( $text , array( 'strong' => array() ) );
+
+							} elseif($price === 'full') {
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
-							else
+							} else {
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, false, true)), array( 'strong' => array(), 'span' => array() ) );
+							}
 						?>
 						</li>
 					<?php
@@ -274,25 +270,21 @@ global $pmproal_link_arguments;
 						}
 						?>
 						<?php
-							if(pmpro_isLevelFree($level))
-							{
-								if(!empty($expiration))
-								{
-									?>
-									<strong><?php esc_html_e('Free.', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
-								else
-								{	
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
+							if(pmpro_isLevelFree($level)) {
+							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+							if( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+								$text = pmpro_getCustomLevelCostText( $level->id );
+							} else {
+								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 							}
-							elseif($price === 'full')
-								echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
-							else
-								echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
+							
+							echo wp_kses( $text , array( 'strong' => array() ) );
+
+						} elseif($price === 'full') {
+							echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
+						} else {
+							echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
+						}
 						
 						if($template === "foundation")
 						{

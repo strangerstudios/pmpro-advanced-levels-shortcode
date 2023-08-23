@@ -3,8 +3,6 @@
 	template for layout="compare_table"
 */
 global $pmproal_link_arguments;
-if (is_plugin_active('pmpro-level-cost-text') ) 
-	require_once WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'pmpro-level-cost-text' . DIRECTORY_SEPARATOR . 'pmpro-level-cost-text.php';
 ?>
 <table id="pmpro_levels" class="<?php if(!empty($template)) { echo "pmpro_advanced_levels-" . esc_attr( $template ) . " "; } ?>pmpro_advanced_levels-compare_table">
 	<thead>
@@ -33,13 +31,13 @@ if (is_plugin_active('pmpro-level-cost-text') )
 						<?php if(pmpro_isLevelFree($level)) { ?>
 							<strong>
 								<?php 
-									// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
-									if( function_exists( 'pmpro_getCustomLevelCostText' ) && pmpro_getCustomLevelCostText( $level->id ) != '') {
+									// if Custom Level Cost Text Add On is installed pull this information from the custom level cost text field.
+									if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
 										$text = pmpro_getCustomLevelCostText($level->id);
 									} else {
-										$text = __('Free', 'pmpro-advanced-levels-shortcode');
+										$text = __( 'Free', 'pmpro-advanced-levels-shortcode' );
 									}
-									esc_html_e($text, 'pmpro-advanced-levels-shortcode');
+									esc_html_e( $text );
 								?>
 							</strong>
 							<?php
@@ -285,6 +283,8 @@ if (is_plugin_active('pmpro-level-cost-text') )
 		<?php } ?>					
 	</tfoot>
 </table>	
+
+
 <div id="pmpro_levels" class="
 <?php
 	if(!empty($template))
@@ -329,17 +329,19 @@ if (is_plugin_active('pmpro-level-cost-text') )
 					<?php
 						if(pmpro_isLevelFree($level)) {
 							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
-							if( function_exists( 'pmpro_getCustomLevelCostText' ) && pmpro_getCustomLevelCostText( $level->id ) != '') {
-								$text = pmpro_getCustomLevelCostText($level->id);
+							if( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+								$text = pmpro_getCustomLevelCostText( $level->id );
 							} else {
-								$text = __('Free', 'pmpro-advanced-levels-shortcode');
+								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 							}
-							esc_html_e($text, 'pmpro-advanced-levels-shortcode');
+							
+							echo wp_kses( $text , array( 'strong' => array() ) );
 
-						} elseif($price === 'full')
+						} elseif($price === 'full') {
 							echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
-						else
+						} else {
 							echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
+						}
 					
 					if($template === "foundation")
 					{
