@@ -138,7 +138,7 @@ function create_block_advanced_level_page_block_init() {
 		'render_callback' => 'pmpro_advanced_level_shortcode') );
 
 	add_shortcode( 'pmpro_advanced_levels', 'pmpro_advanced_level_shortcode' );
-	add_shortcode( 'ppmpro_advanced_level', 'pmpro_advanced_level_shortcode' );
+	add_shortcode( 'pmpro_advanced_level', 'pmpro_advanced_level_shortcode' );
 }
 add_action( 'init', 'create_block_advanced_level_page_block_init' );
 
