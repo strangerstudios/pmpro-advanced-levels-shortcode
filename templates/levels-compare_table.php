@@ -37,8 +37,8 @@ global $pmproal_link_arguments;
 									$text = '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 								}
 
-								echo wp_kses( $text, array( 'strong' => array() ) );
-								
+								echo wp_kses( $text, pmproal_allowed_html() );
+
 							} else if($price === 'full')
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
 							else
@@ -333,12 +333,12 @@ global $pmproal_link_arguments;
 								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 							}
 							
-							echo wp_kses( $text , array( 'strong' => array() ) );
+							echo wp_kses( $text , pmproal_allowed_html() );
 
 						} elseif($price === 'full') {
-							echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
+							echo wp_kses( pmpro_getLevelCost( $level, true, false ), pmproal_allowed_html() );
 						} else {
-							echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
+							echo wp_kses( pmpro_getLevelCost( $level, false, true ), pmproal_allowed_html() );
 						}
 					
 					if($template === "foundation")
