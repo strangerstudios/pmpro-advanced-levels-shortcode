@@ -57,7 +57,7 @@ global $pmproal_link_arguments;
 		<?php } ?>
 		<?php if ( ! empty( $description ) ) { ?>
 		<tr>
-			<th><?php _e('Description', 'pmpro-advanced-levels-shortcode');?></th>
+			<th><?php esc_html_e('Description', 'pmpro-advanced-levels-shortcode');?></th>
 			<?php
 				foreach($pmpro_levels_filtered as $level)
 				{				  
