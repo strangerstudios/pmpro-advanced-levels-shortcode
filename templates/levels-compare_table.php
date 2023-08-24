@@ -56,6 +56,21 @@ global $pmproal_link_arguments;
 			?>
 		</tr>
 		<?php } ?>
+		<?php if ( ! empty( $description ) ) { ?>
+		<tr>
+			<th><?php esc_html_e('Description', 'pmpro-advanced-levels-shortcode');?></th>
+			<?php
+				foreach($pmpro_levels_filtered as $level)
+				{				  
+					?>
+					<th class="pmpro_level-description <?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+						<?php echo wpautop($level->description); ?>
+					</th>
+					<?php 
+				} 
+			?>
+		</tr>
+		<?php } ?>
 		<?php if(!empty($expiration)) { ?>
 		<tr>
 			<th><?php esc_html_e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
