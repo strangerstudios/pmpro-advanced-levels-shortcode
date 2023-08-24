@@ -28,7 +28,6 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'more_button' => NULL,
 		'price' => 'short',
 		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
-		'template' => NULL,
 	), $atts));
 	
 	global $wpdb, $pmpro_msg, $pmpro_msgt, $current_user, $pmpro_currency_symbol, $pmpro_all_levels, $pmpro_visible_levels, $current_user, $membership_levels;
@@ -98,8 +97,13 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				}
 			}
 		} else {
-			$pmpro_level_order = pmpro_getOption( 'level_order' );
-			$levels_order = explode( ',', $pmpro_level_order );
+			$pmpro_level_order = pmpro_getOption( 'level_order' ) ?: $pmpro_all_levels;
+
+			if ( ! is_array( $pmpro_level_order ) ) {
+				$levels_order = explode( ',', $pmpro_level_order );
+			} else {
+				$levels_order = array_keys( $pmpro_level_order );
+			}
 
 			// Reorder array
 			foreach ( $levels_order as $level_id ) {

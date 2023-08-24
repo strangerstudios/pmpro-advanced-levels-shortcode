@@ -75,14 +75,14 @@ global $pmproal_link_arguments;
 				elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 				elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 				else { echo "pmpro_btn pmpro_btn-select"; }
-			?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+			?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 		<?php } elseif ( !$current_level ) { ?>                	
 			<a class="<?php
 				if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 				elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 				elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 				else { echo "pmpro_btn pmpro_btn-select"; }
-			?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+			?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 		<?php } elseif($current_level) { ?>      
 			
 			<?php
@@ -96,7 +96,7 @@ global $pmproal_link_arguments;
 						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 						else { echo "pmpro_btn pmpro_btn-select"; }
-					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
+					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
 				<?php
 				}
 				else
