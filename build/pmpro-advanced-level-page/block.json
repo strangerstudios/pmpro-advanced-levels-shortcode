@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pmpro-advanced-levels/pmpro-advanced-level-page",
+  "version": "0.1.0",
+  "title": "PMPro Advanced Level Page",
+  "category": "widgets",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "textdomain": "pmpro-advanced-levels-shortcode"
+}

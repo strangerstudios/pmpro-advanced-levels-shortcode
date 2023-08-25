@@ -47,3 +47,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
+#Ignore node_modules otherwise we're going to have a bad time.
+node_modules
+

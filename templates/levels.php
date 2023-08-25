@@ -17,48 +17,50 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'account_button' => __('Your&nbsp;Level', 'pmpro-advanced-levels-shortcode'),
 		'back_link' => '1',
 		'compare' => NULL,
-		'template' => NULL,
 		'checkout_button' => __('Select', 'pmpro-advanced-levels-shortcode'),
 		'description' => '1',
 		'discount_code' => NULL,
 		'expiration' => '1',
 		'highlight' => NULL,
 		'layout' => 'div',
-		'levels' => NULL,		
+		'levels' => NULL,
 		'more_button' => NULL,
 		'price' => 'short',
 		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
+		'template' => NULL,
 	), $atts));
 	
 	global $wpdb, $pmpro_msg, $pmpro_msgt, $current_user, $pmpro_currency_symbol, $pmpro_all_levels, $pmpro_visible_levels, $current_user, $membership_levels;
 	
-	if($back_link === "0" || $back_link === "false" || $back_link === "no")
+	if($back_link === "0" || $back_link === "false" || $back_link === "no" || !$back_link)
 		$back_link = false;
 	else
 		$back_link = true;
 
-	if($compare === "0" || $compare === "false" || $compare === "no" || empty( $compare ) )
+	if ($compare === "0" || $compare === "false" || $compare === "no" || empty( $compare ) ) {
 		$compare = false;
-	else
-		$compareitems = explode(";", $compare);
+	} else {
+		$compare = rtrim( $compare, ';' ); // clear up a stray ; at the end.
+		$compareitems = explode( ";", $compare );
+	}
 
 	//turn 0's into falses
-	if($description === "0" || $description === "false" || $description === "no")
+	if($description === "0" || $description === "false" || $description === "no" || !$description )
 		$description = false;
 	else
 		$description = true;
 		
-	if($expiration === "0" || $expiration === "false" || $expiration === "no")
+	if($expiration === "0" || $expiration === "false" || $expiration === "no" || !$expiration )
 		$expiration = false;
 	else
 		$expiration = true;
 	
-	if($more_button === "0" || $more_button === "false" || $more_button === "no" || empty($more_button))
+	if($more_button === "0" || $more_button === "false" || $more_button === "no" || empty($more_button) || !$more_button)
 		$more_button = false;
-	elseif($more_button === "1" || $more_button === "true" || $more_button === "yes")
+	elseif($more_button === "1" || $more_button === "true" || $more_button === "yes" || $more_button == true )
 		$more_button = __( "Read More", "pmpro-advanced-levels-shortcode" );
 		
-	if($price === "0" || $price === "false" || $price === "hide")
+	if($price === "0" || $price === "false" || $price === "hide" )
 		$show_price = false;
 	else
 		$show_price = true;	
@@ -83,6 +85,14 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		$pmpro_levels_filtered = array();
 		if(!empty($levels))
 		{
+			// Generate level data for SQL query.
+			if ( is_array( $levels ) ) {
+				//We need to ensure backwards compatibility with the old way of passing levels.
+				//Select2 pass a multidiemnsional array but it used to be single dimension aray.
+				$levels = count($levels) == count($levels, COUNT_RECURSIVE)
+				? implode(",", $levels)
+				: implode(",", wp_list_pluck($levels, 'value'));
+			}
 			$levels_order = explode(",", $levels);
 			//loop through $levels_order array and pull levels from $levels
 			foreach($levels_order as $level_id)
@@ -97,14 +107,8 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 				}
 			}
 		} else {
-
-			$pmpro_level_order = get_option( 'pmpro_level_order' ) ?: $pmpro_all_levels;
-
-			if ( ! is_array( $pmpro_level_order ) ) {
-				$levels_order = explode( ',', $pmpro_level_order );
-			} else {
-				$levels_order = array_keys( $pmpro_level_order );
-			}
+			$pmpro_level_order = pmpro_getOption( 'level_order' );
+			$levels_order = explode( ',', $pmpro_level_order );
 
 			// Reorder array
 			foreach ( $levels_order as $level_id ) {
@@ -119,8 +123,14 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
 		$numeric_levels_array = array_values($pmpro_levels_filtered);
 
+		//Allows you to add ?discount_code=code to your URL
+		if( !empty( $_REQUEST['discount_code'] ) ){
+			$discount_code = sanitize_text_field( $_REQUEST['discount_code'] );
+		}
+
 		//update per discount code
-		if(!empty($discount_code) && !empty($pmpro_levels_filtered)) {
+		if(!empty($discount_code) && !empty($pmpro_levels_filtered))
+		{			
 			foreach($pmpro_levels_filtered as $level_id => $level)
 			{				
 				//check code for this level and update if applicable
@@ -132,11 +142,11 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 					$pmpro_levels_filtered[$level_id] = $wpdb->get_row($sqlQuery);
 					$pmpro_levels_filtered[$level_id]->base_level = $level;
      
-				}
-			}		
-		} else {
-			unset( $pmproal_link_arguments['discount_code'] );
+				} else {
+					unset( $pmproal_link_arguments['discount_code'] );	
+			} 
 		}
+	}
 	
 		do_action('pmproal_before_template_load' );
 		
