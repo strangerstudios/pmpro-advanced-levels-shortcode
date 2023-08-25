@@ -120,22 +120,9 @@ function create_block_advanced_level_page_block_init() {
 		  	'template'=>array('type'=>'boolean', 'default' => 'none')),
 			'compare'=>array('type'=>'string', 'default' => ''),
 		'render_callback' => 'pmpro_advanced_level_shortcode') );
-
-	add_shortcode( 'pmpro_advanced_levels', 'pmpro_advanced_level_shortcode' );
-	add_shortcode( 'pmpro_advanced_level', 'pmpro_advanced_level_shortcode' );
 }
 add_action( 'init', 'create_block_advanced_level_page_block_init' );
 
-/**
- * Advanced Levels Shortcode block render callback. Get the attributes and call the function than render the shortcode.
- *
- * @atts array The attributes of the registered block.
- * @since TBD.
- */
-function pmpro_advanced_level_shortcode( $atts) {
-	require_once 'templates' . DIRECTORY_SEPARATOR . 'levels.php';
- 	return pmpro_advanced_levels_shortcode( $atts );
-} 
 
 /*
 Function to add links to the plugin row meta
