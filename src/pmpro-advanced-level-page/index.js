@@ -9,7 +9,7 @@ export default registerBlockType( metadata.name, {
 		icon: {
 			background: '#2997C8',
 			foreground: '#FFFFFF',
-			src: 'bank'
+			src: 'layout'
 		},
 		keywords: [ 
 		__( 'pmpro', 'pmpro-advanced-levels-shortcode' ),
