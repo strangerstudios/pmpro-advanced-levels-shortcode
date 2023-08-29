@@ -2,35 +2,39 @@
 # This file is distributed under the same license as the Paid Memberships Pro - Advanced Levels Page Shortcode Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Shortcode Add On 0.2.5\n"
+"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Shortcode Add On 0.2.6\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-25T12:13:28+00:00\n"
+"POT-Creation-Date: 2023-08-29T10:12:09+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: pmpro-advanced-levels-shortcode\n"
 
 #: pmpro-advanced-levels-shortcode.php:28
 #: pmpro-advanced-levels-shortcode.php:73
+#: pmpro-advanced-levels-shortcode.php:109
 msgid "View Documentation"
 msgstr "Vis dokumentasjon"
 
 #: pmpro-advanced-levels-shortcode.php:28
 #: pmpro-advanced-levels-shortcode.php:73
+#: pmpro-advanced-levels-shortcode.php:109
 msgid "Docs"
 msgstr "Documentasjon"
 
 #: pmpro-advanced-levels-shortcode.php:29
 #: pmpro-advanced-levels-shortcode.php:74
+#: pmpro-advanced-levels-shortcode.php:110
 msgid "Visit Customer Support Forum"
 msgstr "Besøk brukerstøtte forumet"
 
 #: pmpro-advanced-levels-shortcode.php:29
 #: pmpro-advanced-levels-shortcode.php:74
+#: pmpro-advanced-levels-shortcode.php:110
 msgid "Support"
 msgstr "Brukerstøtte"
 
@@ -55,6 +59,8 @@ msgstr "Pris"
 #: templates/levels-compare_table.php:61
 #: templates/levels-compare_table.php:237
 #: templates/levels-table.php:24
+#: templates/levels-compare_table.php:71
+#: templates/levels-compare_table.php:249
 msgid "Expiration"
 msgstr "Utløpsdato"
 
@@ -67,6 +73,10 @@ msgstr "Utløpsdato"
 #: templates/levels-div.php:321
 #: templates/levels-div.php:426
 #: templates/levels-table.php:63
+#: templates/levels-compare_table.php:478
+#: templates/levels-div.php:121
+#: templates/levels-div.php:313
+#: templates/levels-div.php:418
 msgid "Membership Never Expires."
 msgstr "Medlemskapet utløper aldri"
 
@@ -101,16 +111,21 @@ msgstr "Gratis"
 #: templates/levels-compare_table.php:340
 #: templates/levels-div.php:101
 #: templates/levels-div.php:288
+#: templates/levels-compare_table.php:348
+#: templates/levels-div.php:95
+#: templates/levels-div.php:278
 msgid "Free"
 msgstr "Gratis"
 
 #: templates/levels.php:646
 #: templates/levels.php:164
+#: templates/levels.php:165
 msgid "&larr; Return to Your Account"
 msgstr "&larr; Tilbake til brukerkontoen din"
 
 #: templates/levels.php:648
 #: templates/levels.php:166
+#: templates/levels.php:167
 msgid "&larr; Return to Home"
 msgstr "&larr; Til hjemmesiden"
 
@@ -149,13 +164,20 @@ msgid "https://www.paidmembershipspro.com/"
 msgstr ""
 
 #: templates/levels-compare_table.php:70
+#: templates/levels-compare_table.php:80
 msgid "Membership never expires."
 msgstr ""
 
 #: templates/levels-compare_table.php:258
+#: templates/levels-compare_table.php:270
 msgid "More Information"
 msgstr ""
 
 #: templates/levels.php:60
+#: templates/levels.php:59
 msgid "Read More"
+msgstr ""
+
+#: templates/levels-compare_table.php:56
+msgid "Description"
 msgstr ""
