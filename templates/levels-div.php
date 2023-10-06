@@ -87,25 +87,21 @@ global $pmproal_link_arguments;
 						?>
 						<li class="price">
 						<?php
-							if(pmpro_isLevelFree($level))
-							{
-								if(!empty($expiration))
-								{
-									?>
-									<strong><?php esc_html_e('Free.', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
-								else
-								{	
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
+							if ( pmpro_isLevelFree( $level ) ) {
+							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+							if( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+								$text = pmpro_getCustomLevelCostText( $level->id );
+							} else {
+								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 							}
-							elseif($price === 'full')
+							
+							echo wp_kses( $text , pmproal_allowed_html() );
+
+							} elseif($price === 'full') {
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
-							else
+							} else {
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, false, true)), array( 'strong' => array(), 'span' => array() ) );
+							}
 						?>
 						</li>
 					<?php
@@ -137,7 +133,7 @@ global $pmproal_link_arguments;
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
+						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
 						<?php 
 					}
 					elseif(!$current_level) 
@@ -148,14 +144,14 @@ global $pmproal_link_arguments;
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 						<?php
 					}
 					elseif($current_level)
 					{
 						//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
 						$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
-						if( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups )
+						if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 						{
 							?>
 							<a class="<?php
@@ -163,7 +159,7 @@ global $pmproal_link_arguments;
 								elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 								elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 								else { echo "pmpro_btn pmpro_btn-select"; }
-							?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
+							?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
 							<?php
 						}
 						else
@@ -211,7 +207,7 @@ global $pmproal_link_arguments;
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 							else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
-						} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+						} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 						<?php 
 					}
 					elseif(!$current_level) 
@@ -223,7 +219,7 @@ global $pmproal_link_arguments;
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 							else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
-						} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+						} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 						<?php
 					}
 					elseif($current_level)
@@ -239,7 +235,7 @@ global $pmproal_link_arguments;
 								elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary pull-right"; }
 								elseif($template === "woothemes") { echo "woo-sc-button custom alignright pull-right"; }
 								else { echo "pmpro_btn pmpro_btn-select"; if($layout == 'div' || $layout == '2col' || empty($layout)) { echo ' alignright'; }											
-							} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
+							} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
 							<?php
 						}
 						else
@@ -274,25 +270,21 @@ global $pmproal_link_arguments;
 						}
 						?>
 						<?php
-							if(pmpro_isLevelFree($level))
-							{
-								if(!empty($expiration))
-								{
-									?>
-									<strong><?php esc_html_e('Free.', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
-								else
-								{	
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
+							if(pmpro_isLevelFree($level)) {
+							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+							if( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+								$text = pmpro_getCustomLevelCostText( $level->id );
+							} else {
+								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 							}
-							elseif($price === 'full')
-								echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
-							else
-								echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
+							
+							echo wp_kses( $text , pmproal_allowed_html() );
+
+						} elseif($price === 'full') {
+							echo wp_kses( pmpro_getLevelCost( $level, true, false ), pmproal_allowed_html() );
+						} else {
+							echo wp_kses( pmpro_getLevelCost( $level, false, true ), pmproal_allowed_html() );
+						}
 						
 						if($template === "foundation")
 						{
@@ -359,7 +351,7 @@ global $pmproal_link_arguments;
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select";
-								} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+								} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 								<?php 
 							}
 							elseif(!$current_level) 
@@ -370,7 +362,7 @@ global $pmproal_link_arguments;
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select";
-								} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+								} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 								<?php
 							}
 							elseif($current_level)
@@ -385,7 +377,7 @@ global $pmproal_link_arguments;
 										elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary btn-block"; }
 										elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 										else { echo "pmpro_btn pmpro_btn-select";
-										} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
+										} ?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
 									<?php
 								}
 								else

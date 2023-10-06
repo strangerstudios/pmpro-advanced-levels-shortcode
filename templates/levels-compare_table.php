@@ -28,28 +28,38 @@ global $pmproal_link_arguments;
 				{				  
 					?>
 					<th class="pmpro_level-price <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-						<?php
-							if(pmpro_isLevelFree($level))
-							{
-								if(!empty($expiration))
-								{
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
+						<?php if(pmpro_isLevelFree($level)) { ?>
+							<?php 
+								// if Custom Level Cost Text Add On is installed pull this information from the custom level cost text field.
+								if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+									$text = pmpro_getCustomLevelCostText($level->id);
+								} else {
+									$text = '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 								}
-								else
-								{	
-									?>
-									<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-									<?php
-								}
-							}
-							elseif($price === 'full')
+
+								echo wp_kses( $text, pmproal_allowed_html() );
+
+							} else if($price === 'full')
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
 							else
 								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, false, true)), array( 'strong' => array(), 'span' => array() ) );
 
 						?>
+					</th>
+					<?php 
+				} 
+			?>
+		</tr>
+		<?php } ?>
+		<?php if ( ! empty( $description ) ) { ?>
+		<tr>
+			<th><?php esc_html_e('Description', 'pmpro-advanced-levels-shortcode');?></th>
+			<?php
+				foreach($pmpro_levels_filtered as $level)
+				{				  
+					?>
+					<th class="pmpro_level-description <?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+						<?php echo wpautop($level->description); ?>
 					</th>
 					<?php 
 				} 
@@ -93,19 +103,19 @@ global $pmproal_link_arguments;
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php } elseif ( !$current_level ) { ?>                	
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php } elseif($current_level) { ?>      									
 						<?php
 							//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
 							$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
-							if( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups )
+							if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 							{
 							?>
 								<a class="<?php
@@ -113,7 +123,7 @@ global $pmproal_link_arguments;
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select"; }
-								?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
+								?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
 							<?php
 							}
 							else
@@ -192,14 +202,14 @@ global $pmproal_link_arguments;
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php } elseif ( !$current_level ) { ?>                	
 						<a class="<?php
 							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
+						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php } elseif($current_level) { ?>      									
 						<?php
 							//if it's a one-time-payment level, offer a link to renew
@@ -212,7 +222,7 @@ global $pmproal_link_arguments;
 									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 									else { echo "pmpro_btn pmpro_btn-select"; }
-								?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
+								?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
 							<?php
 							}
 							else
@@ -286,6 +296,8 @@ global $pmproal_link_arguments;
 		<?php } ?>					
 	</tfoot>
 </table>	
+
+
 <div id="pmpro_levels" class="
 <?php
 	if(!empty($template))
@@ -328,25 +340,21 @@ global $pmproal_link_arguments;
 					}
 					?>
 					<?php
-						if(pmpro_isLevelFree($level))
-						{
-							if(!empty($expiration))
-							{
-								?>
-								<strong><?php esc_html_e('Free.', 'pmpro-advanced-levels-shortcode'); ?></strong>
-								<?php
+						if(pmpro_isLevelFree($level)) {
+							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+							if( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
+								$text = pmpro_getCustomLevelCostText( $level->id );
+							} else {
+								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
 							}
-							else
-							{	
-								?>
-								<strong><?php esc_html_e('Free', 'pmpro-advanced-levels-shortcode'); ?></strong>
-								<?php
-							}
+							
+							echo wp_kses( $text , pmproal_allowed_html() );
+
+						} elseif($price === 'full') {
+							echo wp_kses( pmpro_getLevelCost( $level, true, false ), pmproal_allowed_html() );
+						} else {
+							echo wp_kses( pmpro_getLevelCost( $level, false, true ), pmproal_allowed_html() );
 						}
-						elseif($price === 'full')
-							echo wp_kses( pmpro_getLevelCost( $level, true, false ), array( 'strong' => array() ) );
-						else
-							echo wp_kses( pmpro_getLevelCost( $level, false, true ), array( 'strong' => array() ) );
 					
 					if($template === "foundation")
 					{
@@ -413,7 +421,7 @@ global $pmproal_link_arguments;
 						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 						else { echo "pmpro_btn pmpro_btn-select"; }									
-					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
+					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php 
 				}
 				elseif(!$current_level) 
@@ -425,7 +433,7 @@ global $pmproal_link_arguments;
 						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 						else { echo "pmpro_btn pmpro_btn-select"; }									
-					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
+					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
 					<?php
 				}
 				elseif($current_level)
@@ -441,7 +449,7 @@ global $pmproal_link_arguments;
 							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
 							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
 							else { echo "pmpro_btn pmpro_btn-select"; }											
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", null, "https") ) );?>"><?php echo esc_html( $renew_button ); ?></a>
+						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) );?>"><?php echo esc_html( $renew_button ); ?></a>
 						<?php
 					}
 					else
