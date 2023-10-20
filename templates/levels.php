@@ -42,7 +42,6 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 	else
 		$compareitems = explode(";", $compare);
 
-	//turn 0's into falses
 	if($description === "0" || $description === "false" || $description === "no")
 		$description = false;
 	else
@@ -143,7 +142,6 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		if($layout == 'table')
 		{
 			//load template for layout = "table"
-   
 			include("levels-table.php");
 		}
 		elseif($layout == 'compare_table')

@@ -148,7 +148,7 @@ global $pmproal_link_arguments;
 	</thead>
 	<tbody>
 		<?php if(!empty($compareitems)) { 
-			foreach($compareitems as $compareitem)
+		foreach($compareitems as $compareitem)
 			{
 				?>
 				<tr>
@@ -214,7 +214,7 @@ global $pmproal_link_arguments;
 						<?php
 							//if it's a one-time-payment level, offer a link to renew
 							$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);											
-							if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
+							if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 							{
 							?>
 								<a class="<?php
@@ -440,7 +440,7 @@ global $pmproal_link_arguments;
 				{
 					//if it's a one-time-payment level, offer a link to renew				
 					$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);											
-					if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
+					if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 					{
 						?>
 						<a class="<?php
