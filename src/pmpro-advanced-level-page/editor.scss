@@ -7,3 +7,40 @@
 .wp-block-create-block-advanced-level-page {
 	border: 1px dotted #f00;
 }
+.pmproal-gut-body {
+	display: flex;
+    flex-direction: column;
+    gap: 30px;
+	.pmproalgut-panel-row {
+		display: flex;
+		align-items: normal;
+		flex-direction: column;
+		gap: calc(8px);
+		-webkit-box-pack: justify;
+		justify-content: space-between;
+		box-sizing: border-box;
+		position: relative;
+		border-radius: 2px;
+		padding:0;
+		margin: 0;
+		.pmproalgut-label {
+			font-size: 11px;
+			font-weight: 500;
+			line-height: 1.4;
+			text-transform: uppercase;
+			box-sizing: border-box;
+			display: block;
+			padding-top: 0px;
+			padding-bottom: 0px;
+			max-width: 100%;
+			z-index: 1;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.components-base-control {
+			margin-bottom: 0;
+
+		}
+	}
+}

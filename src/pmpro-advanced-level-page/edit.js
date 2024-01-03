@@ -44,7 +44,7 @@ const {
  * 
  */
 const Edit = props  => {
-	const { attributes: {back_link, checkout_button, description, more_button, discount_code, expiration, levels, layout, price, renew_button,template,compare}, setAttributes } = props;
+	const { attributes: {back_link, checkout_button, description, more_button, discount_code, expiration, levels, highlight, layout, price, renew_button,template,compare}, setAttributes } = props;
 	const all_levels = pmpro.all_level_values_and_labels;
 	return (
 		<div>
@@ -54,57 +54,46 @@ const Edit = props  => {
 					'advanced-level-page'
 				) }
 			</p>
-			<PanelBody>
-				<PanelRow>
+			<PanelBody className="pmproal-gut-body">
+				<PanelRow className='pmproalgut-panel-row'>
+				<label for='pmpro-advanced-levels-hide-return-links' className='pmproalgut-label'>{__('Back Link', 'pmpro-advanced-level-shortcode')}</label>
 					<ToggleControl 	
 						id="pmpro-advanced-levels-hide-return-links"
-						label={ __( ' Optionally hide to “Return to Home” or “Return to Your Account” links below levels layout.', 'pmpro-advanced-level-shortcode' ) }
+						label={ __( ' Optionally hide “Return to Home” or “Return to Your Account” links below levels layout.', 'pmpro-advanced-level-shortcode' ) }
 						checked={ back_link }
 						onChange={ back_link => { setAttributes( { back_link } ) } }
 					/>
 				</PanelRow>
-				<PanelRow>
-					<TextControl 
-						id="pmpro-advanced-levels-checkout-button-text"
-						label={ __( 'Checkout button', 'pmpro-advanced-level-shortcode' ) }
-						value={ checkout_button }
-						onChange={ checkout_button => { setAttributes( { checkout_button } ) } }
-					/>
-				</PanelRow>
-				<PanelRow>
+				<PanelRow className='pmproalgut-panel-row'>
+					<label for='pmpro-advanced-levels-show-expiration' className='pmproalgut-label'>{__('Show Description', 'pmpro-advanced-level-shortcode')}</label>
 					<ToggleControl 	
 						id="pmpro-advanced-levels-show-description"
-						label={ __( 'Show the level description', 'pmpro-advanced-level-shortcode' ) }
+						label={ __( 'Either show the level description or not', 'pmpro-advanced-level-shortcode' ) }
 						checked={ description }
 						onChange={ description => { setAttributes( { description } ) } }
 					/>
 				</PanelRow>
-				<PanelRow>
+				<PanelRow className='pmproalgut-panel-row'>
+					<label for='pmpro-advanced-levels-more-button' className='pmproalgut-label'>{__('Show read more button', 'pmpro-advanced-level-shortcode')}</label>
 					<ToggleControl 	
 						id="pmpro-advanced-levels-more-button"
-						label={ __( 'Show the read more button', 'pmpro-advanced-level-shortcode' ) }
+						label={ __( 'Either show the read more button or not', 'pmpro-advanced-level-shortcode' ) }
 						checked={ more_button }
 						onChange={ more_button => { setAttributes( { more_button } ) } }
 					/>
 				</PanelRow>
-				<PanelRow>
-					<TextControl 
-						id="pmpro-advanced-levels-discount-code-text"
-						label={ __( 'Discount code', 'pmpro-advanced-level-shortcode' ) }
-						value={ discount_code }
-						onChange={ discount_code => { setAttributes( { discount_code } ) } }
-					/>
-				</PanelRow>
-				<PanelRow>
+				<PanelRow className="pmproalgut-panel-row">
+					<label for='pmpro-advanced-levels-show-expiration' className='pmproalgut-label'>{__('Show Level Expiration', 'pmpro-advanced-level-shortcode')}</label>
 					<ToggleControl 	
 						id="pmpro-advanced-levels-show-expiration"
-						label={ __( 'Show the level expiration', 'pmpro-advanced-level-shortcode' ) }
+						label={ __( 'Either show the level expiration or not', 'pmpro-advanced-level-shortcode' ) }
 						checked={ expiration }
 						onChange={ expiration => { setAttributes( { expiration } ) } }
 					/>
 				</PanelRow>
-				<PanelRow className="select2-multi-row">
-						<label for="levels" class="components-truncate components-text components-input-control__label em5sgkm4 css-1imalal e19lxcc00">
+
+				<PanelRow className="pmproalgut-panel-row">
+						<label for="levels" className="pmproalgut-label">
 						{ __( 'Levels', 'pmpro-advanced-level-shortcode' ) }
 						</label>
 						<Select
@@ -118,7 +107,19 @@ const Edit = props  => {
 							className='components-text-control__input'
 						/>
 				</PanelRow>
-				<PanelRow className="select2-multi-row">
+				{ layout == 'compare_table' &&
+				  <PanelRow className="pmproalgut-panel-row">
+					<SelectControl
+						classNamePrefix='filter'
+						value={ highlight }
+						label={ __( 'Highlight', 'pmpro-advanced-level-shortcode' ) }
+						options={ levels }
+						name="highlight"
+						id="highlight"
+						onChange={ highlight => { setAttributes( { highlight } ) } }
+					/>
+				</PanelRow> }
+				<PanelRow className="pmproalgut-panel-row">
 					<SelectControl 
 						label={ __( 'Layouts', 'pmpro-advanced-level-shortcode' ) }
 						options={layouts_type}
@@ -126,37 +127,55 @@ const Edit = props  => {
 						onChange={ layout => { setAttributes( { layout } ) } }
 					/>
 				</PanelRow>
-				<PanelRow className={layout != 'compare_table' ? 'hidden' : ''}>	
-					<TextControl 
+				{ layout == 'compare_table' && <PanelRow className="pmproalgut-panel-row">
+					<TextControl
 						id="pmpro-advanced-levels-discount-code-text"
-						label={ __( 'Compare Attribute', 'pmpro-advanced-level-shortcode' ) }
-						onChange={ compare => { setAttributes( { compare } ) } }
-						value={ compare }
+						label={ __( 'Discount code', 'pmpro-advanced-level-shortcode' ) }
+						value={ discount_code }
+						onChange={ discount_code => { setAttributes( { discount_code } ) } }
 					/>
-				</PanelRow>
-				<PanelRow className="select2-multi-row">
-					<SelectControl 
+				</PanelRow> }
+				<PanelRow className="pmproalgut-panel-row">
+					<SelectControl
 						label={ __( 'Price', 'pmpro-advanced-level-shortcode' ) }
 						options={prices}
 						value={price}
 						onChange={ price => { setAttributes( { price } ) } }
 					/>
 				</PanelRow>
-				<PanelRow>
-					<TextControl 
-						id="pmpro-advanced-levels-renew-button-text"
-						label={ __( 'Renew button', 'pmpro-advanced-level-shortcode' ) }
-						value={ renew_button }
-						onChange={ renew_button => { setAttributes( { renew_button } ) } }
-					/>
-				</PanelRow>
-				<PanelRow className="select2-multi-row">
-						<SelectControl 
+				<PanelRow className="pmproalgut-panel-row">
+						<SelectControl
 						label={ __( 'Template', 'pmpro-advanced-level-shortcode' ) }
 						options={templates}
 						value={template}
 						onChange={ template => { setAttributes( { template } ) } }
 						/>
+				</PanelRow>
+
+				<PanelRow className="pmproalgut-panel-row">
+					<TextControl
+						id="pmpro-advanced-levels-checkout-button-text"
+						label={ __( 'Checkout button', 'pmpro-advanced-level-shortcode' ) }
+						value={ checkout_button || 'Select'  }
+						onChange={ checkout_button => { setAttributes( { checkout_button } ) } }
+					/>
+				</PanelRow>
+				<PanelRow className="pmproalgut-panel-row">
+					<TextControl
+						id="pmpro-advanced-levels-discount-code-text"
+						label={ __( 'Compare Attribute', 'pmpro-advanced-level-shortcode' ) }
+						onChange={ compare => { setAttributes( { compare } ) } }
+						value={ compare }
+					/>
+				</PanelRow>
+
+				<PanelRow className="pmproalgut-panel-row">
+					<TextControl
+						id="pmpro-advanced-levels-renew-button-text"
+						label={ __( 'Renew button', 'pmpro-advanced-level-shortcode' ) }
+						value={ renew_button || 'Renew' }
+						onChange={ renew_button => { setAttributes( { renew_button } ) } }
+					/>
 				</PanelRow>
 			</PanelBody>
 		</div>

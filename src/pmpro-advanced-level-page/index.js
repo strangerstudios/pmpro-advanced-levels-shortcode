@@ -49,6 +49,10 @@ export default registerBlockType( metadata.name, {
 			type: 'array',
 			default: []
 		},
+		highlight: {
+			type: 'string',
+			default: ''
+		},
 		layout: {
 			type: 'string',
 			default: 'div'
