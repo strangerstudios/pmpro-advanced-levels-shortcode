@@ -6,6 +6,18 @@
 */
 function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 {
+
+	$atts_levels = isset( $atts['levels'] ) ? $atts['levels'] : '';
+	if ( ! is_array( $atts_levels ) && ! empty( $atts_levels )) {
+		$atts_levels = explode( ',', $atts_levels );
+		foreach ( $atts_levels as $key => $value ) {
+			$level_id = sanitize_text_field($value);
+			 $lev = new PMPro_Membership_Level( $level_id );
+			 if ( empty( $lev->id ) ) {
+				$pmpro_msg = pmpro_setMessage( __( "There is no level with id: " . $level_id . " please revise shortcode levels attribute", 'pmpro-avanced-levels-shortcode' ), "pmpro_error" );
+			 }
+		}
+	}
     global $pmproal_link_arguments;
     
 	// $atts    ::= array of attributes
