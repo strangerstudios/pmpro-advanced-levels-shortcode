@@ -1,4 +1,4 @@
-![](pmpro-advanced-levels-shortcode-banner.jpg)
+![](pmpro-advanced-levels-shortcode-banner.png)
 
 # [Paid Memberships Pro - Advanced Levels Page Shortcode](https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/) #
 
@@ -33,4 +33,4 @@ There are various **ways to the help development** of Paid Memberships Pro - Adv
 Here are some ways for **non-developers to contribute** to Paid Memberships Pro - Advanced Levels Page Shortcode:
 
 1. Translate Paid Memberships Pro - Advanced Levels Page Shortcode into your own [language](https://www.paidmembershipspro.com/paid-memberships-pro-in-your-language/).
-2. [Purchase a paid membership](https://paidmembershipspro.com/pricing) to help fund ongoing development and bug fixes.
+2. [Purchase a paid membership](https://www.paidmembershipspro.com/pricing) to help fund ongoing development and bug fixes.

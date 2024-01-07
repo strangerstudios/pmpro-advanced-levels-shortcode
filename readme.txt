@@ -1,8 +1,8 @@
 === Paid Memberships Pro - Advanced Levels Page Shortcode Add On ===
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
-Requires at least: 5.2
-Tested up to: 6.3
+Requires at least: 5.4
+Tested up to: 6.4
 Stable tag: 0.2.6
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
@@ -16,7 +16,7 @@ Attributes in the [pmpro_advanced_levels] shortcode can be used to tweak how lev
 Also includes specific styling support for Bootstrap v3+, StudioPress/Genesis, Woo Themes, Gantry, and Foundation based themes as well as some of the default WP themes like TwentyFourteen.
 
 For more information, see add on documentation:
-http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/
+https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 == Installation ==
 
@@ -28,10 +28,11 @@ Here is an example of the pmpro_advanced_levels shortcode with all attributes.
 
 [pmpro_advanced_levels template="genesis" levels="1,2,3" layout="table" hightlight="2" description="false" checkout_button="Register Now"]
 
-For more information, see our blog post here:
-http://www.paidmembershipspro.com/2015/02/new-plugin-with-advanced-options-for-membership-levels-page-display/
+For more information about shortcode attributes, see the documentation here:
+https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/#h-shortcode-example-and-attributes
 
-== Changelog == 
+== Changelog ==
+
 = 0.2.6 - 2023-08-29 =
 * ENHANCEMENT: Improved support for the Custom Level Cost Text Add On and free levels. (@MaximilianoRicoTabo, @andrewlimaza)
 * ENHANCEMENT: Added the ability to show the level's description within the compare table layout. (@dparker1005)
