@@ -3,6 +3,7 @@
 	template for layout= "div" or "2col" or "3col" or "4col"
 */
 global $pmproal_link_arguments;
+
 ?>
 <div id="pmpro_levels" class="
 <?php
@@ -151,6 +152,7 @@ global $pmproal_link_arguments;
 					{
 						//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
 						$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
+
 						if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 						{
 							?>
@@ -226,7 +228,7 @@ global $pmproal_link_arguments;
 					{
 						//if it's a one-time-payment level, offer a link to renew
 						$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
-						if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
+						if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 						{
 							?>
 							<a class="<?php
@@ -369,8 +371,9 @@ global $pmproal_link_arguments;
 							{
 								//if it's a one-time-payment level, offer a link to renew
 								$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);				
-								if ( ! pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
+								if ( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
 								{
+
 									?>
 									<a class="<?php
 										if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
