@@ -4,8 +4,7 @@
 	
 	This shortcode will display the membership levels and additional content based on the defined attributes.
 */
-function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
-{
+function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
     global $pmproal_link_arguments;
     
 	// $atts    ::= array of attributes
@@ -29,7 +28,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
 		'template' => NULL,
 	), $atts));
-	
+
 	global $wpdb, $pmpro_msg, $pmpro_msgt, $current_user, $pmpro_currency_symbol, $pmpro_all_levels, $pmpro_visible_levels, $current_user, $membership_levels;
 	
 	if ( $back_link === "0" || $back_link === "false" || $back_link === "no"  || ! $back_link )
@@ -72,13 +71,6 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		//make sure pmpro_levels has all levels
 		if ( ! isset( $pmpro_all_levels ) ) {
 			$pmpro_all_levels = pmpro_getAllLevels( false, true );
-		}
-		
-		if($pmpro_msg)
-		{
-			?>
-			<div class="pmpro_message <?php echo $pmpro_msgt?>"><?php echo $pmpro_msg?></div>
-			<?php
 		}
 		
 		$pmpro_levels_filtered = array();
@@ -125,6 +117,22 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 			}
 		}
 
+		// Check if we have any level IDs that aren't shown and set a message for admins.
+		$pmpro_levels_filtered_not_shown = array_diff( $levels_order, array_keys( $pmpro_levels_filtered ) );
+		if ( ! empty( $pmpro_levels_filtered_not_shown ) && current_user_can( 'manage_options' ) ) {
+			// Make sure no level IDs are duplicated.
+			$pmpro_levels_filtered_not_shown = array_unique( $pmpro_levels_filtered_not_shown );
+
+			// Create a message to display to admins.
+			pmpro_setMessage(
+				sprintf(
+					__( 'Admin-only message: The following level IDs are not shown because they do not exist or signup is disabled: %s', 'pmpro-advanced-levels-shortcode' ),
+					implode( ', ', $pmpro_levels_filtered_not_shown )
+				),
+				'pmpro_error'
+			);
+		}
+
 		$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
 		$numeric_levels_array = array_values($pmpro_levels_filtered);
 
@@ -146,7 +154,12 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="")
 		} else {
 			unset( $pmproal_link_arguments['discount_code'] );
 		}
-	
+
+		// Show the pmpro_msg variable.
+		if ( $pmpro_msg ) { ?>
+			<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_message ' . $pmpro_msgt, $pmpro_msgt ) ); ?>"><?php echo wp_kses_post( $pmpro_msg ); ?></div>
+		<?php }
+
 		do_action('pmproal_before_template_load' );
 		
 		if($layout == 'table')
