@@ -105,6 +105,52 @@ function pmproal_allowed_html() {
 }
 
 /**
+ * Function to get the level button.
+ *
+ * @since TBD
+ * @param array $pmproal_link_arguments The arguments to be added to the checkout URL.
+ * @param object $current_level The user's current level object.
+ * @param string $checkout_button The text for the checkout button from shortcode or block atts.
+ * @param string $renew_button The text for the renew button from shortcode or block atts.
+ * @param string $account_button The text for the account button from shortcode or block atts.
+ */
+function pmproal_level_button( $level, $pmproal_link_arguments, $current_level, $checkout_button, $renew_button, $account_button ) {
+	global $current_user;
+
+	// Set up the button classes.
+	$button_classes = array();
+	$button_classes[] = 'pmpro_btn';
+
+	if ( ! pmpro_hasMembershipLevel() || ! $current_level ) {
+		// Show checkout button if the user has no membership level or $current_level is false
+		$button_classes[] = 'pmpro_btn-select';
+		$button_link = add_query_arg( $pmproal_link_arguments, pmpro_url( 'checkout', '', 'https' ) );
+		$button_text = $checkout_button;
+	} elseif( $current_level ) {
+		// Get specific level details for the user
+		$specific_level = pmpro_getSpecificMembershipLevelForUser( $current_user->ID, $level->id );
+		if ( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups ) {
+			// Show renew button if the level is expiring soon and signups are allowed
+			$button_classes[] = 'pmpro_btn-select';
+			$button_classes[] = 'pmpro_btn-renew';
+			$button_link = add_query_arg( $pmproal_link_arguments, pmpro_url( 'checkout', '', 'https' ) );
+			$button_text = $renew_button;
+		} else {
+			// Show account button otherwise
+			$button_classes[] = 'disabled';
+			$button_link = pmpro_url( 'account' );
+			$button_text = $account_button;
+		}
+	}
+
+	// Output the button.
+	?>
+	<a class="<?php echo esc_attr( implode( ' ', array_unique( $button_classes ) ) ); ?>" href="<?php echo esc_url( $button_link ); ?>"><?php echo esc_html( $button_text ); ?></a>
+	<?php
+}
+
+
+/**
  * Register block types for the block editor.
  *
  * @since TBD
