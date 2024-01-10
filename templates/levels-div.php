@@ -114,8 +114,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 				<?php } ?>
 					
 				<p class="pmpro_level-select">
-					<?php 						var_dump( $pmproal_link_arguments );
-pmproal_level_button( $level, $pmproal_link_arguments, $current_level, $checkout_button, $renew_button, $account_button ); ?>
+					<?php pmproal_level_button( $level, $pmproal_link_arguments, $current_level, $checkout_button, $renew_button, $account_button ); ?>
 				</p> <!-- end .pmpro_level-select -->
 
 				<?php if ( ! empty( $description ) && ! empty( $level->description ) ) { ?>
