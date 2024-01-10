@@ -1,0 +1,84 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pmpro-advanced-levels/advanced-levels-page",
+	"title": "PMPro Advanced Levels Page",
+	"category": "pmpro",
+	"description": "Inserts a customizable membership level pricing table for Paid Memberships Pro.",
+	"keywords": [ "level", "price", "pricing table", "paid memberships pro", "pmpro" ],
+	"attributes": {
+		"back_link": {
+			"default": true,
+			"type": "boolean"
+		},
+		"checkout_button": {
+			"default": "Select",
+			"type": "string"
+		},
+		"compare": {
+			"default": "",
+			"type": "string"
+		},
+		"css_class": {
+			"default": "pmpro_btn",
+			"type": "string"
+		},
+		"description": {
+			"default": true,
+			"type": "boolean"
+		},
+		"discount_code": {
+			"default": "",
+			"type": "string"
+		},
+		"expiration": {
+			"default": true,
+			"type": "boolean"
+		},
+		"layout": {
+			"default": "div",
+			"type": "string"
+		},
+		"levels": {
+			"default": [],
+			"type": "string"
+		},
+		"price": {
+			"default": "short",
+			"type": "string"
+		},
+		"renew_button": {
+			"default": "Renew",
+			"type": "string"
+		}
+	},
+	"supports": {},
+	"typography": {
+		"fontSize": true,
+		"lineHeight": true,
+		"__experimentalFontFamily": true,
+		"__experimentalFontWeight": true,
+		"__experimentalFontStyle": true,
+		"__experimentalTextTransform": true,
+		"__experimentalTextDecoration": true,
+		"__experimentalLetterSpacing": true,
+		"__experimentalDefaultControls": {
+			"fontSize": true
+		}
+	},
+	"reusable": false,
+	"spacing": {
+		"margin": true,
+		"padding": [
+			"horizontal",
+			"vertical"
+		],
+		"__experimentalDefaultControls": {
+			"padding": true
+		}
+	},
+	"example": {},
+	"textdomain": "pmpro-advanced-levels-page",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

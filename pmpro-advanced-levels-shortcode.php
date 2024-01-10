@@ -10,18 +10,23 @@ Text Domain: pmpro-advanced-levels-shortcode
 Domain Path: /languages
 */
 
+define( 'PMPRO_ADVANCED_LEVELS_DIR', dirname( __FILE__ ) );
+
 global $pmproal_link_arguments;
 $pmproal_link_arguments = array();
 
-$path = dirname(__FILE__);
-require_once($path . "/templates/levels.php");
+// Include required files.
+require_once( PMPRO_ADVANCED_LEVELS_DIR . '/templates/levels.php' );
 
-
+/**
+ * Register the Advanced Levels Shortcode styles.
+ */
 function pmpro_advanced_levels_register_styles() {
 	wp_register_style( 'pmpro-advanced-levels-styles', plugins_url( 'css/pmpro-advanced-levels.css', __FILE__ ) );
 	wp_enqueue_style( 'pmpro-advanced-levels-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_advanced_levels_register_styles' );
+add_action( 'enqueue_block_editor_assets', 'pmpro_advanced_levels_register_styles' );
 
 function pmproal_load_textdomain()
 {
@@ -99,9 +104,19 @@ function pmproal_allowed_html() {
 	return apply_filters( 'pmproal_allowed_html', $allowed_html );
 }
 
-/*
-Function to add links to the plugin row meta
-*/
+/**
+ * Register block types for the block editor.
+ *
+ * @since TBD
+ */
+function pmpro_advanced_levels_register_block_types() {
+	register_block_type( __DIR__ . '/blocks/build/advanced-levels-page' );
+}
+add_action( 'init', 'pmpro_advanced_levels_register_block_types' );
+
+/**
+ * Function to add links to the plugin row meta
+ */
 function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
 	{

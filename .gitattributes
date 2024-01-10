@@ -3,3 +3,5 @@ pmpro-advanced-levels-shortcode-banner.png export-ignore
 .gitattributes export-ignore
 .github export-ignore
 README.md export-ignore
+src export-ignore
+package.json export-ignore
