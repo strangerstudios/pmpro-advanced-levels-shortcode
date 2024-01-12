@@ -2,7 +2,6 @@
 /*
 	Template for layout= "div" or "2col" or "3col" or "4col"
 */
-global $pmproal_link_arguments;
 
 // Build the selectors for the levels div wrapper.
 $wrapper_classes = array();
@@ -15,16 +14,13 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 <div id="pmpro_levels" class="<?php echo esc_attr( $wrapper_class ); ?>">
 <?php
 	foreach ( $pmpro_levels_filtered as $level ) {
-	    $pmproal_link_arguments['level'] = $level->id;				
-		$current_level = pmpro_hasMembershipLevel( $level->id );
-
 		// Build the selectors for the single level elements.
 		$element_classes = array();
 		$element_classes[] = 'pmpro_level';
 		if ( $highlight == $level->id ) {
 			$element_classes[] = 'pmpro_level-highlight';
 		}
-		if ( $current_level ) {
+		if ( $level->current_level ) {
 			$element_classes[] = 'pmpro_level-current';
 		}
 		$element_class = implode( ' ', array_unique( $element_classes ) );
@@ -43,33 +39,9 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 
 				<div class="pmpro_level-meta">
 					
-					<?php pmproal_level_button( $level, $pmproal_link_arguments, $current_level, $checkout_button, $renew_button, $account_button ); ?>
+					<?php pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ); ?>
 
-					<?php if ( ! empty( $show_price ) ) {
-						if ( pmpro_isLevelFree ( $level ) ) {
-							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
-							if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
-								$price_text = pmpro_getCustomLevelCostText( $level->id );
-							} else {
-								$price_text = __( 'Free', 'pmpro-advanced-levels-shortcode' );
-							}
-						} elseif ( $price === 'full' ) {
-							$price_text = pmpro_getLevelCost( $level, true, false );
-						} else {
-							$price_text = pmpro_getLevelCost( $level, false, true );
-						}
-
-						$price_classes = array();
-						$price_classes[] = 'pmpro_level-price';
-						if ( pmpro_isLevelFree ( $level ) ) {
-							$price_classes[] = 'pmpro_level-price-free';
-						}
-						$price_class = implode( ' ', array_unique( $price_classes ) );
-						?>
-						<p class="<?php echo esc_attr( $price_class ); ?>">
-							<?php echo wp_kses( $price_text, pmproal_allowed_html() ); ?>
-						</p> <!-- end pmpro_level-price -->
-					<?php } ?>
+					<?php pmproal_getLevelPrice( $level, $price ); ?>
 
 					<?php if ( ! empty ( $expiration ) ) {
 						$level_expiration = pmpro_getLevelExpiration($level); ?>
@@ -83,38 +55,13 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					<?php } ?>
 
 				</div> <!-- .pmpro_level-meta -->
-
 				<?php 
 			} else {
 				// This is a column-type div layout
-				if ( ! empty( $show_price ) ) {
-					if ( pmpro_isLevelFree ( $level ) ) {
-						// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
-						if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
-							$price_text = pmpro_getCustomLevelCostText( $level->id );
-						} else {
-							$price_text = __( 'Free', 'pmpro-advanced-levels-shortcode' );
-						}
-					} elseif ( $price === 'full' ) {
-						$price_text = pmpro_getLevelCost( $level, true, false );
-					} else {
-						$price_text = pmpro_getLevelCost( $level, false, true );
-					}
-
-					$price_classes = array();
-					$price_classes[] = 'pmpro_level-price';
-					if ( pmpro_isLevelFree ( $level ) ) {
-						$price_classes[] = 'pmpro_level-price-free';
-					}
-					$price_class = implode( ' ', array_unique( $price_classes ) );
-					?>
-					<p class="<?php echo esc_attr( $price_class ); ?>">
-						<?php echo wp_kses( $price_text, pmproal_allowed_html() ); ?>
-					</p> <!-- end pmpro_level-price -->
-				<?php } ?>
+				pmproal_getLevelPrice( $level, $price ); ?>
 					
 				<p class="pmpro_level-select">
-					<?php pmproal_level_button( $level, $pmproal_link_arguments, $current_level, $checkout_button, $renew_button, $account_button ); ?>
+					<?php pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ); ?>
 				</p> <!-- end .pmpro_level-select -->
 
 				<?php if ( ! empty( $description ) && ! empty( $level->description ) ) { ?>
