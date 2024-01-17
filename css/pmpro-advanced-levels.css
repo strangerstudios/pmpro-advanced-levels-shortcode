@@ -3,10 +3,14 @@
  */
  :root {
 	--pmproal--border--color: #D1D1D1;
-	--pmproal--row--color-alt: #0000000D;
+	--pmproal--row--color-alt: #00000008;
 	--pmproal--spacing--large: 50px;
 	--pmproal--spacing--medium: 30px;
 	--pmproal--spacing--small: 10px;
+}
+
+.wp-block-pmpro-advanced-levels-advanced-levels-page {
+	overflow: visible;
 }
 
 .pmpro_level p {
@@ -51,6 +55,7 @@
 }
 
 .pmpro_advanced_levels-table .pmpro_btn {
+	display: block;
 	min-width: 5em;
 }
 
@@ -66,7 +71,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--pmproal--spacing--medium);
-	padding: var(--pmproal--spacing--medium);
+	padding: calc( var(--pmproal--spacing--medium) / 2 );
 	width: 100%;
 }
 
@@ -179,23 +184,20 @@
 .pmpro_advanced_levels-compare_table th,
 .pmpro_advanced_levels-compare_table td {
 	border-color: var(--pmproal--border--color);
-	border-width: 0 1px 1px 0;
+	border-style: solid;
+	border-width: 0 1px 0 0;
 	padding: calc( var(--pmproal--spacing--medium) / 2 );
 	vertical-align: middle;
 }
 
-.pmpro_advanced_levels-compare_table thead th,
-.pmpro_advanced_levels-compare_table tfoot td {
-	border-width: 0 1px 0 0;
-}
-
-.pmpro_advanced_levels-compare_table thead tr {
-	border: none;
+.pmpro_advanced_levels-compare_table thead tr:first-child th:not(.pmpro_advanced_levels-compare_table thead tr:first-child th:first-child) {
+	border-top-width: 1px;
+	padding-top: var(--pmproal--spacing--medium);
 }
 
 .pmpro_advanced_levels-compare_table tr th:last-child,
 .pmpro_advanced_levels-compare_table tr td:last-child {
-	border-right: none;
+	border-right-width: 1px;
 }
 
 .pmpro_advanced_levels-compare_table thead tr th:nth-child(even),
@@ -215,20 +217,22 @@
 
 .pmpro_advanced_levels-compare_table tbody tr:nth-child(even) td {
 	background-color: var(--pmproal--row--color-alt);
+	border-top-width: 1px;
 }
 
 .pmpro_advanced_levels-compare_table tbody tr td:first-child {
 	text-align: right;
 }
 
-.pmpro_advanced_levels-compare_table tfoot tr {
-	border: none;
-}
-
 .pmpro_advanced_levels-compare_table tfoot td {
 	padding: calc( var(--pmproal--spacing--medium) / 2 );
 	vertical-align: middle;
 }
+
+.pmpro_advanced_levels-compare_table tfoot tr:last-child td:not(.pmpro_advanced_levels-compare_table tfoot tr:last-child td:first-child) {
+	border-bottom-width: 1px;
+}
+
 
 .pmpro_advanced_levels-compare_table .pmpro_level-description ul {
 	display: inline-block;
