@@ -1,179 +1,125 @@
 <?php
-/*
-	template for layout="compare_table"
-*/
-global $pmproal_link_arguments;
+/**
+ * Template for layout="compare_table".
+ *
+ */
+
+// Build the selectors for the single level elements.
+foreach ( $pmpro_levels_filtered as $level ) {
+	$element_classes = array();
+	$element_classes[] = 'pmpro_level';
+	if ( $highlight == $level->id ) {
+		$element_classes[] = 'pmpro_level-highlight';
+	}
+	if ( $level->current_level ) {
+		$element_classes[] = 'pmpro_level-current';
+	}
+	$element_class = implode( ' ', array_unique( $element_classes ) );
+	$pmpro_levels_filtered[$level->id]->element_class = $element_class;
+}
+
+// Build the selectors for the levels wrapper.
+$wrapper_classes = array();
+$wrapper_classes[] = 'pmpro_advanced_levels-compare_table';
+$wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 ?>
-<table id="pmpro_levels" class="<?php if(!empty($template)) { echo "pmpro_advanced_levels-" . esc_attr( $template ) . " "; } ?>pmpro_advanced_levels-compare_table">
+<table id="pmpro_levels" class="<?php echo esc_attr( $wrapper_class ); ?>">
 	<thead>
 		<tr>
-			<th><?php esc_html_e('Level', 'pmpro-advanced-levels-shortcode');?></th>
-			<?php	
+			<th><span class="screen-reader-text"><?php esc_html_e('Level', 'pmpro-advanced-levels-shortcode');?></span></th>
+			<?php
 				$count = 0;
-				foreach($pmpro_levels_filtered as $level)
-				{
-					?>
-					<th class="<?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+				foreach ( $pmpro_levels_filtered as $level ) { ?>
+					<th class="<?php echo esc_attr( $level->element_class ); ?>">
 						<h2><?php echo wp_kses( $level->name, pmproal_allowed_html() ); ?></h2>
 					</th>
 					<?php
 				}
 			?>
 		</tr>
-		<?php if(!empty($show_price)) { ?>
-		<tr>
-			<th><?php esc_html_e('Price', 'pmpro-advanced-levels-shortcode'); ?></th>
-			<?php
-				foreach($pmpro_levels_filtered as $level)
-				{				  
-					?>
-					<th class="pmpro_level-price <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-						<?php if(pmpro_isLevelFree($level)) { ?>
-							<?php 
-								// if Custom Level Cost Text Add On is installed pull this information from the custom level cost text field.
-								if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
-									$text = pmpro_getCustomLevelCostText($level->id);
-								} else {
-									$text = '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
-								}
-
-								echo wp_kses( $text, pmproal_allowed_html() );
-
-							} else if($price === 'full')
-								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, true, false)), array( 'strong' => array(), 'span' => array() ) );
-							else
-								echo wp_kses( spanThePMProLevelCostText( pmpro_getLevelCost($level, false, true)), array( 'strong' => array(), 'span' => array() ) );
-
-						?>
+		<?php if ( ! empty( $show_price ) ) { ?>
+			<tr>
+				<th><span class="screen-reader-text"><?php esc_html_e( 'Price', 'pmpro-advanced-levels-shortcode' ); ?></span></th>
+				<?php foreach ( $pmpro_levels_filtered as $level ) { ?>
+					<th class="<?php echo esc_attr( $level->element_class ); ?>">
+						<?php pmproal_getLevelPrice( $level, $price ); ?>
 					</th>
-					<?php 
-				} 
-			?>
-		</tr>
+				<?php } ?>
+			</tr>
 		<?php } ?>
 		<?php if ( ! empty( $description ) ) { ?>
-		<tr>
-			<th><?php esc_html_e('Description', 'pmpro-advanced-levels-shortcode');?></th>
-			<?php
-				foreach($pmpro_levels_filtered as $level)
-				{				  
-					?>
-					<th class="pmpro_level-description <?php if(!empty($level) && !empty($current_user->membership_level) && $current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+			<tr>
+				<th><span class="screen-reader-text"><?php esc_html_e( 'Description', 'pmpro-advanced-levels-shortcode' ); ?></span></th>
+				<?php foreach ( $pmpro_levels_filtered as $level ) { ?>
+					<th class="<?php echo esc_attr( $level->element_class ); ?> pmpro_level-description">
 						<?php echo wpautop($level->description); ?>
 					</th>
-					<?php 
-				} 
-			?>
-		</tr>
+				<?php } ?>
+			</tr>
 		<?php } ?>
-		<?php if(!empty($expiration)) { ?>
-		<tr>
-			<th><?php esc_html_e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
-			<?php
-				foreach($pmpro_levels_filtered as $level)
-				{										  
-					?>
-					<th class="pmpro_level-expiration <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+		<?php if ( ! empty( $expiration ) ) { ?>
+			<tr>
+				<th><span class="screen-reader-text"><?php esc_html_e( 'Expiration', 'pmpro-advanced-levels-shortcode' );?></span></th>
+				<?php foreach ( $pmpro_levels_filtered as $level ) { ?>
+					<th class="<?php echo esc_attr( $level->element_class ); ?> pmpro_level-expiration">
 						<?php 
 							$level_expiration = pmpro_getLevelExpiration($level);
-							if(empty($level_expiration))
-								esc_html_e('Membership never expires.', 'pmpro-advanced-levels-shortcode');
-							else
+							if ( empty( $level_expiration ) ) {
+								esc_html_e( 'Membership never expires.', 'pmpro-advanced-levels-shortcode' );
+							} else {
 								echo wp_kses( $level_expiration, pmproal_allowed_html() );
+							}
 						?>
 					</th>
-					<?php 
-				} 
-			?>
-		</tr>
+				<?php } ?>
+			</tr>
 		<?php } ?>
 		<tr>
 			<th>&nbsp;</th>
-			<?php
-				foreach($pmpro_levels_filtered as $level)
-				{	
-					$current_level = pmpro_hasMembershipLevel( $level->id );
-
-					$pmproal_link_arguments['level'] = $level->id;
-					?>
-					<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-					<?php if( ! pmpro_hasMembershipLevel() ) { ?>
-						<a class="<?php
-							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
-					<?php } elseif ( !$current_level ) { ?>                	
-						<a class="<?php
-							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
-					<?php } elseif($current_level) { ?>      									
-						<?php
-							//if it's a one-time-payment level or recurring level that's expiring soon, offer a link to renew
-							$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);
-							if( pmpro_isLevelExpiringSoon( $specific_level ) && $level->allow_signups )
-							{
-							?>
-								<a class="<?php
-									if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-									else { echo "pmpro_btn pmpro_btn-select"; }
-								?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
-							<?php
-							}
-							else
-							{
-							?>
-								<a class="<?php
-									if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
-									elseif($template === "foundation") { echo "button info"; }
-									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
-									elseif($template === "woothemes") { echo "woo-sc-button silver"; }
-									else { echo "pmpro_btn disabled"; }
-								?>" href="<?php echo esc_url( pmpro_url("account" ) ); ?>"><?php echo esc_html( $account_button ); ?></a>
-							<?php
-							}
-						?>								
-					<?php } ?>
-					</th>
-					<?php
-				}
-			?>
+			<?php foreach ( $pmpro_levels_filtered as $level ) { ?>
+				<th class="<?php echo esc_attr( $level->element_class ); ?>">
+					<?php pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ); ?>
+				</th>
+			<?php } ?>
 		</tr>
 	</thead>
 	<tbody>
-		<?php if(!empty($compareitems)) { 
-			foreach($compareitems as $compareitem)
-			{
-				?>
+		<?php
+			if ( ! empty( $compareitems ) ) {
+			foreach ( $compareitems as $compareitem ) { ?>
 				<tr>
 				<?php
 					$count = -1;
+
+					// Build the array of compare items.
 					$compareitem_values = explode(",", $compareitem);
 
+					/**
+					 * Filter the compare items.
+					 *
+					 * @since 0.2.6
+					 * @param array $compareitem_values The compare items.
+					 * @return array $compareitem_values The filtered compare items.
+					 */
 					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
-					
-					foreach($compareitem_values as $compareitem_value)
-					{			
-						if($count >= 0 && !empty($numeric_levels_array[$count]))
+
+					foreach ( $compareitem_values as $compareitem_value ) {
+						if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
 							$level = $numeric_levels_array[$count];
-						else
+						} else {
 							$level = NULL;
+						}
 						$count++;
 						?>
-						<td class="<?php if( ! empty( $level->id ) && pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-							<?php 
-
-								if( $compareitem_value == '1' ) { 
-									echo '<span class="pmpro_level-compare-true"></span>'; 
-								} elseif( $compareitem_value == '0' ) { 
-									echo '<span class="pmpro_level-compare-false"></span>'; 
-								} else { echo  wp_kses( $compareitem_value, pmproal_allowed_html() ); } 
+						<td <?php echo $level ? 'class="' . esc_attr( $level->element_class ) . '"' : ''; ?>>
+							<?php
+								if ( $compareitem_value == '1' ) {
+									echo '<span class="pmpro_level-compare-true"><span class="screen-reader-text">' . esc_html__( 'Yes', 'pmpro-advanced-levels-shortcode' ) . '</span></span>';
+								} elseif ( $compareitem_value == '0' ) {
+									echo '<span class="pmpro_level-compare-false"><span class="screen-reader-text">' . esc_html__( 'No', 'pmpro-advanced-levels-shortcode' ) . '</span></span>';
+								} else {
+									echo wp_kses( $compareitem_value, pmproal_allowed_html() );
+								}
 							?>
 						</td>
 						<?php
@@ -188,306 +134,114 @@ global $pmproal_link_arguments;
 	<tfoot>
 		<tr>
 			<td>&nbsp;</td>
-			<?php
-				foreach($pmpro_levels_filtered as $level)
-				{
-					$pmproal_link_arguments['level'] = $level->id;
-					
-					$current_level = pmpro_hasMembershipLevel( $level->id );		  
-					?>
-					<td class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-					<?php if( ! pmpro_hasMembershipLevel() ) { ?>
-						<a class="<?php
-							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
-					<?php } elseif ( !$current_level ) { ?>                	
-						<a class="<?php
-							if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-							else { echo "pmpro_btn pmpro_btn-select"; }
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $checkout_button ); ?></a>
-					<?php } elseif($current_level) { ?>      									
-						<?php
-							//if it's a one-time-payment level, offer a link to renew
-							$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);											
-							if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
-							{
-							?>
-								<a class="<?php
-									if($template === "genesis" || $template === "foundation" || $template === "twentyfourteen") { echo "button"; }
-									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-									elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-									else { echo "pmpro_btn pmpro_btn-select"; }
-								?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) ); ?>"><?php echo esc_html( $renew_button ); ?></a>
-							<?php
-							}
-							else
-							{
-							?>
-								<a class="<?php
-									if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
-									elseif($template === "foundation") { echo "button info"; }
-									elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
-									elseif($template === "woothemes") { echo "woo-sc-button silver"; }
-									else { echo "pmpro_btn disabled"; }
-								?>" href="<?php echo esc_url( pmpro_url("account") ); ?>"><?php echo esc_html( $account_button ); ?></a>
-							<?php
-							}
-						?>								
-					<?php } ?>
-					</td>
-					<?php
-				}
-			?>
+			<?php foreach ( $pmpro_levels_filtered as $level ) { ?>
+				<td class="<?php echo esc_attr( $level->element_class ); ?>">
+					<?php pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ); ?>
+				</td>
+			<?php } ?>
 		</tr>
-		<?php if(!empty($expiration)) { ?>
+		<?php if ( ! empty( $expiration ) ) { ?>
 		<tr>
-			<td><?php esc_html_e('Expiration', 'pmpro-advanced-levels-shortcode');?></td>
-			<?php
-				foreach($pmpro_levels_filtered as $level)
-				{				  
-					?>
-					<td class="muted <?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
-						<?php 
-							$level_expiration = pmpro_getLevelExpiration($level);
-							if(empty($level_expiration))
-								esc_html_e('Membership never expires.', 'pmpro');
-							else
-								echo wp_kses( $level_expiration, pmproal_allowed_html() );
-						?>
-					</td>
+			<td><span class="screen-reader-text"><?php esc_html_e( 'Expiration', 'pmpro-advanced-levels-shortcode' );?></span></td>
+			<?php foreach ( $pmpro_levels_filtered as $level ) { ?>
+				<td class="<?php echo esc_attr( $level->element_class ); ?> pmpro_level-expiration">
 					<?php 
-				} 
-			?>
-		</tr>
-		<?php } ?>					
-		<?php if(!empty($more_button)) { ?>
-		<tr>
-			<td><?php esc_html_e('More Information', 'pmpro-advanced-levels-shortcode');?></td>
-			<?php	
-				$count = 0;
-				foreach($pmpro_levels_filtered as $level)
-				{				  
+						$level_expiration = pmpro_getLevelExpiration( $level );
+						if ( empty( $level_expiration ) ) {
+							esc_html_e( 'Membership never expires.', 'pmpro-advanced-levels-shortcode' );
+						} else {
+							echo wp_kses( $level_expiration, pmproal_allowed_html() );
+						}
 					?>
-					<td class="<?php if( pmpro_hasMembershipLevel( $level->id ) ) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>"><?php
-							if (function_exists('memberlite_getLevelLandingPage')) {
-								$level_page = memberlite_getLevelLandingPage($level->id);
-							} else {
-								$level_page = null;
-
-							}
-
-							if(!empty($level_page))
-							{
-								?>
-								<a href="<?php echo esc_url( get_permalink($level_page->ID) ); ?>"><?php echo esc_html( $more_button ); ?></a>
-								<?php
-							}
-						?>
-					</td>
-					<?php
-				}
-			?>
+				</td>
+			<?php } ?>
 		</tr>
-		<?php } ?>					
+		<?php } ?>
 	</tfoot>
 </table>	
 
-
-<div id="pmpro_levels" class="
 <?php
-	if(!empty($template))
-		echo "pmpro_advanced_levels-" . $template;
-	else
-		echo "pmpro_advanced_levels-div pmpro_levels-" . $layout;
-	if($template === "gantry")
-		echo " row-fluid";
-?> pmpro_advanced_levels-compare_table_responsive"<?php if($template === "foundation") { echo " data-equalizer"; } ?>>
-<?php	
-	$count = 0;
-	foreach($pmpro_levels_filtered as $level)
-	{
-	    $pmproal_link_arguments['level'] = $level->id;
-	    
-		$count++;
-		$current_level = pmpro_hasMembershipLevel( $level->id );
-		?>
-		<div class="pmpro_level">
-		<div class="entry <?php if($template != "bootstrap") { echo " post "; } ?><?php if($current_level) { echo "pmpro_level-current "; } if($highlight == $level->id) { echo "pmpro_level-highlight "; } if($template === "gantry") { echo " well"; } if($template === "bootstrap") { echo " panel panel-default"; } ?>">
-			<header<?php if($template != "twentyfourteen") { ?> class="entry-header<?php } if($template === "bootstrap") { echo " panel-heading"; } ?>"><h2<?php if($template === "bootstrap" && ($layout == '3col' || $layout == '4col')) { echo ' class="text-center"'; } ?>><?php echo $level->name?></h2></header>
-			
-			<?php if($template === "bootstrap") { ?>
-				<div class="panel-body">
-			<?php } ?>
-			<?php
-				if(!empty($show_price))
-				{
-					if($template === "foundation")
-					{
-						?>
-						<h5 class="subheader">
-						<?php
-					}
-					else
-					{
-						?>
-						<p class="pmpro_level-price<?php if($template === "gantry" || $template === "bootstrap") { echo " lead"; } ?>">
-						<?php
-					}
-					?>
-					<?php
-						if(pmpro_isLevelFree($level)) {
-							// if pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
-							if( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level->id ) ) ) {
-								$text = pmpro_getCustomLevelCostText( $level->id );
-							} else {
-								$text =  '<strong>' . __( 'Free', 'pmpro-advanced-levels-shortcode' ) . '</strong>';
-							}
-							
-							echo wp_kses( $text , pmproal_allowed_html() );
+/**
+ * Add a hidden version of the levels layout for smaller screens.
+ */
 
-						} elseif($price === 'full') {
-							echo wp_kses( pmpro_getLevelCost( $level, true, false ), pmproal_allowed_html() );
-						} else {
-							echo wp_kses( pmpro_getLevelCost( $level, false, true ), pmproal_allowed_html() );
-						}
-					
-					if($template === "foundation")
-					{
-						?>
-						</h5>
-						<?php
-					}
-					else
-					{
-						?>
-						</p>
-						<?php
-					}
-					?>
-					<?php
-				}
-			?>
-			<?php if((!empty($description) || !empty($more_button)) && !empty($level->description)) { ?>
-				<div<?php if($template != "twentyfourteen") { ?> class="entry-content"<?php } ?>>
+// Build the selectors for the levels div wrapper.
+$wrapper_classes = array();
+$wrapper_classes[] = 'pmpro_advanced_levels-div';
+$wrapper_classes[] = 'pmpro_advanced_levels-compare_table_responsive';
+if ( ! empty( $layout ) ) {
+	$wrapper_classes[] = 'pmpro_levels-' . esc_attr( $layout );
+}
+$wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
+?>
+<div id="pmpro_levels" class="<?php echo esc_attr( $wrapper_class ); ?>">
+<?php
+	foreach ( $pmpro_levels_filtered as $level ) {
+		// Build the selectors for the single level elements.
+		$element_classes = array();
+		$element_classes[] = 'pmpro_level';
+		if ( $highlight == $level->id ) {
+			$element_classes[] = 'pmpro_level-highlight';
+		}
+		if ( $level->current_level ) {
+			$element_classes[] = 'pmpro_level-current';
+		}
+		$element_class = implode( ' ', array_unique( $element_classes ) );
+		?>
+		<div id="pmpro_level-<?php echo esc_attr( $level->id ); ?>" class="<?php echo esc_attr( $element_class ); ?>">
+			<?php do_action('pmproal_before_level', $level->id, $layout ); ?>
+
+			<h2><?php echo esc_html( $level->name ); ?></h2>
+
+			<?php if ( ! empty( $description ) && ! empty( $level->description ) ) { ?>
+				<div class="pmpro_level-description">
 					<?php echo wp_kses_post( wpautop($level->description) ); ?>
-				</div>
+				</div> <!-- end .pmpro_level-description -->
 			<?php } ?>
-			<?php 
-				if(!empty($compareitems)) 
-				{
-					echo '<p>';
-					foreach($compareitems as $compareitem)
-					{
-						$compareitem_values = explode(",", $compareitem);
-						if($count >= 0 && !empty($numeric_levels_array[$count]))
-							$compare_level = $numeric_levels_array[$count];
-						else
-							$compare_level = NULL;
-						if($compareitem_values[$count] != '0')
-						{ 
-							if($compareitem_values[$count] == '1') 
-							{
-								echo ' <strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>';
-							}
-							else 
-							{
-								echo ' <strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
-								echo wp_kses( $compareitem_values[$count], pmproal_allowed_html() ); 
-							}
-							echo '<br />';
+
+			<?php if ( ! empty( $compareitems ) ) {
+				echo '<p>';
+				foreach ( $compareitems as $compareitem ) {
+					$compareitem_values = explode( ',', $compareitem );
+					if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
+						$compare_level = $numeric_levels_array[$count];
+					} else {
+						$compare_level = NULL;
+					}
+
+					if ( $compareitem_values[$count] != '0' ) { 
+						if ( $compareitem_values[$count] == '1' ) {
+							echo '<strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>';
+						} else {
+							echo '<strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
+							echo wp_kses( $compareitem_values[$count], pmproal_allowed_html() );
 						}
+						echo '<br />';
 					}
-					echo '</p>';
 				}
-			?>
-			<footer<?php if($template != "twentyfourteen") { ?> class="entry-footer"<?php } ?>><div class="entry-meta">
-			<?php 
-				if($template === "foundation" || $template === "woothemes" || $template === "bootstrap") 
-					echo "<hr />";
-			?>
-			<p>
-			<?php 
-				if( ! pmpro_hasMembershipLevel() ) 
-				{
-					?>
-					<a class="<?php
-						if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
-						elseif($template === "foundation") { echo "button"; }
-						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-						else { echo "pmpro_btn pmpro_btn-select"; }									
-					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
-					<?php 
-				}
-				elseif(!$current_level) 
-				{ 
-					?>                	
-					<a class="<?php
-						if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
-						elseif($template === "foundation") { echo "button right"; }
-						elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-						elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-						else { echo "pmpro_btn pmpro_btn-select"; }									
-					?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) );?>"><?php echo esc_html( $checkout_button ); ?></a>
-					<?php
-				}
-				elseif($current_level)
-				{
-					//if it's a one-time-payment level, offer a link to renew				
-					$specific_level = pmpro_getSpecificMembershipLevelForUser($current_user->ID, $level->id);											
-					if(!pmpro_isLevelRecurring( $specific_level ) && !empty( $specific_level->enddate ) )
-					{
-						?>
-						<a class="<?php
-							if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "foundation") { echo "button right"; }
-							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-primary"; }
-							elseif($template === "woothemes") { echo "woo-sc-button custom"; }
-							else { echo "pmpro_btn pmpro_btn-select"; }											
-						?>" href="<?php echo esc_url( add_query_arg( $pmproal_link_arguments, pmpro_url("checkout", '', "https") ) );?>"><?php echo esc_html( $renew_button ); ?></a>
-						<?php
-					}
-					else
-					{
-						?>
-						<a class="<?php
-							if($template === "genesis" || $template === "twentyfourteen") { echo "button"; }
-							elseif($template === "foundation") { echo "button info"; }
-							elseif($template === "gantry" || $template === "bootstrap") { echo "btn btn-info"; }
-							elseif($template === "woothemes") { echo "woo-sc-button silver"; }
-							else { echo "pmpro_btn disabled"; }
-						 ?>" href="<?php echo esc_url( pmpro_url("account") ); ?>"><?php echo esc_html( $account_button ); ?></a>
-						<?php
-					}
-				} 
-			?>
-			</p>
-			<?php 
-				if(!empty($expiration)) 
-				{
-					echo '<p class="pmpro_level-expiration">';
-					if($template === "bootstrap")
-						echo '<span class="text-muted">';
-					$level_expiration = pmpro_getLevelExpiration($level);
-					if(empty($level_expiration))
-						esc_html_e('Membership Never Expires.', 'pmpro-advanced-levels-shortcode');
-					else
-						echo wp_kses( $level_expiration, pmproal_allowed_html() );
-					if($template === "bootstrap")
-						echo '</span>';
-					echo '</p>';
-				} 
-			?>
-			</div></footer> <!-- .entry-meta, .entry-footer -->
-			<?php if($template === "bootstrap") { ?>
-				</div><!-- .panel-body -->
-			<?php } ?>
-		</div></div>
+				echo '</p>';
+			} ?>
+
+			<div class="pmpro_level-meta">
+
+				<?php pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ); ?>
+
+				<?php pmproal_getLevelPrice( $level, $price ); ?>
+
+				<?php if ( ! empty ( $expiration ) ) {
+					$level_expiration = pmpro_getLevelExpiration($level); ?>
+					<p class="pmpro_level-expiration">
+						<?php if ( empty ( $level_expiration ) ) {
+							esc_html_e('Membership never expires.', 'pmpro-advanced-levels-shortcode');
+						} else {
+							echo wp_kses( $level_expiration, pmproal_allowed_html() );
+						} ?>
+					</p> <!-- end pmpro_level-expiration -->
+				<?php } ?>
+
+			</div> <!-- .pmpro_level-meta -->
+			<?php do_action( 'pmproal_after_level', $level->id, $layout ); ?>
+		</div><!-- .pmpro_level -->
 		<?php
 	}
 ?>

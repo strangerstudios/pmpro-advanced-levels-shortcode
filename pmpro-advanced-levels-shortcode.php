@@ -3,25 +3,27 @@
 Plugin Name: Paid Memberships Pro - Advanced Levels Page Shortcode Add On
 Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 Description: An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro
-Version: 0.2.6
+Version: 1.0
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com/
 Text Domain: pmpro-advanced-levels-shortcode
 Domain Path: /languages
 */
 
-global $pmproal_link_arguments;
-$pmproal_link_arguments = array();
+define( 'PMPRO_ADVANCED_LEVELS_DIR', dirname( __FILE__ ) );
 
-$path = dirname(__FILE__);
-require_once($path . "/templates/levels.php");
+// Include required files.
+require_once( PMPRO_ADVANCED_LEVELS_DIR . '/templates/levels.php' );
 
-
+/**
+ * Register the Advanced Levels Shortcode styles.
+ */
 function pmpro_advanced_levels_register_styles() {
 	wp_register_style( 'pmpro-advanced-levels-styles', plugins_url( 'css/pmpro-advanced-levels.css', __FILE__ ) );
 	wp_enqueue_style( 'pmpro-advanced-levels-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_advanced_levels_register_styles' );
+add_action( 'enqueue_block_editor_assets', 'pmpro_advanced_levels_register_styles' );
 
 function pmproal_load_textdomain()
 {
@@ -66,7 +68,7 @@ function pmproal_getLevelLandingPage($level_id) {
 /**
  * Function for allowed HTML tags in various templates
  * 
- * @since TBD
+ * @since 1.0
  * @return array $allowed_html The allowed HTML to be used for wp_kses escaping.
  */
 function pmproal_allowed_html() {
@@ -94,20 +96,118 @@ function pmproal_allowed_html() {
 	/**
 	 * Filters the allowed HTML tags for the Advanced Levels Shortcode.
 	 * @param array $allowed_html The allowed html elements for the Advanced Levels Shortcode escaping where wp_kses is used (like in compared elements etc.)
-	 * @since TBD
+	 * @since 1.0
 	 */
 	return apply_filters( 'pmproal_allowed_html', $allowed_html );
 }
 
-/*
-Function to add links to the plugin row meta
-*/
+/**
+ * Function to get the level price.
+ *
+ * @since 1.0
+ * @param object $level The level object.
+ * @param string $price The price type from shortcode or block atts.
+ * @return string $price_text The price text to be displayed.
+ */
+function pmproal_getLevelPrice( $level, $price ) {
+	// Build the selectors for the price element.
+	$price_classes = array();
+	$price_classes[] = 'pmpro_level-price';
+
+	if ( isset( $level->discounted_level ) ) {
+		$level_to_price = $level->discounted_level;
+	} else {
+		$level_to_price = $level;
+	}
+	if ( pmpro_isLevelFree ( $level_to_price ) ) {
+		// Add free class if level is free.
+		$price_classes[] = 'pmpro_level-price-free';
+
+		// If pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+		if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level_to_price->id ) ) ) {
+			$price_text = pmpro_getCustomLevelCostText( $level_to_price->id );
+		} else {
+			$price_text = __( 'Free', 'pmpro-advanced-levels-shortcode' );
+		}
+	} elseif ( $price === 'full' ) {
+		$price_text = pmpro_getLevelCost( $level_to_price, true, false );
+	} else {
+		$price_text = pmpro_getLevelCost( $level_to_price, false, true );
+	}
+
+	// Prepare the class selectors for the price element.
+	$price_class = implode( ' ', array_unique( $price_classes ) );
+	?>
+	<p class="<?php echo esc_attr( $price_class ); ?>">
+		<?php echo wp_kses( $price_text, pmproal_allowed_html() ); ?>
+	</p> <!-- end pmpro_level-price -->
+	<?php
+}
+
+/**
+ * Function to get the level button.
+ *
+ * @since 1.0
+ * @param object $level The level object.
+ * @param string $checkout_button The text for the checkout button from shortcode or block atts.
+ * @param string $renew_button The text for the renew button from shortcode or block atts.
+ * @param string $account_button The text for the account button from shortcode or block atts.
+ * @return string The button HTML to be displayed.
+ */
+function pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ) {
+	global $current_user;
+
+	// Set up the button classes.
+	$button_classes = array();
+	$button_classes[] = 'pmpro_btn';
+
+	if ( ! pmpro_hasMembershipLevel() || ! $level->current_level ) {
+		// Show checkout button if the user has no membership level or $current_level is false
+		$button_classes[] = 'pmpro_btn-select';
+		$button_link = add_query_arg( $level->link_arguments, pmpro_url( 'checkout', '', 'https' ) );
+		$button_text = $checkout_button;
+	} elseif( $level->current_level ) {
+		// Get specific level details for the user
+		$specific_level = pmpro_getSpecificMembershipLevelForUser( $current_user->ID, $level->id );
+		if ( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups ) {
+			// Show renew button if the level is expiring soon and signups are allowed
+			$button_classes[] = 'pmpro_btn-select';
+			$button_classes[] = 'pmpro_btn-renew';
+			$button_link = add_query_arg( $level->link_arguments, pmpro_url( 'checkout', '', 'https' ) );
+			$button_text = $renew_button;
+		} else {
+			// Show account button otherwise
+			$button_classes[] = 'disabled';
+			$button_link = pmpro_url( 'account' );
+			$button_text = $account_button;
+		}
+	}
+
+	// Output the button.
+	?>
+	<a class="<?php echo esc_attr( implode( ' ', array_unique( $button_classes ) ) ); ?>" href="<?php echo esc_url( $button_link ); ?>"><?php echo esc_html( $button_text ); ?></a>
+	<?php
+}
+
+/**
+ * Register block types for the block editor.
+ *
+ * @since 1.0
+ */
+function pmpro_advanced_levels_register_block_types() {
+	register_block_type( __DIR__ . '/blocks/build/advanced-levels-page' );
+}
+add_action( 'init', 'pmpro_advanced_levels_register_block_types' );
+
+/**
+ * Function to add links to the plugin row meta
+ */
 function pmpro_advanced_levels_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-advanced-levels-shortcode.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/')  . '" title="' . esc_attr__( 'View Documentation', 'pmpro-advanced-levels-shortcode' ) . '">' . esc_html__( 'Docs', 'pmpro-advanced-levels-shortcode' ) . '</a>',
-			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr__( 'Visit Customer Support Forum', 'pmpro-advanced-levels-shortcode' ) . '">' . esc_html__( 'Support', 'pmpro-advanced-levels-shortcode' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/' )  . '" title="' . esc_attr__( 'View Documentation', 'pmpro-advanced-levels-shortcode' ) . '">' . esc_html__( 'Docs', 'pmpro-advanced-levels-shortcode' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/') . '" title="' . esc_attr__( 'Visit Customer Support Forum', 'pmpro-advanced-levels-shortcode' ) . '">' . esc_html__( 'Support', 'pmpro-advanced-levels-shortcode' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);
 	}
