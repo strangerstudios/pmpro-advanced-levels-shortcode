@@ -12,9 +12,6 @@ Domain Path: /languages
 
 define( 'PMPRO_ADVANCED_LEVELS_DIR', dirname( __FILE__ ) );
 
-global $pmproal_link_arguments;
-$pmproal_link_arguments = array();
-
 // Include required files.
 require_once( PMPRO_ADVANCED_LEVELS_DIR . '/templates/levels.php' );
 
@@ -102,6 +99,94 @@ function pmproal_allowed_html() {
 	 * @since TBD
 	 */
 	return apply_filters( 'pmproal_allowed_html', $allowed_html );
+}
+
+/**
+ * Function to get the level price.
+ *
+ * @since TBD
+ * @param object $level The level object.
+ * @param string $price The price type from shortcode or block atts.
+ * @return string $price_text The price text to be displayed.
+ */
+function pmproal_getLevelPrice( $level, $price ) {
+	// Build the selectors for the price element.
+	$price_classes = array();
+	$price_classes[] = 'pmpro_level-price';
+
+	if ( isset( $level->discounted_level ) ) {
+		$level_to_price = $level->discounted_level;
+	} else {
+		$level_to_price = $level;
+	}
+	if ( pmpro_isLevelFree ( $level_to_price ) ) {
+		// Add free class if level is free.
+		$price_classes[] = 'pmpro_level-price-free';
+
+		// If pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
+		if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level_to_price->id ) ) ) {
+			$price_text = pmpro_getCustomLevelCostText( $level_to_price->id );
+		} else {
+			$price_text = __( 'Free', 'pmpro-advanced-levels-shortcode' );
+		}
+	} elseif ( $price === 'full' ) {
+		$price_text = pmpro_getLevelCost( $level_to_price, true, false );
+	} else {
+		$price_text = pmpro_getLevelCost( $level_to_price, false, true );
+	}
+
+	// Prepare the class selectors for the price element.
+	$price_class = implode( ' ', array_unique( $price_classes ) );
+	?>
+	<p class="<?php echo esc_attr( $price_class ); ?>">
+		<?php echo wp_kses( $price_text, pmproal_allowed_html() ); ?>
+	</p> <!-- end pmpro_level-price -->
+	<?php
+}
+
+/**
+ * Function to get the level button.
+ *
+ * @since TBD
+ * @param object $level The level object.
+ * @param string $checkout_button The text for the checkout button from shortcode or block atts.
+ * @param string $renew_button The text for the renew button from shortcode or block atts.
+ * @param string $account_button The text for the account button from shortcode or block atts.
+ * @return string The button HTML to be displayed.
+ */
+function pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ) {
+	global $current_user;
+
+	// Set up the button classes.
+	$button_classes = array();
+	$button_classes[] = 'pmpro_btn';
+
+	if ( ! pmpro_hasMembershipLevel() || ! $level->current_level ) {
+		// Show checkout button if the user has no membership level or $current_level is false
+		$button_classes[] = 'pmpro_btn-select';
+		$button_link = add_query_arg( $level->link_arguments, pmpro_url( 'checkout', '', 'https' ) );
+		$button_text = $checkout_button;
+	} elseif( $level->current_level ) {
+		// Get specific level details for the user
+		$specific_level = pmpro_getSpecificMembershipLevelForUser( $current_user->ID, $level->id );
+		if ( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups ) {
+			// Show renew button if the level is expiring soon and signups are allowed
+			$button_classes[] = 'pmpro_btn-select';
+			$button_classes[] = 'pmpro_btn-renew';
+			$button_link = add_query_arg( $level->link_arguments, pmpro_url( 'checkout', '', 'https' ) );
+			$button_text = $renew_button;
+		} else {
+			// Show account button otherwise
+			$button_classes[] = 'disabled';
+			$button_link = pmpro_url( 'account' );
+			$button_text = $account_button;
+		}
+	}
+
+	// Output the button.
+	?>
+	<a class="<?php echo esc_attr( implode( ' ', array_unique( $button_classes ) ) ); ?>" href="<?php echo esc_url( $button_link ); ?>"><?php echo esc_html( $button_text ); ?></a>
+	<?php
 }
 
 /**
