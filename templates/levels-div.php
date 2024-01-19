@@ -41,7 +41,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					
 					<?php pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ); ?>
 
-					<?php pmproal_getLevelPrice( $level, $price ); ?>
+					<?php if ( ! empty( $show_price ) ) { pmproal_getLevelPrice( $level, $price ); } ?>
 
 					<?php if ( ! empty ( $expiration ) ) {
 						$level_expiration = pmpro_getLevelExpiration($level); ?>
@@ -58,7 +58,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 				<?php 
 			} else {
 				// This is a column-type div layout
-				pmproal_getLevelPrice( $level, $price ); ?>
+				if ( ! empty( $show_price ) ) { pmproal_getLevelPrice( $level, $price ); } ?>
 					
 				<p class="pmpro_level-select">
 					<?php pmproal_level_button( $level, $checkout_button, $renew_button, $account_button ); ?>
