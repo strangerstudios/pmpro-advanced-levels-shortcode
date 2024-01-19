@@ -81,7 +81,11 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 			: implode( ',', wp_list_pluck( $levels, 'value' ) );
 		}
 
-		$levels_order = explode(",", $levels);
+		// Clean up the $levels_order to prevent false positives and ensure data integrity.
+		$levels_order = explode( ',', $levels );
+		$levels_order = array_map( 'trim', $levels_order );
+		$levels_order = array_filter( $levels_order );
+
 		//loop through $levels_order array and pull levels from $levels
 		foreach($levels_order as $level_id) {
 			foreach($pmpro_all_levels as $level) {
@@ -111,7 +115,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 	}
 
 	// Check if we have any level IDs that aren't shown and set a message for admins.
-	$pmpro_levels_filtered_not_shown = array_diff( $levels_order, array_keys( $pmpro_levels_filtered ) );
+	$pmpro_levels_filtered_not_shown = array_diff( $levels_order, wp_list_pluck( $pmpro_levels_filtered, 'id' ) );
 	if ( ! empty( $pmpro_levels_filtered_not_shown ) && current_user_can( 'manage_options' ) ) {
 		// Make sure no level IDs are duplicated.
 		$pmpro_levels_filtered_not_shown = array_unique( $pmpro_levels_filtered_not_shown );
@@ -119,7 +123,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 		// Create a message to display to admins.
 		pmpro_setMessage(
 			sprintf(
-				__( 'Admin-only message: The following level IDs are not shown because they do not exist or signup is disabled: %s', 'pmpro-advanced-levels-shortcode' ),
+				esc_html__( 'Admin-only message: The following level IDs are not shown because they do not exist or signup is disabled: %s', 'pmpro-advanced-levels-shortcode' ),
 				implode( ', ', $pmpro_levels_filtered_not_shown )
 			),
 			'pmpro_error'
