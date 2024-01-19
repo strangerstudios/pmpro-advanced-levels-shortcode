@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 5.4
-Tested up to: 6.4
-Stable tag: 0.2.6
+Tested up to: 6.4.2
+Stable tag: 1.0
 
 An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
 
@@ -32,6 +32,12 @@ For more information about shortcode attributes, see the documentation here:
 https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/#h-shortcode-example-and-attributes
 
 == Changelog ==
+= 1.0 - 2024-01-19 =
+* ENHANCEMENT: Added warnings to admins when adding a non-existent or disabled level to the shortcode levels attribute.
+* REFACTOR: Reworked how blocks are structured within the plugin to follow the latest coding practice.
+* REFACTOR: General code cleanup and improvements.
+* BUG FIX: Fixed an issue where the "Renew" button on the level page would not show correctly.
+* BUG FIX: Fixed an issue where the "hide" price attribute wasn't working with the DIV layout.
 
 = 0.2.6 - 2023-08-29 =
 * ENHANCEMENT: Improved support for the Custom Level Cost Text Add On and free levels. (@MaximilianoRicoTabo, @andrewlimaza)

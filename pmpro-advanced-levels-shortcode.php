@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - Advanced Levels Page Shortcode Add On
 Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 Description: An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro
-Version: 0.2.6
+Version: 1.0
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com/
 Text Domain: pmpro-advanced-levels-shortcode
@@ -68,7 +68,7 @@ function pmproal_getLevelLandingPage($level_id) {
 /**
  * Function for allowed HTML tags in various templates
  * 
- * @since TBD
+ * @since 1.0
  * @return array $allowed_html The allowed HTML to be used for wp_kses escaping.
  */
 function pmproal_allowed_html() {
@@ -96,7 +96,7 @@ function pmproal_allowed_html() {
 	/**
 	 * Filters the allowed HTML tags for the Advanced Levels Shortcode.
 	 * @param array $allowed_html The allowed html elements for the Advanced Levels Shortcode escaping where wp_kses is used (like in compared elements etc.)
-	 * @since TBD
+	 * @since 1.0
 	 */
 	return apply_filters( 'pmproal_allowed_html', $allowed_html );
 }
@@ -104,7 +104,7 @@ function pmproal_allowed_html() {
 /**
  * Function to get the level price.
  *
- * @since TBD
+ * @since 1.0
  * @param object $level The level object.
  * @param string $price The price type from shortcode or block atts.
  * @return string $price_text The price text to be displayed.
@@ -147,7 +147,7 @@ function pmproal_getLevelPrice( $level, $price ) {
 /**
  * Function to get the level button.
  *
- * @since TBD
+ * @since 1.0
  * @param object $level The level object.
  * @param string $checkout_button The text for the checkout button from shortcode or block atts.
  * @param string $renew_button The text for the renew button from shortcode or block atts.
@@ -192,7 +192,7 @@ function pmproal_level_button( $level, $checkout_button, $renew_button, $account
 /**
  * Register block types for the block editor.
  *
- * @since TBD
+ * @since 1.0
  */
 function pmpro_advanced_levels_register_block_types() {
 	register_block_type( __DIR__ . '/blocks/build/advanced-levels-page' );
