@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Paid Memberships Pro - Advanced Levels Page Shortcode Add On
+Plugin Name: Paid Memberships Pro - Advanced Levels Page Add On
 Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
-Description: An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro
+Description: Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode.
 Version: 1.0
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com/
@@ -16,7 +16,7 @@ define( 'PMPRO_ADVANCED_LEVELS_DIR', dirname( __FILE__ ) );
 require_once( PMPRO_ADVANCED_LEVELS_DIR . '/templates/levels.php' );
 
 /**
- * Register the Advanced Levels Shortcode styles.
+ * Register the Advanced Levels page styles.
  */
 function pmpro_advanced_levels_register_styles() {
 	wp_register_style( 'pmpro-advanced-levels-styles', plugins_url( 'css/pmpro-advanced-levels.css', __FILE__ ) );
@@ -94,8 +94,8 @@ function pmproal_allowed_html() {
 	);
 
 	/**
-	 * Filters the allowed HTML tags for the Advanced Levels Shortcode.
-	 * @param array $allowed_html The allowed html elements for the Advanced Levels Shortcode escaping where wp_kses is used (like in compared elements etc.)
+	 * Filters the allowed HTML tags for the Advanced Levels page.
+	 * @param array $allowed_html The allowed html elements for the Advanced Levels page escaping where wp_kses is used (like in compared elements etc.)
 	 * @since 1.0
 	 */
 	return apply_filters( 'pmproal_allowed_html', $allowed_html );

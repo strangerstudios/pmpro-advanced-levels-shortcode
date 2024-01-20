@@ -1,19 +1,17 @@
-=== Paid Memberships Pro - Advanced Levels Page Shortcode Add On ===
+=== Paid Memberships Pro - Advanced Levels Page Add On ===
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 5.4
 Tested up to: 6.4.2
 Stable tag: 1.0
 
-An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro.
+Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode.
 
 == Description ==
 
-An enhanced shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro. 
+An enhanced block and shortcode for customizing the display of your Membership Levels Page for Paid Memberships Pro. 
 
-Attributes in the [pmpro_advanced_levels] shortcode can be used to tweak how levels are displayed on the levels page, including options to display levels in a more HTML5-friendly div layout or popular column layouts.
-
-Also includes specific styling support for Bootstrap v3+, StudioPress/Genesis, Woo Themes, Gantry, and Foundation based themes as well as some of the default WP themes like TwentyFourteen.
+Attributes in the block settings or the [pmpro_advanced_levels] shortcode can be used to tweak how levels are displayed on the levels page, including options to display levels in a more HTML5-friendly div layout or popular column layouts.
 
 For more information, see add on documentation:
 https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
@@ -22,22 +20,21 @@ https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 1. Upload the `pmpro-advanced-levels` folder to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Replace the [pmpro_levels] shortcode on your site with a [pmpro_advanced_levels] one.
+1. Replace the [pmpro_levels] shortcode on your site with the Advanced Levels Page block or [pmpro_advanced_levels] shortcode.
 
-Here is an example of the pmpro_advanced_levels shortcode with all attributes.
-
-[pmpro_advanced_levels template="genesis" levels="1,2,3" layout="table" hightlight="2" description="false" checkout_button="Register Now"]
-
-For more information about shortcode attributes, see the documentation here:
-https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/#h-shortcode-example-and-attributes
+For more information about block settings and shortcode attributes, see the documentation here:
+https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 == Changelog ==
 = 1.0 - 2024-01-19 =
-* ENHANCEMENT: Added warnings to admins when adding a non-existent or disabled level to the shortcode levels attribute.
-* REFACTOR: Reworked how blocks are structured within the plugin to follow the latest coding practice.
-* REFACTOR: General code cleanup and improvements.
+* FEATURE: Added the Advanced Levels Block as a new way to build your levels page.
+* ENHANCEMENT: Now showing a message for admins only when an included level ID does not exist.
+* ENHANCEMENT: Improved styling; Column type layouts now use CSS flexbox for better appearance on all screens.
+* BUG FIX/ENHANCEMENT: Fixed issues with the discount code attribute and supported levels or duplicate levels layouts.
+* BUG FIX/ENHANCEMENT: Removed `template` shortcode attribute that was not fully supported by with modern theme frameworks.
 * BUG FIX: Fixed an issue where the "Renew" button on the level page would not show correctly.
 * BUG FIX: Fixed an issue where the "hide" price attribute wasn't working with the DIV layout.
+* REFACTOR: General code cleanup and improvements.
 
 = 0.2.6 - 2023-08-29 =
 * ENHANCEMENT: Improved support for the Custom Level Cost Text Add On and free levels. (@MaximilianoRicoTabo, @andrewlimaza)
@@ -109,7 +106,7 @@ https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/#h-sh
 * Now applying the pmpro_levels_array filter to the array of levels when the levels are specified in a shortcode attribute. If you are using the pmpro_advanced_levels shortcode AND the pmpro_levels_array filter already, make sure your filter is programmed to account for this (perhaps by checking the globsl $post->ID to only run on certain pages/et). (Thanks, Camouyer)
 
 = .1.4 =
-* Fixed bug where discount codes were not being embedded in the checkout link URLs when added to the shortcake. (Thanks, 3fingas)
+* Fixed bug where discount codes were not being embedded in the checkout link URLs when added to the shortcode. (Thanks, 3fingas)
 
 = .1.3 =
 * If no specific levels are passed in the pmpro_levels_array filter is applied to the levels.
