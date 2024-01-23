@@ -4,8 +4,8 @@
  *
  */
 
-// Build the selectors for the single level elements.
-foreach ( $pmpro_levels_filtered as $level ) {
+ // Build the selectors for the single level elements.
+foreach ( $pmpro_levels_filtered as $key => $level ) {
 	$element_classes = array();
 	$element_classes[] = 'pmpro_level';
 	if ( $highlight == $level->id ) {
@@ -14,8 +14,9 @@ foreach ( $pmpro_levels_filtered as $level ) {
 	if ( $level->current_level ) {
 		$element_classes[] = 'pmpro_level-current';
 	}
+
 	$element_class = implode( ' ', array_unique( $element_classes ) );
-	$pmpro_levels_filtered[$level->id]->element_class = $element_class;
+	$pmpro_levels_filtered[$key]->element_class = $element_class;
 }
 
 // Build the selectors for the levels wrapper.
