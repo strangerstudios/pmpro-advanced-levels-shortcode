@@ -26,7 +26,7 @@ For more information about block settings and shortcode attributes, see the docu
 https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 == Changelog ==
-= 1.0 - 2024-01-19 =
+= 1.0 - 2024-01-23 =
 * FEATURE: Added the Advanced Levels Block as a new way to build your levels page.
 * ENHANCEMENT: Now showing a message for admins only when an included level ID does not exist.
 * ENHANCEMENT: Improved styling; Column type layouts now use CSS flexbox for better appearance on all screens.
