@@ -1,15 +1,15 @@
 # Copyright (C) 2024 Paid Memberships Pro
-# This file is distributed under the same license as the Paid Memberships Pro - Advanced Levels Page Shortcode Add On plugin.
+# This file is distributed under the same license as the Paid Memberships Pro - Advanced Levels Page Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Shortcode Add On 1.0\n"
+"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Add On 1.0\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-19T13:30:38+00:00\n"
+"POT-Creation-Date: 2024-01-23T08:39:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: pmpro-advanced-levels-shortcode\n"
@@ -53,6 +53,7 @@ msgstr ""
 #: templates/levels-table.php:19
 #: templates/levels-compare_table.php:29
 #: templates/levels-table.php:16
+#: templates/levels-compare_table.php:30
 msgid "Level"
 msgstr ""
 
@@ -63,6 +64,8 @@ msgstr ""
 #: templates/levels-table.php:18
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:89
+#: templates/levels-compare_table.php:43
+#: blocks/src/advanced-levels-page/edit.js:90
 msgid "Price"
 msgstr ""
 
@@ -75,6 +78,8 @@ msgstr ""
 #: templates/levels-compare_table.php:62
 #: templates/levels-compare_table.php:145
 #: templates/levels-table.php:21
+#: templates/levels-compare_table.php:63
+#: templates/levels-compare_table.php:146
 msgid "Expiration"
 msgstr ""
 
@@ -138,6 +143,7 @@ msgstr ""
 #: templates/levels.php:164
 #: templates/levels.php:165
 #: templates/levels.php:184
+#: templates/levels.php:186
 msgid "&larr; Return to Your Account"
 msgstr ""
 
@@ -145,6 +151,7 @@ msgstr ""
 #: templates/levels.php:166
 #: templates/levels.php:167
 #: templates/levels.php:186
+#: templates/levels.php:188
 msgid "&larr; Return to Home"
 msgstr ""
 
@@ -190,6 +197,9 @@ msgstr ""
 #: templates/levels-div.php:50
 #: templates/levels-div.php:77
 #: templates/levels-table.php:61
+#: templates/levels-compare_table.php:69
+#: templates/levels-compare_table.php:152
+#: templates/levels-compare_table.php:236
 msgid "Membership never expires."
 msgstr ""
 
@@ -206,68 +216,82 @@ msgstr ""
 
 #: templates/levels-compare_table.php:56
 #: templates/levels-compare_table.php:52
+#: templates/levels-compare_table.php:53
 msgid "Description"
 msgstr ""
 
 #: templates/levels-compare_table.php:117
+#: templates/levels-compare_table.php:118
 msgid "Yes"
 msgstr ""
 
 #: templates/levels-compare_table.php:119
+#: templates/levels-compare_table.php:120
 msgid "No"
 msgstr ""
 
 #: templates/levels.php:126
+#: templates/levels.php:127
 msgid "Admin-only message: The following level IDs are not shown because they do not exist or signup is disabled: %s"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:38
+#: blocks/src/advanced-levels-page/edit.js:39
 msgid "Div"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:39
+#: blocks/src/advanced-levels-page/edit.js:40
 msgid "Table"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:40
+#: blocks/src/advanced-levels-page/edit.js:41
 msgid "2 Columns"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:41
+#: blocks/src/advanced-levels-page/edit.js:42
 msgid "3 Columns"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:42
+#: blocks/src/advanced-levels-page/edit.js:43
 msgid "4 Columns"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:43
+#: blocks/src/advanced-levels-page/edit.js:44
 msgid "Compare Table"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:47
+#: blocks/src/advanced-levels-page/edit.js:48
 msgid "Full"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:48
+#: blocks/src/advanced-levels-page/edit.js:49
 msgid "Short"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:49
+#: blocks/src/advanced-levels-page/edit.js:50
 msgid "Hide"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:57
+#: blocks/src/advanced-levels-page/edit.js:58
 msgid "Levels"
 msgstr ""
 
@@ -278,80 +302,119 @@ msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:67
+#: blocks/src/advanced-levels-page/edit.js:68
 msgid "Layout"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:78
+#: blocks/src/advanced-levels-page/edit.js:79
 msgid "Compare Table Items"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:79
+#: blocks/src/advanced-levels-page/edit.js:80
 msgid "Enter groups of comparison rows separated by a semi-colon. For each comparison row, separate the label and each value with a comma (e.g. \"Feature 1,No,Yes,Yes;Feature 2,No,No,Yes\")."
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:90
+#: blocks/src/advanced-levels-page/edit.js:91
 msgid "Display the level price in your chosen format."
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:100
+#: blocks/src/advanced-levels-page/edit.js:101
 msgid "Discount Code"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:101
+#: blocks/src/advanced-levels-page/edit.js:102
 msgid "Enter a discount code to apply to all applicable levels."
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:110
+#: blocks/src/advanced-levels-page/edit.js:111
 msgid "Level Description"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:111
+#: blocks/src/advanced-levels-page/edit.js:112
 msgid "Display the level description, if defined."
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:120
+#: blocks/src/advanced-levels-page/edit.js:121
 msgid "Level Expiration"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:121
+#: blocks/src/advanced-levels-page/edit.js:122
 msgid "Display the level expiration, if applicable."
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:130
+#: blocks/src/advanced-levels-page/edit.js:131
 msgid "Checkout Button Label"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:131
+#: blocks/src/advanced-levels-page/edit.js:132
 msgid "Enter custom text to change the label of the checkout button."
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:140
+#: blocks/src/advanced-levels-page/edit.js:141
 msgid "Renew Button"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:141
+#: blocks/src/advanced-levels-page/edit.js:142
 msgid "Enter custom text to change the label of the renew button."
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:150
+#: blocks/src/advanced-levels-page/edit.js:151
 msgid "Back Link"
 msgstr ""
 
 #: blocks/build/advanced-levels-page/index.js:1
 #: blocks/src/advanced-levels-page/edit.js:151
+#: blocks/src/advanced-levels-page/edit.js:152
 msgid "Display a link to the membership account page for current members and the home page for everyone else."
+msgstr ""
+
+#. Plugin Name of the plugin
+msgid "Paid Memberships Pro - Advanced Levels Page Add On"
+msgstr ""
+
+#. Description of the plugin
+msgid "Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode."
+msgstr ""
+
+#: blocks/build/advanced-levels-page/index.js:1
+#: blocks/src/advanced-levels-page/edit.js:59
+msgid "Enter a comma-separated list of level IDs in the order you would like them to display."
+msgstr ""
+
+#: blocks/build/advanced-levels-page/index.js:1
+#: blocks/src/advanced-levels-page/edit.js:161
+msgid "Highlight"
+msgstr ""
+
+#: blocks/build/advanced-levels-page/index.js:1
+#: blocks/src/advanced-levels-page/edit.js:162
+msgid "The single level ID to display as the featured level. Use the .pmpro_level-highlight class to add a custom highlight style for your theme."
 msgstr ""
