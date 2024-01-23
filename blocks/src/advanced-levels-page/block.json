@@ -35,6 +35,10 @@
 			"default": true,
 			"type": "boolean"
 		},
+		"highlight": {
+			"default": [],
+			"type": "string"
+		},
 		"layout": {
 			"default": "div",
 			"type": "string"

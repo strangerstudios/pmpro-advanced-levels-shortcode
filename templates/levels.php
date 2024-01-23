@@ -104,30 +104,32 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 			$levels_order = array_keys( $pmpro_level_order );
 		}
 
-		// Reorder array
+		// Reorder array and remove levels that don't exist or have signup disabled.
 		foreach ( $levels_order as $level_id ) {
 			foreach ( $pmpro_all_levels as $key => $level ) {
-				if ( $level_id == $level->id ) {
+				if ( $level_id == $level->id && true == $level->allow_signups) {
 					$pmpro_levels_filtered[] = $pmpro_all_levels[$key];
 				}
 			}
 		}
 	}
 
-	// Check if we have any level IDs that aren't shown and set a message for admins.
-	$pmpro_levels_filtered_not_shown = array_diff( $levels_order, wp_list_pluck( $pmpro_levels_filtered, 'id' ) );
-	if ( ! empty( $pmpro_levels_filtered_not_shown ) && current_user_can( 'manage_options' ) ) {
-		// Make sure no level IDs are duplicated.
-		$pmpro_levels_filtered_not_shown = array_unique( $pmpro_levels_filtered_not_shown );
+	// Check if we have any specified level IDs that aren't shown and set a message for admins.
+	if ( ! empty( $levels ) ) {
+		$pmpro_levels_filtered_not_shown = array_diff( $levels_order, wp_list_pluck( $pmpro_levels_filtered, 'id' ) );
+		if ( ! empty( $pmpro_levels_filtered_not_shown ) && current_user_can( 'manage_options' ) ) {
+			// Make sure no level IDs are duplicated.
+			$pmpro_levels_filtered_not_shown = array_unique( $pmpro_levels_filtered_not_shown );
 
-		// Create a message to display to admins.
-		pmpro_setMessage(
-			sprintf(
-				esc_html__( 'Admin-only message: The following level IDs are not shown because they do not exist or signup is disabled: %s', 'pmpro-advanced-levels-shortcode' ),
-				implode( ', ', $pmpro_levels_filtered_not_shown )
-			),
-			'pmpro_error'
-		);
+			// Create a message to display to admins.
+			pmpro_setMessage(
+				sprintf(
+					esc_html__( 'Admin-only message: The following level IDs are not shown because they do not exist or signup is disabled: %s', 'pmpro-advanced-levels-shortcode' ),
+					implode( ', ', $pmpro_levels_filtered_not_shown )
+				),
+				'pmpro_error'
+			);
+		}
 	}
 
 	$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
