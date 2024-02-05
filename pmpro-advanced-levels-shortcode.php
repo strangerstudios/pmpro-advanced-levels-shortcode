@@ -169,7 +169,7 @@ function pmproal_level_button( $level, $checkout_button, $renew_button, $account
 	} elseif( $level->current_level ) {
 		// Get specific level details for the user
 		$specific_level = pmpro_getSpecificMembershipLevelForUser( $current_user->ID, $level->id );
-		if ( pmpro_isLevelExpiringSoon( $specific_level ) && $specific_level->allow_signups ) {
+		if ( pmpro_isLevelExpiringSoon( $specific_level ) ) {
 			// Show renew button if the level is expiring soon and signups are allowed
 			$button_classes[] = 'pmpro_btn-select';
 			$button_classes[] = 'pmpro_btn-renew';
