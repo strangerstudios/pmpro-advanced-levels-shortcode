@@ -274,8 +274,8 @@
 	text-align: center;
 }
 
-.pmpro_advanced_levels-compare_table_responsive ul,
-.pmpro_advanced_levels-compare_table_responsive li {
+.pmpro_advanced_levels-compare_table_responsive .pmpro_level ul,
+.pmpro_advanced_levels-compare_table_responsive .pmpro_level ul li {
 	list-style: none;
 	margin-left: 0;
 	padding-left: 0;
