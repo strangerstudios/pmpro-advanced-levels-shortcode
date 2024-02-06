@@ -177,7 +177,12 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 ?>
 <div id="pmpro_levels" class="<?php echo esc_attr( $wrapper_class ); ?>">
 <?php
+	// Reset the count.
+	$count = 0;
 	foreach ( $pmpro_levels_filtered as $level ) {
+		// Increment the count so we know what place we are in the compare items list.
+		$count++;
+
 		// Build the selectors for the single level elements.
 		$element_classes = array();
 		$element_classes[] = 'pmpro_level';
@@ -201,8 +206,21 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 			<?php } ?>
 
 			<?php if ( ! empty( $compareitems ) ) {
-				echo '<p>';
+				echo '<ul>';
 				foreach ( $compareitems as $compareitem ) {
+
+					// Build the array of compare items.
+					$compareitem_values = explode(",", $compareitem);
+
+					/**
+					 * Filter the compare items.
+					 *
+					 * @since 0.2.6
+					 * @param array $compareitem_values The compare items.
+					 * @return array $compareitem_values The filtered compare items.
+					 */
+					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
+
 					$compareitem_values = explode( ',', $compareitem );
 					if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
 						$compare_level = $numeric_levels_array[$count];
@@ -212,15 +230,14 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 
 					if ( $compareitem_values[$count] != '0' ) { 
 						if ( $compareitem_values[$count] == '1' ) {
-							echo '<strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>';
+							echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong></li>';
 						} else {
-							echo '<strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
-							echo wp_kses( $compareitem_values[$count], pmproal_allowed_html() );
+							echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
+							echo wp_kses( $compareitem_values[$count], pmproal_allowed_html() ) . '</li>';
 						}
-						echo '<br />';
 					}
 				}
-				echo '</p>';
+				echo '</ul>';
 			} ?>
 
 			<div class="pmpro_level-meta">
