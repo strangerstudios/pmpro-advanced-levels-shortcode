@@ -122,12 +122,10 @@ function pmproal_getLevelPrice( $level, $price ) {
 	if ( pmpro_isLevelFree ( $level_to_price ) ) {
 		// Add free class if level is free.
 		$price_classes[] = 'pmpro_level-price-free';
-
-		// If pmpro-level-cost-text Add On is installed and activated and the level has a cost text, use that
-		if ( function_exists( 'pmpro_getCustomLevelCostText' ) && ! empty( pmpro_getCustomLevelCostText( $level_to_price->id ) ) ) {
-			$price_text = pmpro_getCustomLevelCostText( $level_to_price->id );
+		if ( $price === 'full' ) {
+			$price_text = pmpro_getLevelCost( $level_to_price, true, false );
 		} else {
-			$price_text = __( 'Free', 'pmpro-advanced-levels-shortcode' );
+			$price_text = pmpro_getLevelCost( $level_to_price, false, true );
 		}
 	} elseif ( $price === 'full' ) {
 		$price_text = pmpro_getLevelCost( $level_to_price, true, false );
