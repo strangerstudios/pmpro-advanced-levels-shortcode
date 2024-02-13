@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 5.4
-Tested up to: 6.4.2
-Stable tag: 1.0
+Tested up to: 6.4
+Stable tag: 1.1
 
 Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode.
 
@@ -26,6 +26,11 @@ For more information about block settings and shortcode attributes, see the docu
 https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 == Changelog ==
+= 1.1 - 2024-02-13 =
+* BUG FIX/ENHANCEMENT: Now using an unordered-list on comparison table mobile view for better spacing between items.
+* BUG FIX: Fixing bug where comparison table mobile view was showing the incorrect comparison items.
+* REFACTOR: Cleaned up some code and logic around showing the "Renew" button on the levels page.
+
 = 1.0 - 2024-01-23 =
 * FEATURE: Added the Advanced Levels Block as a new way to build your levels page.
 * ENHANCEMENT: Now showing a message for admins only when an included level ID does not exist.
