@@ -32,7 +32,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 				$count = 0;
 				foreach ( $pmpro_levels_filtered as $level ) { ?>
 					<th class="<?php echo esc_attr( $level->element_class ); ?>">
-						<h2><?php echo wp_kses( $level->name, pmproal_allowed_html() ); ?></h2>
+					<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_font-large' ) ); ?>"><?php echo wp_kses( $level->name, pmproal_allowed_html() ); ?></h2>
 					</th>
 					<?php
 				}
@@ -197,7 +197,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 		<div id="pmpro_level-<?php echo esc_attr( $level->id ); ?>" class="<?php echo esc_attr( $element_class ); ?>">
 			<?php do_action('pmproal_before_level', $level->id, $layout ); ?>
 
-			<h2><?php echo esc_html( $level->name ); ?></h2>
+			<h2><?php echo wp_kses( $level->name, pmproal_allowed_html() ); ?></h2>
 
 			<?php if ( ! empty( $description ) && ! empty( $level->description ) ) { ?>
 				<div class="pmpro_level-description">

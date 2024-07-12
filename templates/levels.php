@@ -160,6 +160,11 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 		$level->current_level = pmpro_hasMembershipLevel( $level->id );
 	}
 
+	// Open the wrapping div for the levels.
+	?>
+	<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro' ) ); ?>">
+	<?php
+
 	// Show the pmpro_msg variable.
 	if ( $pmpro_msg ) { ?>
 		<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_message ' . $pmpro_msgt, $pmpro_msgt ) ); ?>"><?php echo wp_kses_post( $pmpro_msg ); ?></div>
@@ -190,6 +195,8 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 			</span>
 		</div>
 	<?php } ?>
+
+	</div><!--.pmpro-->
 
 	<?php
 	$temp_content = ob_get_contents();
