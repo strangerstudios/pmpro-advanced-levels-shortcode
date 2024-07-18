@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - Advanced Levels Page Add On
 Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 Description: Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode.
-Version: 1.1
+Version: 1.2
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com/
 Text Domain: pmpro-advanced-levels-shortcode

@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 5.4
-Tested up to: 6.4
-Stable tag: 1.1
+Tested up to: 6.6
+Stable tag: 1.2
 
 Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode.
 
@@ -26,6 +26,9 @@ For more information about block settings and shortcode attributes, see the docu
 https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 == Changelog ==
+= 1.2 - 2024-07-18 =
+* ENHANCEMENT: Updated the frontend UI for compatibility with PMPro v3.1. #73 (@kimcoleman)
+
 = 1.1 - 2024-02-13 =
 * BUG FIX/ENHANCEMENT: Now using an unordered-list on comparison table mobile view for better spacing between items.
 * BUG FIX: Fixing bug where comparison table mobile view was showing the incorrect comparison items.
