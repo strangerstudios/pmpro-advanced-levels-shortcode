@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Paid Memberships Pro - Advanced Levels Page Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Add On 1.1\n"
+"Project-Id-Version: Paid Memberships Pro - Advanced Levels Page Add On 1.2\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-13T12:16:47+00:00\n"
+"POT-Creation-Date: 2024-07-18T17:25:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: pmpro-advanced-levels-shortcode\n"
@@ -148,6 +148,7 @@ msgstr "Gratis"
 #: templates/levels.php:165
 #: templates/levels.php:184
 #: templates/levels.php:186
+#: templates/levels.php:191
 msgid "&larr; Return to Your Account"
 msgstr "&larr; Regresa a tu cuenta"
 
@@ -156,6 +157,7 @@ msgstr "&larr; Regresa a tu cuenta"
 #: templates/levels.php:167
 #: templates/levels.php:186
 #: templates/levels.php:188
+#: templates/levels.php:193
 msgid "&larr; Return to Home"
 msgstr "&larr; Regresa al inicio"
 
@@ -208,6 +210,9 @@ msgstr ""
 #: templates/levels-compare_table.php:152
 #: templates/levels-compare_table.php:236
 #: templates/levels-compare_table.php:253
+#: templates/levels-div.php:49
+#: templates/levels-div.php:78
+#: templates/levels-table.php:63
 msgid "Membership never expires."
 msgstr ""
 
