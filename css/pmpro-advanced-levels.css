@@ -2,7 +2,7 @@
  * Root variables
  */
  :root {
-	--pmproal--border--color: #D1D1D1;
+	--pmproal--border--color: var(--pmpro--color--border--variation);
 	--pmproal--row--color-alt: #00000008;
 	--pmproal--spacing--large: 50px;
 	--pmproal--spacing--medium: 30px;
@@ -190,6 +190,10 @@
 	vertical-align: middle;
 }
 
+.pmpro_advanced_levels-compare_table th {
+	font-weight: normal;
+}
+
 .pmpro_advanced_levels-compare_table thead tr:first-child th:not(.pmpro_advanced_levels-compare_table thead tr:first-child th:first-child) {
 	border-top-width: 1px;
 	padding-top: var(--pmproal--spacing--medium);
@@ -220,6 +224,10 @@
 	border-top-width: 1px;
 }
 
+.pmpro_advanced_levels-compare_table tbody tr:nth-child(odd) td {
+	border-top-width: 1px;
+}
+
 .pmpro_advanced_levels-compare_table tbody tr td:first-child {
 	text-align: right;
 }
@@ -233,6 +241,9 @@
 	border-bottom-width: 1px;
 }
 
+.pmpro_advanced_levels-compare_table h2 {
+	font-weight: 700;
+}
 
 .pmpro_advanced_levels-compare_table .pmpro_level-description ul {
 	display: inline-block;
