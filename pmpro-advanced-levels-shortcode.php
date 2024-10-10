@@ -183,7 +183,7 @@ function pmproal_level_button( $level, $checkout_button, $renew_button, $account
 
 	// Output the button.
 	?>
-	<a class="<?php echo esc_attr( implode( ' ', array_unique( $button_classes ) ) ); ?>" href="<?php echo esc_url( $button_link ); ?>"><?php echo esc_html( $button_text ); ?></a>
+	<a aria-label="<?php echo esc_attr( sprintf( __('Select the %s membership level', 'pmpro-advanced-levels-shortcode' ), $level->name ) ); ?>" class="<?php echo esc_attr( implode( ' ', array_unique( $button_classes ) ) ); ?>" href="<?php echo esc_url( $button_link ); ?>"><?php echo esc_html( $button_text ); ?></a>
 	<?php
 }
 
