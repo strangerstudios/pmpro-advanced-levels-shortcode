@@ -223,20 +223,15 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					 */
 					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
 
-					if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
-						$compare_level = $numeric_levels_array[$count];
+					echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
+					if ( empty( $compareitem_values[ $count ] ) ) {
+						echo esc_html__( 'No', 'pmpro-advanced-levels-shortcode' );
+					} elseif ( '1' === $compareitem_values[ $count ] ) {
+						echo esc_html__( 'Yes', 'pmpro-advanced-levels-shortcode' );
 					} else {
-						$compare_level = NULL;
+						echo wp_kses( $compareitem_values[ $count ], pmproal_allowed_html() ) . '</li>';
 					}
-
-					if ( $compareitem_values[$count] != '0' ) { 
-						if ( $compareitem_values[$count] == '1' ) {
-							echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong></li>';
-						} else {
-							echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
-							echo wp_kses( $compareitem_values[$count], pmproal_allowed_html() ) . '</li>';
-						}
-					}
+					echo '</li>';
 				}
 				echo '</ul>';
 			} ?>
