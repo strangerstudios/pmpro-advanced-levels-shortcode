@@ -105,10 +105,12 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
 
 					foreach ( $compareitem_values as $compareitem_value ) {
-						if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
-							$level = $numeric_levels_array[$count];
+						if ( $count < 0 ) {
+							$level = null;
+						} elseif ( empty( $numeric_levels_array[ $count ] ) ) {
+							break;
 						} else {
-							$level = NULL;
+							$level = $numeric_levels_array[ $count ];
 						}
 						$count++;
 						?>
