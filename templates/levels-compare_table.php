@@ -221,7 +221,6 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					 */
 					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
 
-					$compareitem_values = explode( ',', $compareitem );
 					if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
 						$compare_level = $numeric_levels_array[$count];
 					} else {
