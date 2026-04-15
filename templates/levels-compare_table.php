@@ -223,15 +223,13 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					 */
 					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
 
-					echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
-					if ( empty( $compareitem_values[ $count ] ) ) {
-						echo esc_html__( 'No', 'pmpro-advanced-levels-shortcode' );
-					} elseif ( '1' === $compareitem_values[ $count ] ) {
-						echo esc_html__( 'Yes', 'pmpro-advanced-levels-shortcode' );
-					} else {
-						echo wp_kses( $compareitem_values[ $count ], pmproal_allowed_html() );
+					if ( ! empty( $compareitem_values[ $count ] ) && '0' !== $compareitem_values[ $count ] ) {
+						echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>';
+						if ( '1' !== $compareitem_values[ $count ] ) {
+							echo ': ' . wp_kses( $compareitem_values[ $count ], pmproal_allowed_html() );
+						}
+						echo '</li>';
 					}
-					echo '</li>';
 				}
 				echo '</ul>';
 			} ?>
