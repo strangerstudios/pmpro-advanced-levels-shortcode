@@ -229,7 +229,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					} elseif ( '1' === $compareitem_values[ $count ] ) {
 						echo esc_html__( 'Yes', 'pmpro-advanced-levels-shortcode' );
 					} else {
-						echo wp_kses( $compareitem_values[ $count ], pmproal_allowed_html() ) . '</li>';
+						echo wp_kses( $compareitem_values[ $count ], pmproal_allowed_html() );
 					}
 					echo '</li>';
 				}
