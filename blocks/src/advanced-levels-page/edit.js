@@ -55,6 +55,8 @@ export default function Edit({ attributes, setAttributes }) {
 		<InspectorControls>
 			<PanelBody>
 				<TextControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 					label={ __( 'Levels', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Enter a comma-separated list of level IDs in the order you would like them to display.', 'pmpro-advanced-levels-shortcode' ) }
 					value={levels}
@@ -65,6 +67,8 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<SelectControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 					label={ __( 'Layout', 'pmpro-advanced-levels-shortcode' ) }
 					value={layout}
 					options={layout_types}
@@ -76,6 +80,7 @@ export default function Edit({ attributes, setAttributes }) {
 				/>
 				{ layout=='compare_table' &&
 					<TextareaControl
+						__nextHasNoMarginBottom
 						label={ __( 'Compare Table Items', 'pmpro-advanced-levels-shortcode' ) }
 						help={ __( 'Enter groups of comparison rows separated by a semi-colon. For each comparison row, separate the label and each value with a comma (e.g. "Feature 1,No,Yes,Yes;Feature 2,No,No,Yes").', 'pmpro-advanced-levels-shortcode' ) }
 						value={compare}
@@ -87,6 +92,8 @@ export default function Edit({ attributes, setAttributes }) {
 					/>
 				}
 				<SelectControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 					label={ __( 'Price', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Display the level price in your chosen format.', 'pmpro-advanced-levels-shortcode' ) }
 					value={price}
@@ -98,6 +105,8 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<TextControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 					label={ __( 'Discount Code', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Enter a discount code to apply to all applicable levels.', 'pmpro-advanced-levels-shortcode' ) }
 					value={discount_code}
@@ -108,6 +117,7 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<ToggleControl
+					__nextHasNoMarginBottom
 					label={ __( 'Level Description', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Display the level description, if defined.', 'pmpro-advanced-levels-shortcode' ) }
 					checked={description}
@@ -118,6 +128,7 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<ToggleControl
+					__nextHasNoMarginBottom
 					label={ __( 'Level Expiration', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Display the level expiration, if applicable.', 'pmpro-advanced-levels-shortcode' ) }
 					checked={expiration}
@@ -128,6 +139,8 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<TextControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 					label={ __( 'Checkout Button Label', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Enter custom text to change the label of the checkout button.', 'pmpro-advanced-levels-shortcode' ) }
 					value={checkout_button}
@@ -138,6 +151,8 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<TextControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 					label={ __( 'Renew Button', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Enter custom text to change the label of the renew button.', 'pmpro-advanced-levels-shortcode' ) }
 					value={renew_button}
@@ -148,6 +163,7 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<ToggleControl
+					__nextHasNoMarginBottom
 					label={ __( 'Back Link', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'Display a link to the membership account page for current members and the home page for everyone else.', 'pmpro-advanced-levels-shortcode' ) }
 					checked={back_link}
@@ -158,6 +174,8 @@ export default function Edit({ attributes, setAttributes }) {
 					}}
 				/>
 				<TextControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 					label={ __( 'Highlight', 'pmpro-advanced-levels-shortcode' ) }
 					help={ __( 'The single level ID to display as the featured level. Use the .pmpro_level-highlight class to add a custom highlight style for your theme.', 'pmpro-advanced-levels-shortcode' ) }
 					value={highlight}
