@@ -105,10 +105,12 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
 
 					foreach ( $compareitem_values as $compareitem_value ) {
-						if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
-							$level = $numeric_levels_array[$count];
+						if ( $count < 0 ) {
+							$level = null;
+						} elseif ( empty( $numeric_levels_array[ $count ] ) ) {
+							break;
 						} else {
-							$level = NULL;
+							$level = $numeric_levels_array[ $count ];
 						}
 						$count++;
 						?>
@@ -221,20 +223,12 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					 */
 					$compareitem_values = apply_filters( 'pmpro_advanced_levels_compare_items', $compareitem_values );
 
-					$compareitem_values = explode( ',', $compareitem );
-					if ( $count >= 0 && ! empty( $numeric_levels_array[$count] ) ) {
-						$compare_level = $numeric_levels_array[$count];
-					} else {
-						$compare_level = NULL;
-					}
-
-					if ( $compareitem_values[$count] != '0' ) { 
-						if ( $compareitem_values[$count] == '1' ) {
-							echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong></li>';
-						} else {
-							echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>: ';
-							echo wp_kses( $compareitem_values[$count], pmproal_allowed_html() ) . '</li>';
+					if ( ! empty( $compareitem_values[ $count ] ) && '0' !== $compareitem_values[ $count ] ) {
+						echo '<li><strong>' . wp_kses( $compareitem_values[0], pmproal_allowed_html() ) . '</strong>';
+						if ( '1' !== $compareitem_values[ $count ] ) {
+							echo ': ' . wp_kses( $compareitem_values[ $count ], pmproal_allowed_html() );
 						}
+						echo '</li>';
 					}
 				}
 				echo '</ul>';
