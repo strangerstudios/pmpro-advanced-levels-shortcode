@@ -23,7 +23,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					<?php if ( ! empty( $expiration ) ) { ?>
 						<th><?php esc_html_e('Expiration', 'pmpro-advanced-levels-shortcode');?></th>
 					<?php } ?>
-					<th>&nbsp;</th>
+					<th><span class="screen-reader-text"><?php esc_html_e( 'Action', 'pmpro-advanced-levels-shortcode' ); ?></span></th>
 					<?php do_action('pmproal_extra_cols_after_header'); ?>
 				</tr>
 			</thead>
