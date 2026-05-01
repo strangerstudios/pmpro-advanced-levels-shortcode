@@ -164,6 +164,7 @@ function pmproal_level_button( $level, $checkout_button, $renew_button, $account
 		$button_classes[] = 'pmpro_btn-select';
 		$button_link = add_query_arg( $level->link_arguments, pmpro_url( 'checkout', '', 'https' ) );
 		$button_text = $checkout_button;
+		$button_aria_label = sprintf( __( 'Select the %s membership level', 'pmpro-advanced-levels-shortcode' ), $level->name );
 	} elseif( $level->current_level ) {
 		// Get specific level details for the user
 		$specific_level = pmpro_getSpecificMembershipLevelForUser( $current_user->ID, $level->id );
@@ -173,17 +174,19 @@ function pmproal_level_button( $level, $checkout_button, $renew_button, $account
 			$button_classes[] = 'pmpro_btn-renew';
 			$button_link = add_query_arg( $level->link_arguments, pmpro_url( 'checkout', '', 'https' ) );
 			$button_text = $renew_button;
+			$button_aria_label = sprintf( __( 'Renew the %s membership level', 'pmpro-advanced-levels-shortcode' ), $level->name );
 		} else {
 			// Show account button otherwise
 			$button_classes[] = 'disabled';
 			$button_link = pmpro_url( 'account' );
 			$button_text = $account_button;
+			$button_aria_label = sprintf( __( 'Manage your %s membership', 'pmpro-advanced-levels-shortcode' ), $level->name );
 		}
 	}
 
 	// Output the button.
 	?>
-	<a aria-label="<?php echo esc_attr( sprintf( __('Select the %s membership level', 'pmpro-advanced-levels-shortcode' ), $level->name ) ); ?>" class="<?php echo esc_attr( implode( ' ', array_unique( $button_classes ) ) ); ?>" href="<?php echo esc_url( $button_link ); ?>"><?php echo esc_html( $button_text ); ?></a>
+	<a aria-label="<?php echo esc_attr( $button_aria_label ); ?>" class="<?php echo esc_attr( implode( ' ', array_unique( $button_classes ) ) ); ?>" href="<?php echo esc_url( $button_link ); ?>"><?php echo esc_html( $button_text ); ?></a>
 	<?php
 }
 
