@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 5.4
-Tested up to: 6.9
-Stable tag: 1.2.1
+Tested up to: 7.1
+Stable tag: 1.2.2
 
 Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode.
 
@@ -26,6 +26,9 @@ For more information about block settings and shortcode attributes, see the docu
 https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 == Changelog ==
+= 1.2.2 - 2026-09-29 =
+* SECURITY: Improved sanitization and escaping throughout the plugin to resolve Plugin Check security findings. #81 (@dparker1005)
+
 = 1.2.1 - 2026-05-01 =
 * ENHANCEMENT: Improved accessibility of the level buttons with state-aware `aria-label` text for select, renew, and account actions. #74 (@kimcoleman)
 * ENHANCEMENT: Improved accessibility of the empty header cell in the table layout by replacing `&nbsp;` with screen-reader-only "Action" text. #74 (@kimcoleman)
