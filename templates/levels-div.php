@@ -3,6 +3,10 @@
 	Template for layout= "div" or "2col" or "3col" or "4col"
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Build the selectors for the levels div wrapper.
 $wrapper_classes = array();
 $wrapper_classes[] = 'pmpro_advanced_levels-div';

@@ -10,6 +10,10 @@ Text Domain: pmpro-advanced-levels-shortcode
 Domain Path: /languages
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 define( 'PMPRO_ADVANCED_LEVELS_DIR', dirname( __FILE__ ) );
 
 // Include required files.

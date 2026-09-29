@@ -4,6 +4,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
  // Build the selectors for the single level elements.
 foreach ( $pmpro_levels_filtered as $key => $level ) {
 	$element_classes = array();
@@ -53,7 +57,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 				<th><span class="screen-reader-text"><?php esc_html_e( 'Description', 'pmpro-advanced-levels-shortcode' ); ?></span></th>
 				<?php foreach ( $pmpro_levels_filtered as $level ) { ?>
 					<th class="<?php echo esc_attr( $level->element_class ); ?> pmpro_level-description">
-						<?php echo wpautop($level->description); ?>
+						<?php echo wp_kses_post( wpautop($level->description) ); ?>
 					</th>
 				<?php } ?>
 			</tr>

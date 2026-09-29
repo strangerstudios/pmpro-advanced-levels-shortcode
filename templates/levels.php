@@ -2,6 +2,11 @@
 /**
  * This shortcode displays the membership levels and additional content based on the defined attributes.
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 	// $atts    ::= array of attributes
 	// $content ::= text within enclosing form of shortcode element
@@ -136,9 +141,11 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 	$numeric_levels_array = array_values($pmpro_levels_filtered);
 
 	// Allows you to add ?discount_code=code to your URL. Shortcode attribute overrides URL parameter.
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only URL parameter used to build checkout links.
 	if ( empty( $discount_code ) && ! empty( $_REQUEST['discount_code'] ) ) {
-		$discount_code = sanitize_text_field( $_REQUEST['discount_code'] );
+		$discount_code = sanitize_text_field( wp_unslash( $_REQUEST['discount_code'] ) );
 	}
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 	// Set up the link arguments and level objects to price.
 	foreach ( $pmpro_levels_filtered as $level ) {

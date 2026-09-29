@@ -3,6 +3,10 @@
 	template for layout="table"
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 // Build the selectors for the levels wrapper.
 $wrapper_classes = array();
