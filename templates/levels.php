@@ -24,7 +24,6 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 		'highlight' => NULL,
 		'layout' => 'div',
 		'levels' => NULL,
-		'more_button' => NULL,
 		'price' => 'short',
 		'renew_button' => __('Renew', 'pmpro-advanced-levels-shortcode'),
 		'template' => NULL,
@@ -54,12 +53,6 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 		$expiration = false;
 	} else {
 		$expiration = true;
-	}
-
-	if ( $more_button === "0" || $more_button === "false" || $more_button === "no" || empty($more_button) || ! $more_button ) {
-		$more_button = false;
-	} elseif ( $more_button === "1" || $more_button === "true" || $more_button === "yes" || $more_button == true ) {
-		$more_button = __( "Read More", "pmpro-advanced-levels-shortcode" );
 	}
 
 	if ( $price === "0" || $price === "false" || $price === "hide" ) {
