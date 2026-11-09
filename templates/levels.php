@@ -41,7 +41,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 		$compare = false;
 	} else {
 		// Split into rows, trimming whitespace and dropping empty rows.
-		$compareitems = array_filter( array_map( 'trim', explode( ';', $compare ) ), 'strlen' );
+		$compareitems = array_values( array_filter( array_map( 'trim', explode( ';', $compare ) ), 'strlen' ) );
 	}
 
 	if ( $description === "0" || $description === "false" || $description === "no" || ! $description ) {
