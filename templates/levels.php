@@ -40,8 +40,8 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 	if ( $compare === "0" || $compare === "false" || $compare === "no" || empty( $compare ) ) {
 		$compare = false;
 	} else {
-		$compare = rtrim( trim( $compare ), ';' ); // clear up a stray ; at the end.
-		$compareitems = explode( ";", $compare );
+		// Split into rows, trimming whitespace and dropping empty rows.
+		$compareitems = array_filter( array_map( 'trim', explode( ';', $compare ) ), 'strlen' );
 	}
 
 	if ( $description === "0" || $description === "false" || $description === "no" || ! $description ) {
