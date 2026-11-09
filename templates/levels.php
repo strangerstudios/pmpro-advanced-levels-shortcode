@@ -40,7 +40,7 @@ function pmpro_advanced_levels_shortcode($atts, $content=null, $code="") {
 	if ( $compare === "0" || $compare === "false" || $compare === "no" || empty( $compare ) ) {
 		$compare = false;
 	} else {
-		$compare = rtrim( $compare, ';' ); // clear up a stray ; at the end.
+		$compare = rtrim( trim( $compare ), ';' ); // clear up a stray ; at the end.
 		$compareitems = explode( ";", $compare );
 	}
 
