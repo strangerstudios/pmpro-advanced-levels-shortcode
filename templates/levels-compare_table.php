@@ -97,7 +97,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 					$count = -1;
 
 					// Build the array of compare items.
-					$compareitem_values = explode(",", $compareitem);
+					$compareitem_values = array_map( 'trim', explode( ',', $compareitem ) );
 
 					/**
 					 * Filter the compare items.
@@ -216,7 +216,7 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 				foreach ( $compareitems as $compareitem ) {
 
 					// Build the array of compare items.
-					$compareitem_values = explode(",", $compareitem);
+					$compareitem_values = array_map( 'trim', explode( ',', $compareitem ) );
 
 					/**
 					 * Filter the compare items.
