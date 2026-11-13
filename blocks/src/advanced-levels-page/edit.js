@@ -82,7 +82,7 @@ export default function Edit({ attributes, setAttributes }) {
 					<TextareaControl
 						__nextHasNoMarginBottom
 						label={ __( 'Compare Table Items', 'pmpro-advanced-levels-shortcode' ) }
-						help={ __( 'Enter groups of comparison rows separated by a semi-colon. For each comparison row, separate the label and each value with a comma. Use 1 to show a check and 0 to show an X; any other value displays as text (e.g. "Feature 1,0,1,1;Feature 2,0,0,1").', 'pmpro-advanced-levels-shortcode' ) }
+						help={ __( 'Enter groups of comparison rows separated by a semi-colon. For each comparison row, separate the label and each value with a comma. Use 1 to show a check and 0 to show a dash; any other value displays as text (e.g. "Feature 1,0,1,1;Feature 2,0,0,1").', 'pmpro-advanced-levels-shortcode' ) }
 						value={compare}
 						onChange={compare => {
 							setAttributes({
