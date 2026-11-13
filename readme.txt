@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, members, memberships, levels, templates, pricing, columns, themes
 Requires at least: 5.4
 Tested up to: 7.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 
 Build a beautiful membership levels page for Paid Memberships Pro using a customizable block or shortcode.
 
@@ -26,6 +26,15 @@ For more information about block settings and shortcode attributes, see the docu
 https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/
 
 == Changelog ==
+= 1.2.3 - 2026-11-13 =
+* ENHANCEMENT: Links in compare table items, level names, price text and expiration text now keep their `data-*` attributes. #82 (@dparker1005)
+* BUG FIX: Fixed the Compare Table Items help text in the block so its example uses the `1` and `0` values that display as icons. #88 (@flintfromthebasement)
+* BUG FIX: Fixed level prices showing in the compare table's small-screen view when prices are set to hide. #89 (@flintfromthebasement)
+* BUG FIX: Fixed compare table items with spaces around commas or semicolons, which showed raw values in the small-screen view, and stopped empty rows from blank lines or extra semicolons. Leading and trailing spaces in compare values are now trimmed. #90 (@flintfromthebasement)
+* BUG FIX: Fixed a duplicate `pmpro_levels` ID in the compare table layout. The small-screen wrapper is now `#pmpro_levels-responsive`; custom CSS that targeted `#pmpro_levels` on that wrapper should use the new ID or the `.pmpro_advanced_levels-compare_table_responsive` class. #92 (@flintfromthebasement)
+* BUG FIX: Fixed the block's text domain so its title, description and keywords can be translated. #92 (@flintfromthebasement)
+* REFACTOR: Removed the unused `more_button` shortcode attribute and the unused `css_class` block attribute. #91 (@flintfromthebasement)
+
 = 1.2.2 - 2026-09-29 =
 * SECURITY: Improved sanitization and escaping throughout the plugin to resolve Plugin Check security findings. #81 (@dparker1005)
 
