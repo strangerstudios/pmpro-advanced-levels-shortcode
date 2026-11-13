@@ -19,10 +19,6 @@
 			"default": "",
 			"type": "string"
 		},
-		"css_class": {
-			"default": "pmpro_btn",
-			"type": "string"
-		},
 		"description": {
 			"default": true,
 			"type": "boolean"
