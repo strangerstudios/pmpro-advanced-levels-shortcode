@@ -82,6 +82,7 @@ function pmproal_allowed_html() {
 			'href' => array(),
 			'target' => array(),
 			'title' => array(),
+			'data-*' => true,
 		),
 		'p' => array(
 			'class' => array(),
