@@ -181,7 +181,7 @@ if ( ! empty( $layout ) ) {
 }
 $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 ?>
-<div id="pmpro_levels" class="<?php echo esc_attr( $wrapper_class ); ?>">
+<div id="pmpro_levels-responsive" class="<?php echo esc_attr( $wrapper_class ); ?>">
 <?php
 	// Reset the count.
 	$count = 0;
@@ -263,4 +263,4 @@ $wrapper_class = implode( ' ', array_unique( $wrapper_classes ) );
 		<?php
 	}
 ?>
-</div> <!-- #pmpro_levels, .row -->
+</div> <!-- #pmpro_levels-responsive, .row -->
